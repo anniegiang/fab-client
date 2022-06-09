@@ -5,7 +5,10 @@ export type Environment = keyof typeof environment;
 export type ApiConfig = {
   accessToken?: string;
   userId?: string;
-  baseApi: string;
+  host: string;
+  hostDomain: string;
+  apiVersion: string;
+  os: string;
   userAgent: string;
 };
 export type ApiConfigByEnvironment = {
