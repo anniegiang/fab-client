@@ -5,11 +5,11 @@
   "main": "index.ts",
   "scripts": {
     "prepare": "husky install",
-    "dev": "npx ts-node-dev --exit-child src/index.ts",
-    "start": "npx ts-node src/index.ts",
-    "lint-fix": "npx eslint . --config .eslintrc --ext .ts  --fix",
-    "format": "npx prettier --write .",
-    "pre-commit": "npx lint-fix && npx format"
+    "dev": "ts-node-dev --exit-child src/index.ts",
+    "start": "ts-node src/index.ts",
+    "lint": "eslint . --config .eslintrc --ext .ts --fix",
+    "format": "prettier --write .",
+    "pre-commit": "npm run lint && npm run format"
   },
   "author": "",
   "license": "ISC",
