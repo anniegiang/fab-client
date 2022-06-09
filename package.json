@@ -4,8 +4,12 @@
   "description": "A client to access your Fab account.",
   "main": "index.ts",
   "scripts": {
-    "dev": "ts-node-dev --exit-child src/index.ts",
-    "start": "ts-node src/index.ts"
+    "prepare": "husky install",
+    "dev": "npx ts-node-dev --exit-child src/index.ts",
+    "start": "npx ts-node src/index.ts",
+    "lint-fix": "npx eslint . --config .eslintrc --ext .ts  --fix",
+    "format": "npx prettier --write .",
+    "pre-commit": "npx lint-fix && npx format"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +20,14 @@
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
     "prettier": "^2.6.2",
     "ts-node": "^10.8.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.3"
+  },
+  "lint-staged": {
+    "*.ts": "npm run pre-commit"
   }
 }
