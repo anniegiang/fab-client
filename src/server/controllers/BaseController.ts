@@ -31,7 +31,7 @@ export default class BaseController {
     return {
       Host: this.host,
       os: this.os,
-      userId: this.userId,
+      userid: this.userId,
       "User-Agent": this.userAgent,
       accesstoken: this.accessToken,
       Accept: "*/*",

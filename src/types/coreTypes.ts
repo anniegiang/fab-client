@@ -1,4 +1,5 @@
 import environment from "Constants/environment";
+import {yesNo, zeroOrOne} from "Constants/common";
 
 export type Environment = keyof typeof environment;
 
@@ -11,6 +12,12 @@ export type ApiConfig = {
   os: string;
   userAgent: string;
 };
+
 export type ApiConfigByEnvironment = {
   [environment in Environment]: ApiConfig;
 };
+
+export type YesNo = typeof yesNo[keyof typeof yesNo];
+export type ZeroOrOne = typeof zeroOrOne[keyof typeof zeroOrOne];
+export type ImageUrl = string;
+export type TimeValueOf = number;
