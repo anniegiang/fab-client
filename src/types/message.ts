@@ -1,6 +1,12 @@
 import {YesNo, ImageUrl, TimeValueOf, Id, ZeroOrOne} from "Types/coreTypes";
 import {Member} from "Types/member";
 
+export type LetterImage = {
+  id: Id;
+  letterId: Id;
+  image: ImageUrl;
+};
+
 type Letter = {
   id: Id;
   messageId: Id;
@@ -11,7 +17,7 @@ type Letter = {
   status: ZeroOrOne;
   createdAt: TimeValueOf;
   updatedAt: TimeValueOf;
-  images: ImageUrl[];
+  images: LetterImage[];
 };
 
 type PostCard = {
