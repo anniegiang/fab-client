@@ -1,13 +1,12 @@
 import axios, {AxiosResponse} from "axios";
-import {Id} from "Types/coreTypes";
 import BaseController from "./BaseController";
 
-class UserController extends BaseController {
+export class UserController extends BaseController {
   constructor() {
     super();
   }
 
-  private get baseUrl(): string {
+  get baseUrl(): string {
     return `${this.baseApi}/users/${this.userId}`;
   }
 
@@ -19,12 +18,6 @@ class UserController extends BaseController {
 
   async getSubscribedArtists(): Promise<AxiosResponse> {
     return axios.get(`${this.baseUrl}/artists`, {
-      headers: this.defaultHeaders
-    });
-  }
-
-  async getMessageDetails(messageId: Id): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl}/message/${messageId}`, {
       headers: this.defaultHeaders
     });
   }
