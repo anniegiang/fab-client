@@ -1,7 +1,8 @@
+import ApiController from "./ApiController";
 import api from "Config/api";
 import {Id} from "Types/coreTypes";
 
-export default class BaseController {
+export default class BaseController extends ApiController {
   accessToken?: string;
   userId?: Id;
   host: string;
@@ -11,6 +12,7 @@ export default class BaseController {
   userAgent: string;
 
   constructor() {
+    super();
     this.accessToken = api.accessToken;
     this.userId = api.userId;
     this.host = api.host;
