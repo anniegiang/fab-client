@@ -1,5 +1,5 @@
 import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf, Id} from "Types/coreTypes";
-import {Member} from "Types/member";
+import {Member} from "Types/artist";
 
 export type User = {
   id: Id;
