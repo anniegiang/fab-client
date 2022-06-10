@@ -5,7 +5,7 @@ export type YesNo = typeof yesNo[keyof typeof yesNo];
 export type ZeroOrOne = typeof zeroOrOne[keyof typeof zeroOrOne];
 export type ImageUrl = string;
 export type TimeValueOf = number;
-export type Id = string;
+export type Id = number;
 
 export type Environment = keyof typeof environment;
 
