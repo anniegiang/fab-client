@@ -25,3 +25,7 @@ export type Member = User & {
   isFollow: YesNo;
   followedUpdatedAt: TimeValueOf;
 };
+
+export type ArtistResponse = {
+  artistUsers: Artist[];
+};
