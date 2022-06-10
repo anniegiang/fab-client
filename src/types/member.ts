@@ -1,12 +1,12 @@
-import {YesNo, ImageUrl, TimeValueOf} from "Types/coreTypes";
+import {YesNo, ImageUrl, TimeValueOf, Id} from "Types/coreTypes";
 import {User} from "Types/user";
 
 export type Artist = {
-  id: number;
-  artistUserId: number;
-  groupId: number;
-  agencyId: number;
-  managerId: number;
+  id: Id;
+  artistUserId: Id;
+  groupId: Id;
+  agencyId: Id;
+  managerId: Id;
   name: string;
   enName: string;
   bannerImage: ImageUrl; // link

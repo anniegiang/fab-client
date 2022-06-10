@@ -1,8 +1,8 @@
-import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf} from "Types/coreTypes";
+import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf, Id} from "Types/coreTypes";
 import {Member} from "Types/member";
 
 export type User = {
-  id: string;
+  id: Id;
   email: string;
   nickName: string;
   profileImage: ImageUrl;

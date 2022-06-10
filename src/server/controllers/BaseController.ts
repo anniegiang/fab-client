@@ -1,8 +1,9 @@
 import api from "Config/api";
+import {Id} from "Types/coreTypes";
 
 export default class BaseController {
   accessToken?: string;
-  userId?: string;
+  userId?: Id;
   host: string;
   hostDomain: string;
   apiVersion: string;
