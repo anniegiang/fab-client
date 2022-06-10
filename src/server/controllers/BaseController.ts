@@ -19,7 +19,7 @@ export default class BaseController {
     this.userAgent = api.userAgent;
   }
 
-  isAuthenticated(): boolean {
+  get isAuthenticated(): boolean {
     return !!this.accessToken && !!this.userId;
   }
 
@@ -28,12 +28,14 @@ export default class BaseController {
   }
 
   get defaultHeaders() {
+    if (!this.isAuthenticated) return;
+
     return {
       Host: this.host,
       os: this.os,
-      userid: this.userId,
+      userid: this.userId!,
       "User-Agent": this.userAgent,
-      accesstoken: this.accessToken,
+      accesstoken: this.accessToken!,
       Accept: "*/*",
       Connection: "keep-alive",
       "Cache-Control": "no-cache",
