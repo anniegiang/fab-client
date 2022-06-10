@@ -27,6 +27,6 @@ export type Comment = {
   subComments: Comment[];
 };
 
-export type CommentsResposne = {
+export type CommentsResponse = {
   comments: Comment[];
 };

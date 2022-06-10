@@ -1,6 +1,7 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import BaseController from "./BaseController";
 import {Id} from "Types/coreTypes";
+import {ArtistMessageResponse} from "Types/message";
 
 class ArtistController extends BaseController {
   constructor() {
@@ -11,10 +12,12 @@ class ArtistController extends BaseController {
     return `${this.baseApi}/artists/${artistId}`;
   }
 
-  async getMessages(artistId: Id): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl(artistId)}/messages`, {
+  async getMessages(artistId: Id): Promise<ArtistMessageResponse> {
+    const response = await axios.get(`${this.baseUrl(artistId)}/messages`, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 }
 

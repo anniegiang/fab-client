@@ -23,6 +23,7 @@ export default class BaseController extends ApiController {
   }
 
   get isAuthenticated(): boolean {
+    this.logWarning("User is not authenticated");
     return !!this.accessToken && !!this.userId;
   }
 

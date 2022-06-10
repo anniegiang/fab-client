@@ -1,5 +1,7 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import BaseController from "./BaseController";
+import {UserInfoResponse} from "Types/user";
+import {ArtistResponse} from "Types/artist";
 
 export class UserController extends BaseController {
   constructor() {
@@ -10,16 +12,20 @@ export class UserController extends BaseController {
     return `${this.baseApi}/users/${this.userId}`;
   }
 
-  async getInfo(): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl}/info`, {
+  async getInfo(): Promise<UserInfoResponse> {
+    const response = await axios.get(`${this.baseUrl}/info`, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 
-  async getSubscribedArtists(): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl}/artists`, {
+  async getSubscribedArtists(): Promise<ArtistResponse> {
+    const response = await axios.get(`${this.baseUrl}/artists`, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 }
 

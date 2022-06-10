@@ -1,5 +1,4 @@
 import {AxiosError, AxiosResponse} from "axios";
-import {request} from "http";
 import LoggingController from "./LoggingController";
 
 export default class ApiController extends LoggingController {
@@ -19,7 +18,7 @@ export default class ApiController extends LoggingController {
     return response as AxiosError;
   }
 
-  isSuccess(status: number) {
+  isSuccess(status: number): boolean {
     return status === 200 || status % 200 === 1;
   }
 }

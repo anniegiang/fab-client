@@ -1,6 +1,7 @@
-import axios, {AxiosResponse} from "axios";
-import {Id} from "Types/coreTypes";
+import axios from "axios";
 import BaseController from "./BaseController";
+import {Id} from "Types/coreTypes";
+import {GroupResponse} from "Types/groups";
 
 class GroupController extends BaseController {
   constructor() {
@@ -11,10 +12,12 @@ class GroupController extends BaseController {
     return `${this.baseApi}/groups`;
   }
 
-  async getGroupInfo(groupId: Id): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl}/${groupId}`, {
+  async getGroupInfo(groupId: Id): Promise<GroupResponse> {
+    const response = await axios.get(`${this.baseUrl}/${groupId}`, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 }
 

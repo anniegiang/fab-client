@@ -1,22 +1,26 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import {Id} from "Types/coreTypes";
 import {UserController} from "./UserController";
+import {Message} from "Types/message";
+import {CommentsResponse} from "Types/comment";
 
 class MessageController extends UserController {
   constructor() {
     super();
   }
 
-  async getMessageDetails(messageId: Id): Promise<AxiosResponse> {
-    return axios.get(`${this.baseUrl}/message/${messageId}`, {
+  async getMessageDetails(messageId: Id): Promise<Message> {
+    const response = await axios.get(`${this.baseUrl}/message/${messageId}`, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 
   async getMessageComments(
     messageId: Id,
     lastMessageId?: Id
-  ): Promise<AxiosResponse> {
+  ): Promise<CommentsResponse> {
     const baseUrl = `${this.baseUrl}/message/${messageId}/ncomments`;
 
     const paginatedUrl =
@@ -24,9 +28,11 @@ class MessageController extends UserController {
         ? `${baseUrl}/${lastMessageId}?direction=P`
         : baseUrl;
 
-    return axios.get(paginatedUrl, {
+    const response = await axios.get(paginatedUrl, {
       headers: this.defaultHeaders
     });
+
+    return this.respond(response);
   }
 }
 
