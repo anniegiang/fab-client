@@ -27,5 +27,5 @@ export type Member = User & {
 };
 
 export type ArtistResponse = {
-  artistUsers: Artist[];
+  artistUsers: Member[];
 };

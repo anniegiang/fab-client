@@ -1,5 +1,5 @@
 import {YesNo, ImageUrl, TimeValueOf, Id} from "Types/coreTypes";
-import {Artist} from "Types/artist";
+import {Member} from "Types/artist";
 
 export type Group = {
   id: Id;
@@ -18,7 +18,7 @@ export type Group = {
   vlive: string;
   cafe: string;
   isSolo: YesNo;
-  artistUsers: Artist[];
+  artistUsers: Member[];
   agencyName: string;
   agencyEnName: string;
   isFollow: YesNo;

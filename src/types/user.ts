@@ -25,5 +25,5 @@ export type UserInfo = User & {
 };
 
 export type UserInfoResponse = {
-  user: User;
+  user: UserInfo;
 };

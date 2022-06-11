@@ -1,7 +1,7 @@
 import axios from "axios";
 import {Id} from "Types/coreTypes";
 import {UserController} from "Controllers/UserController";
-import {Message} from "Types/message";
+import {LetterMessageResponse} from "Types/message";
 import {CommentsResponse} from "Types/comment";
 
 class MessageController extends UserController {
@@ -9,7 +9,7 @@ class MessageController extends UserController {
     super();
   }
 
-  async getMessageDetails(messageId: Id): Promise<Message> {
+  async getMessageDetails(messageId: Id): Promise<LetterMessageResponse> {
     const response = await axios.get(`${this.baseUrl}/message/${messageId}`, {
       headers: this.defaultHeaders
     });

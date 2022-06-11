@@ -58,3 +58,7 @@ export type Message = {
 export type ArtistMessageResponse = {
   messages: Message[];
 };
+
+export type LetterMessageResponse = {
+  message: Message;
+};
