@@ -37,6 +37,6 @@
     "typescript": "^4.7.3"
   },
   "lint-staged": {
-    "*.ts": "npm run pre-commit"
+    "*.{js,ts,jsx,tsx,json}": "npm run pre-commit"
   }
 }
