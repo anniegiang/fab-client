@@ -1,4 +1,4 @@
-import ApiController from "./ApiController";
+import ApiController from "Controllers/ApiController";
 import api from "Config/api";
 import {Id} from "Types/coreTypes";
 

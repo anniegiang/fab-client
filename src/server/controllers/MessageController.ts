@@ -1,6 +1,6 @@
 import axios from "axios";
 import {Id} from "Types/coreTypes";
-import {UserController} from "./UserController";
+import {UserController} from "Controllers/UserController";
 import {Message} from "Types/message";
 import {CommentsResponse} from "Types/comment";
 

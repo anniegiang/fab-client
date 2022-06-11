@@ -1,5 +1,5 @@
 import axios from "axios";
-import BaseController from "./BaseController";
+import BaseController from "Controllers/BaseController";
 import {Id} from "Types/coreTypes";
 import {GroupResponse} from "Types/groups";
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import BaseController from "./BaseController";
+import BaseController from "Controllers/BaseController";
 import {UserInfoResponse} from "Types/user";
 import {ArtistResponse} from "Types/artist";
 

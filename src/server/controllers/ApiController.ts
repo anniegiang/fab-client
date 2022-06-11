@@ -1,5 +1,5 @@
 import {AxiosError, AxiosResponse} from "axios";
-import LoggingController from "./LoggingController";
+import LoggingController from "Controllers/LoggingController";
 
 export default class ApiController extends LoggingController {
   constructor() {
