@@ -104,6 +104,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["./src/**/*.{js,ts,jsx,tsx,json}"],
-  "exclude": ["node_modules, .husky"]
+  "include": ["."],
+  "exclude": ["node_modules", ".husky", ".next"]
 }
