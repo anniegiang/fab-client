@@ -30,7 +30,9 @@
       "Config/*": ["./config/*"],
       "Constants/*": ["./constants/*"],
       "Types/*": ["./types/*"],
-      "Controllers/*": ["./server/controllers/*"]
+      "Controllers/*": ["./server/controllers/*"],
+      "Components/*": ["./client/components/*"],
+      "Styles/*": ["./client/styles/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
