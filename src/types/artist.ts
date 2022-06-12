@@ -14,7 +14,7 @@ export type Artist = {
   statusMessage: string;
   messageUpdatedAt: TimeValueOf;
   isPublishable: YesNo;
-  affectionateName: number;
+  affectionateName: string;
   groupName: number;
   agencyName: number;
   agencyEnName: number;
