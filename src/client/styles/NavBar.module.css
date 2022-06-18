@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 20px 20px 20px;
+  border-bottom: 1px dotted grey;
+}
+
+.item {
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+}

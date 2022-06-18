@@ -27,3 +27,7 @@ export type Group = {
 export type GroupResponse = {
   group: Group;
 };
+
+export type SubscribedGroupsResponse = {
+  groups: Group[];
+};

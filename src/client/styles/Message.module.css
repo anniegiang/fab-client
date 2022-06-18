@@ -1,0 +1,28 @@
+.message {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  margin: 10px;
+  border: 1px dotted var(--primary-color);
+  border-radius: var(--border-radius);
+  max-height: 25%;
+}
+
+.messageImage {
+  border-radius: var(--border-radius);
+}
+
+.content {
+  padding: 10px;
+}
+
+.timestamp {
+  text-align: center;
+}
+
+.readStatus {
+  text-align: center;
+  font-style: italic;
+}

@@ -11,10 +11,14 @@
   flex-direction: column;
   align-items: center;
   width: auto;
-  max-width: 20%;
+  max-width: 15%;
   margin: 5px;
-  border: 1px dashed gray;
+  border: 1px dashed var(--primary-color);
   border-radius: var(--border-radius);
+}
+
+.content {
+  padding: 10px;
 }
 
 .memberImage {
@@ -22,10 +26,12 @@
 }
 
 .memberName {
+  text-align: center;
   margin-top: 10px;
 }
 
 .memberStatus {
+  text-align: center;
   margin: 10px 0;
   font-style: italic;
 }

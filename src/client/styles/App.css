@@ -1,5 +1,6 @@
 :root {
   --border-radius: 10px;
+  --primary-color: dimgrey;
 }
 
 html,
@@ -7,6 +8,8 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 p,
@@ -16,6 +19,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: grey;
   margin: 0;
   padding: 0;
 }

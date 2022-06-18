@@ -59,6 +59,10 @@ export type ArtistMessageResponse = {
   messages: Message[];
 };
 
+export type GroupMessageResponse = {
+  messages: Message[];
+};
+
 export type LetterMessageResponse = {
   message: Message;
 };

@@ -27,8 +27,10 @@ export default ({members}: Props) => {
                 width={250}
                 height={250}
               />
-              <h4 className={styles.memberName}>{name}</h4>
-              <p className={styles.memberStatus}>{artist.statusMessage}</p>
+              <div className={styles.content}>
+                <h4 className={styles.memberName}>{name}</h4>
+                <p className={styles.memberStatus}>{artist.statusMessage}</p>
+              </div>
             </div>
           </Link>
         );

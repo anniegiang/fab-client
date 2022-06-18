@@ -4,6 +4,7 @@ import {UserInfoResponse, UserInfo} from "Types/user";
 import {GroupResponse, Group} from "Types/groups";
 import {LOONA_GROUP_ID} from "Constants/loona";
 import Members from "Components/Members";
+import NavBar from "Components/navbar/NavBar";
 
 type Props = {
   user: UserInfo;
@@ -11,26 +12,26 @@ type Props = {
 };
 
 export default ({loona, user}: Props) => {
-  const {enName, name, artistUsers} = loona;
+  // const {enName, name, artistUsers} = loona;
 
   return (
     <div>
-      <p>My points: {user.points}</p>
-      <Members members={artistUsers} />
+      <NavBar user={user} />
+      {/* <Members members={artistUsers} /> */}
     </div>
   );
 };
 
 export const getServerSideProps = async () => {
-  const loonaResponse: GroupResponse = await GroupController.getGroupInfo(
-    LOONA_GROUP_ID
-  );
+  // const loonaResponse: GroupResponse = await GroupController.getGroupInfo(
+  //   LOONA_GROUP_ID
+  // );
 
   const userResponse: UserInfoResponse = await UserController.getInfo();
 
   return {
     props: {
-      loona: loonaResponse.group,
+      // loona: loonaResponse.group,
       user: userResponse.user
     }
   };

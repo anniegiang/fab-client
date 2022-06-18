@@ -2,6 +2,7 @@ import axios from "axios";
 import BaseController from "Controllers/BaseController";
 import {UserInfoResponse} from "Types/user";
 import {ArtistResponse} from "Types/artist";
+import {SubscribedGroupsResponse} from "Types/groups";
 
 export class UserController extends BaseController {
   constructor() {
@@ -14,6 +15,14 @@ export class UserController extends BaseController {
 
   async getInfo(): Promise<UserInfoResponse> {
     const response = await axios.get(`${this.baseUrl}/info`, {
+      headers: this.defaultHeaders
+    });
+
+    return this.respond(response);
+  }
+
+  async getSubscribedGroups(): Promise<SubscribedGroupsResponse> {
+    const response = await axios.get(`${this.baseUrl}/groups`, {
       headers: this.defaultHeaders
     });
 
