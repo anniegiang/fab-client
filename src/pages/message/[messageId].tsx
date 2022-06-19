@@ -2,6 +2,8 @@ import moment from "moment-timezone";
 import MessageController from "Controllers/MessageController";
 import {Message, LetterMessageResponse} from "Types/message";
 import {CommentsResponse, Comment} from "Types/comment";
+import {yesNo} from "Constants/common";
+import styles from "Styles/MessageDetail.module.css";
 
 type Props = {
   message: Message;
@@ -10,13 +12,35 @@ type Props = {
 
 export default ({message, comments}: Props) => {
   return (
-    <div>
-      <h2>{moment(message.createdAt).format("MMMM D, YYYY h:mm a")}</h2>
-      {comments.map((comment: Comment) => {
+    <div className={styles.container}>
+      <h5 className={styles.messageTimestamp}>
+        {moment(message.createdAt).format("MMMM D, YYYY h:mm a")}
+      </h5>
+      {comments.map(({id, comment, createdAt, isArtist}: Comment) => {
+        const writtenByArtist = isArtist === yesNo.yes;
+
+        const commentPositionStyles = {
+          alignSelf: writtenByArtist ? "flex-start" : "flex-end",
+          backgroundColor: writtenByArtist ? "white" : "#ec53c6"
+        };
+
+        const commentText = {
+          color: writtenByArtist ? "black" : "white"
+        };
+
         return (
-          <div key={comment.id}>
-            <p>{moment(comment.createdAt).format("h:mm a")}</p>
-            <p>{comment.comment}</p>
+          <div
+            className={styles.commentContainer}
+            style={commentPositionStyles}
+            key={id}
+          >
+            <p style={{...commentPositionStyles, ...commentText}}>{comment}</p>
+            <p
+              className={styles.commentTimestamp}
+              style={{...commentPositionStyles, ...commentText}}
+            >
+              {moment(createdAt).format("h:mm a")}
+            </p>
           </div>
         );
       })}
