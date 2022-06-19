@@ -1,7 +1,6 @@
-import {useState} from "react";
 import moment from "moment-timezone";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "Components/Image";
 import {Message} from "Types/message";
 import {yesNo} from "Constants/common";
 import styles from "Styles/Message.module.css";
@@ -14,8 +13,6 @@ const IMAGE_WIDTH = 300;
 const IMAGE_HEIGHT = 300;
 
 export default ({message}: Props) => {
-  const [ratio, setRatio] = useState(16 / 9);
-
   const {id, letter, postcard, createdAt, isRead} = message;
   const isOpened = isRead === yesNo.yes;
 
@@ -24,24 +21,18 @@ export default ({message}: Props) => {
       <div className={styles.message}>
         {letter && letter.thumbnail && (
           <Image
-            className={styles.messageImage}
             src={letter.thumbnail}
-            width={IMAGE_WIDTH}
-            height={IMAGE_HEIGHT / ratio}
-            onLoadingComplete={({naturalWidth, naturalHeight}) =>
-              setRatio(naturalWidth / naturalHeight)
-            }
+            initialwidth={IMAGE_WIDTH}
+            initialheight={IMAGE_HEIGHT}
+            className={styles.messageImage}
           />
         )}
         {postcard && postcard.thumbnail && (
           <Image
-            className={styles.messageImage}
             src={postcard.thumbnail}
-            width={IMAGE_WIDTH}
-            height={IMAGE_HEIGHT / ratio}
-            onLoadingComplete={({naturalWidth, naturalHeight}) =>
-              setRatio(naturalWidth / naturalHeight)
-            }
+            initialwidth={IMAGE_WIDTH}
+            initialheight={IMAGE_HEIGHT}
+            className={styles.messageImage}
           />
         )}
         <div className={styles.content}>
