@@ -8,7 +8,7 @@ type Props = {
   loona: Group;
 };
 
-export default ({loona, user}: Props) => {
+export default ({user}: Props) => {
   return (
     <div>
       <NavBar user={user} />
