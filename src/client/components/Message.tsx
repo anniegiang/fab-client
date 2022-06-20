@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "Components/Image";
 import {Message} from "Types/message";
 import {yesNo} from "Constants/common";
-import styles from "Styles/Message.module.css";
+import styles from "Client/styles/Message.module.css";
 
 type Props = {
   message: Message;

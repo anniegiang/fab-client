@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 import {UserInfo} from "Types/user";
-import styles from "Styles/NavBar.module.css";
+import styles from "Client/styles/NavBar.module.css";
 import Link from "next/link";
 
 export default () => {

@@ -1,6 +1,6 @@
 import moment from "moment-timezone";
 import {Message as MessageType} from "Types/message";
-import styles from "Styles/Messages.module.css";
+import styles from "Client/styles/Messages.module.css";
 import Message from "Components/Message";
 
 type Props = {

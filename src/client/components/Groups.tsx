@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {Group} from "Types/group";
-import styles from "Styles/Artists.module.css";
+import styles from "Client/styles/Artists.module.css";
 
 type Props = {
   groups: Group[];

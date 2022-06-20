@@ -3,7 +3,7 @@ import MessageController from "Controllers/MessageController";
 import {Message, LetterMessageResponse} from "Types/message";
 import {CommentsResponse, Comment} from "Types/comment";
 import {yesNo} from "Constants/common";
-import styles from "Styles/MessageDetail.module.css";
+import styles from "Client/styles/MessageDetail.module.css";
 
 type Props = {
   message: Message;

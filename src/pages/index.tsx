@@ -4,8 +4,8 @@ import Artists from "Components/Artists";
 import Groups from "Components/Groups";
 import {ArtistResponse, ArtistUser} from "Types/artist";
 import {SubscribedGroupsResponse, Group} from "Types/group";
-import {useGetItem} from "../client/hooks/useLocalStorage";
-import LocalStorage from "../client/LocalStorage";
+import {useGetItem} from "Client/hooks/useLocalStorage";
+import LocalStorage from "Client/LocalStorage";
 
 type Props = {
   subscribedArtists: ArtistUser[];
