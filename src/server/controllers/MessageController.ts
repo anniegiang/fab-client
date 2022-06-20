@@ -1,4 +1,3 @@
-import axios from "axios";
 import {Id} from "Types/common";
 import {UserController} from "Controllers/UserController";
 import {LetterMessageResponse} from "Types/message";
@@ -10,9 +9,12 @@ class MessageController extends UserController {
   }
 
   async getMessageDetails(messageId: Id): Promise<LetterMessageResponse> {
-    const response = await axios.get(`${this.baseUrl}/message/${messageId}`, {
-      headers: this.defaultHeaders
-    });
+    const response = await this.httpClient.get(
+      `${this.baseUrl}/message/${messageId}`,
+      {
+        headers: this.defaultHeaders
+      }
+    );
 
     return this.respond(response);
   }
@@ -28,7 +30,7 @@ class MessageController extends UserController {
         ? `${baseUrl}/${lastMessageId}?direction=P`
         : baseUrl;
 
-    const response = await axios.get(paginatedUrl, {
+    const response = await this.httpClient.get(paginatedUrl, {
       headers: this.defaultHeaders
     });
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import BaseController from "Controllers/BaseController";
 import {Id} from "Types/common";
 import {GroupResponse} from "Types/group";
@@ -14,7 +13,7 @@ class GroupController extends BaseController {
   }
 
   async getGroupInfo(groupId: Id): Promise<GroupResponse> {
-    const response = await axios.get(`${this.baseUrl}/${groupId}`, {
+    const response = await this.httpClient.get(`${this.baseUrl}/${groupId}`, {
       headers: this.defaultHeaders
     });
 
@@ -22,9 +21,12 @@ class GroupController extends BaseController {
   }
 
   async getGroupMessages(groupId: Id): Promise<GroupMessageResponse> {
-    const response = await axios.get(`${this.baseUrl}/${groupId}/messages`, {
-      headers: this.defaultHeaders
-    });
+    const response = await this.httpClient.get(
+      `${this.baseUrl}/${groupId}/messages`,
+      {
+        headers: this.defaultHeaders
+      }
+    );
 
     return this.respond(response);
   }

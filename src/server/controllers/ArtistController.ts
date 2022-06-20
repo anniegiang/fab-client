@@ -1,4 +1,3 @@
-import axios from "axios";
 import BaseController from "Controllers/BaseController";
 import {Id} from "Types/common";
 import {ArtistMessageResponse} from "Types/message";
@@ -13,9 +12,12 @@ class ArtistController extends BaseController {
   }
 
   async getMessages(artistId: Id): Promise<ArtistMessageResponse> {
-    const response = await axios.get(`${this.baseUrl(artistId)}/messages`, {
-      headers: this.defaultHeaders
-    });
+    const response = await this.httpClient.get(
+      `${this.baseUrl(artistId)}/messages`,
+      {
+        headers: this.defaultHeaders
+      }
+    );
 
     return this.respond(response);
   }
