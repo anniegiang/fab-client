@@ -19,12 +19,6 @@ export default () => {
           <li className={styles.item}>
             <Link href="/">Home</Link>
           </li>
-          <li className={styles.item}>
-            <Link href="/subscribed/members">Subscribed Members</Link>
-          </li>
-          <li className={styles.item}>
-            <Link href="/subscribed/groups">Subscribed Groups</Link>
-          </li>
         </div>
         <div>
           {!!name && (
