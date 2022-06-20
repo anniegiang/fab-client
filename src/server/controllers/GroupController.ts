@@ -9,7 +9,7 @@ class GroupController extends BaseController {
   }
 
   get baseUrl(): string {
-    return `${this.baseApi}/groups`;
+    return "/groups";
   }
 
   async getGroupInfo(groupId: Id): Promise<GroupResponse> {

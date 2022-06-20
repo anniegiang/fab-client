@@ -23,7 +23,10 @@ export default class BaseController extends HttpClient {
   }
 
   get api(): HttpClientInstance {
-    return this.httpClient.create({headers: this.defaultHeaders});
+    return this.httpClient.create({
+      baseURL: this.baseApi,
+      headers: this.defaultHeaders
+    });
   }
 
   get isAuthenticated(): boolean {

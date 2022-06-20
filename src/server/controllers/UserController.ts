@@ -9,7 +9,7 @@ export class UserController extends BaseController {
   }
 
   get baseUrl(): string {
-    return `${this.baseApi}/users/${this.userId}`;
+    return `/users/${this.userId}`;
   }
 
   async getInfo(): Promise<UserInfoResponse> {

@@ -8,7 +8,7 @@ class ArtistController extends BaseController {
   }
 
   private baseUrl(artistId: Id): string {
-    return `${this.baseApi}/artists/${artistId}`;
+    return `/artists/${artistId}`;
   }
 
   async getMessages(artistId: Id): Promise<ArtistMessageResponse> {
