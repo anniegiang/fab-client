@@ -5,8 +5,8 @@ import {ApiConfig, ApiConfigByEnvironment} from "Types/coreTypes";
 
 const api: ApiConfigByEnvironment = {
   [environments.development]: {
-    accessToken: process.env.ACCESS_TOKEN,
-    userId: Number(process.env.USER_ID),
+    accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+    userId: Number(process.env.NEXT_PUBLIC_USER_ID),
     host: "vip-fab-api.myfab.tv",
     hostDomain: "fapi",
     apiVersion: "2",
