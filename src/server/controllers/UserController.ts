@@ -13,26 +13,17 @@ export class UserController extends BaseController {
   }
 
   async getInfo(): Promise<UserInfoResponse> {
-    const response = await this.httpClient.get(`${this.baseUrl}/info`, {
-      headers: this.defaultHeaders
-    });
-
+    const response = await this.api.get(`${this.baseUrl}/info`);
     return this.respond(response);
   }
 
   async getSubscribedGroups(): Promise<SubscribedGroupsResponse> {
-    const response = await this.httpClient.get(`${this.baseUrl}/groups`, {
-      headers: this.defaultHeaders
-    });
-
+    const response = await this.api.get(`${this.baseUrl}/groups`);
     return this.respond(response);
   }
 
   async getSubscribedArtists(): Promise<ArtistResponse> {
-    const response = await this.httpClient.get(`${this.baseUrl}/artists`, {
-      headers: this.defaultHeaders
-    });
-
+    const response = await this.api.get(`${this.baseUrl}/artists`);
     return this.respond(response);
   }
 }

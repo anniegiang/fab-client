@@ -1,4 +1,4 @@
-import HttpClient from "Server/services/HttpClient";
+import HttpClient, {HttpClientInstance} from "Server/services/HttpClient";
 import api from "Config/api";
 import {Id} from "Types/common";
 
@@ -20,6 +20,10 @@ export default class BaseController extends HttpClient {
     this.apiVersion = api.apiVersion;
     this.os = api.os;
     this.userAgent = api.userAgent;
+  }
+
+  get api(): HttpClientInstance {
+    return this.httpClient.create({headers: this.defaultHeaders});
   }
 
   get isAuthenticated(): boolean {

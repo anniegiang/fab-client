@@ -1,21 +1,22 @@
 import axios, {
-  AxiosInstance,
+  AxiosStatic,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosError
+  AxiosError,
+  AxiosInstance
 } from "axios";
 import Logger from "Server/services/Logger";
 
 export type HttpClientRequestConfig = AxiosRequestConfig;
 export type HttpClientResponse = AxiosResponse;
 export type HttpClientError = AxiosError;
-
+export type HttpClientInstance = AxiosInstance;
 export default class HttpClient extends Logger {
-  httpClient: AxiosInstance;
+  httpClient: AxiosStatic;
 
-  constructor(config?: HttpClientRequestConfig) {
+  constructor() {
     super();
-    this.httpClient = axios.create(config);
+    this.httpClient = axios;
   }
 
   respond(response: HttpClientResponse | HttpClientError) {

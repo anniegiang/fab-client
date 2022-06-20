@@ -12,13 +12,7 @@ class ArtistController extends BaseController {
   }
 
   async getMessages(artistId: Id): Promise<ArtistMessageResponse> {
-    const response = await this.httpClient.get(
-      `${this.baseUrl(artistId)}/messages`,
-      {
-        headers: this.defaultHeaders
-      }
-    );
-
+    const response = await this.api.get(`${this.baseUrl(artistId)}/messages`);
     return this.respond(response);
   }
 }

@@ -13,21 +13,12 @@ class GroupController extends BaseController {
   }
 
   async getGroupInfo(groupId: Id): Promise<GroupResponse> {
-    const response = await this.httpClient.get(`${this.baseUrl}/${groupId}`, {
-      headers: this.defaultHeaders
-    });
-
+    const response = await this.api.get(`${this.baseUrl}/${groupId}`);
     return this.respond(response);
   }
 
   async getGroupMessages(groupId: Id): Promise<GroupMessageResponse> {
-    const response = await this.httpClient.get(
-      `${this.baseUrl}/${groupId}/messages`,
-      {
-        headers: this.defaultHeaders
-      }
-    );
-
+    const response = await this.api.get(`${this.baseUrl}/${groupId}/messages`);
     return this.respond(response);
   }
 }
