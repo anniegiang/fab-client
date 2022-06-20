@@ -1,4 +1,4 @@
-import {AxiosResponse, AxiosError} from "axios";
+import {HttpClientResponse, HttpClientError} from "Server/services/HttpClient";
 
 export default class Logger {
   log(message: string): void {
@@ -13,7 +13,7 @@ export default class Logger {
     console.warn(`[warn]: ${message}`);
   }
 
-  logSuccessReponse(response: AxiosResponse): void {
+  logSuccessReponse(response: HttpClientResponse): void {
     return this.log(
       `${response.status} ${
         response.statusText
@@ -21,7 +21,7 @@ export default class Logger {
     );
   }
 
-  logErrorReponse(error: AxiosError): void {
+  logErrorReponse(error: HttpClientError): void {
     this.logError(
       `${error.code} ${error.message} - ${error.config.method?.toUpperCase()} ${
         error.config.url

@@ -1,8 +1,8 @@
-import ApiController from "Controllers/ApiController";
+import HttpClient from "Server/services/HttpClient";
 import api from "Config/api";
 import {Id} from "Types/common";
 
-export default class BaseController extends ApiController {
+export default class BaseController extends HttpClient {
   accessToken?: string;
   userId?: Id;
   host: string;
