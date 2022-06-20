@@ -1,7 +1,7 @@
 import ArtistController from "Controllers/ArtistController";
 import {ArtistMessageResponse, Message} from "Types/message";
 import Messages from "Components/Messages";
-import {Id} from "Types/coreTypes";
+import {Id} from "Types/common";
 
 type Props = {
   messages: Message[];

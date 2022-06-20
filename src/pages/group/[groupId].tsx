@@ -1,7 +1,7 @@
 import GroupController from "Controllers/GroupController";
 import {GroupResponse, Group} from "Types/groups";
 import Members from "Components/Members";
-import {Id} from "Types/coreTypes";
+import {Id} from "Types/common";
 
 type Props = {
   group: Group;

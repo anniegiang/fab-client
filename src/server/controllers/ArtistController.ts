@@ -1,6 +1,6 @@
 import axios from "axios";
 import BaseController from "Controllers/BaseController";
-import {Id} from "Types/coreTypes";
+import {Id} from "Types/common";
 import {ArtistMessageResponse} from "Types/message";
 
 class ArtistController extends BaseController {

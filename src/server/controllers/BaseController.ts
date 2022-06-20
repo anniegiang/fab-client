@@ -1,6 +1,6 @@
 import ApiController from "Controllers/ApiController";
 import api from "Config/api";
-import {Id} from "Types/coreTypes";
+import {Id} from "Types/common";
 
 export default class BaseController extends ApiController {
   accessToken?: string;

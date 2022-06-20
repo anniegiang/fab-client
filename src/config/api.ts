@@ -1,7 +1,7 @@
 import "dotenv/config";
 import environment from "Config/environment";
 import environments from "Constants/environment";
-import {ApiConfig, ApiConfigByEnvironment} from "Types/coreTypes";
+import {ApiConfig, ApiConfigByEnvironment} from "Types/common";
 
 const api: ApiConfigByEnvironment = {
   [environments.development]: {

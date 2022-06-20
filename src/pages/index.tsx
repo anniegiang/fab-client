@@ -18,36 +18,36 @@ export default ({subscribedArtists, subscribedGroups}: Props) => {
   const userId = useGetItem("userId");
   const accessToken = useGetItem("accessToken");
 
-  if (userId === null && accessToken === null) {
-    return (
-      <div>
-        <p>Please login</p>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (_userId && _accessToken) {
-              LocalStorage.set("userId", _userId);
-              LocalStorage.set("accessToken", _accessToken);
-            }
-          }}
-        >
-          <input
-            type="text"
-            placeholder="User Id"
-            value={_userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Access Token"
-            value={_accessToken}
-            onChange={(e) => setAccessToken(e.target.value)}
-          />
-          <input type="submit" />
-        </form>
-      </div>
-    );
-  }
+  // if (userId === null && accessToken === null) {
+  //   return (
+  //     <div>
+  //       <p>Please login</p>
+  //       <form
+  //         onSubmit={(e) => {
+  //           e.preventDefault();
+  //           if (_userId && _accessToken) {
+  //             LocalStorage.set("userId", _userId);
+  //             LocalStorage.set("accessToken", _accessToken);
+  //           }
+  //         }}
+  //       >
+  //         <input
+  //           type="text"
+  //           placeholder="User Id"
+  //           value={_userId}
+  //           onChange={(e) => setUserId(e.target.value)}
+  //         />
+  //         <input
+  //           type="text"
+  //           placeholder="Access Token"
+  //           value={_accessToken}
+  //           onChange={(e) => setAccessToken(e.target.value)}
+  //         />
+  //         <input type="submit" />
+  //       </form>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>

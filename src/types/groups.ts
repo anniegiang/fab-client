@@ -1,4 +1,4 @@
-import {YesNo, ImageUrl, TimeValueOf, Id} from "Types/coreTypes";
+import {YesNo, ImageUrl, TimeValueOf, Id} from "Types/common";
 import {Member} from "Types/artist";
 
 export type Group = {

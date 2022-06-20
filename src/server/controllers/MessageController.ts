@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Id} from "Types/coreTypes";
+import {Id} from "Types/common";
 import {UserController} from "Controllers/UserController";
 import {LetterMessageResponse} from "Types/message";
 import {CommentsResponse} from "Types/comment";
