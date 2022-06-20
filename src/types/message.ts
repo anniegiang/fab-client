@@ -1,5 +1,5 @@
 import {YesNo, ImageUrl, TimeValueOf, Id, ZeroOrOne} from "Types/common";
-import {Member} from "Types/artist";
+import {ArtistUser} from "Types/artist";
 
 export type LetterImage = {
   id: Id;
@@ -44,7 +44,7 @@ export type Message = {
   publishedAt: TimeValueOf;
   createdAt: TimeValueOf;
   updatedAt: TimeValueOf;
-  user: Member;
+  user: ArtistUser;
   isLike: YesNo;
   isSave: YesNo;
   isRead: YesNo;

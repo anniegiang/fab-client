@@ -5,7 +5,7 @@
   flex-wrap: wrap;
 }
 
-.memberContainer {
+.artistContainer {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -21,16 +21,16 @@
   padding: 10px;
 }
 
-.memberImage {
+.artistImage {
   border-radius: var(--border-radius);
 }
 
-.memberName {
+.artistName {
   text-align: center;
   margin-top: 10px;
 }
 
-.memberStatus {
+.artistStatus {
   text-align: center;
   margin: 10px 0;
   font-style: italic;

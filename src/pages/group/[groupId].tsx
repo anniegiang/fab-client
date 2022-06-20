@@ -1,6 +1,6 @@
 import GroupController from "Controllers/GroupController";
-import {GroupResponse, Group} from "Types/groups";
-import Members from "Components/Members";
+import {GroupResponse, Group} from "Types/group";
+import Artists from "Components/Artists";
 import {Id} from "Types/common";
 
 type Props = {
@@ -13,7 +13,7 @@ export default ({group}: Props) => {
   return (
     <div>
       <h1>{name}</h1>
-      <Members members={artistUsers} />
+      <Artists artistUsers={artistUsers} />
     </div>
   );
 };

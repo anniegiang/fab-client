@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {Group} from "Types/groups";
-import styles from "Styles/Members.module.css";
+import {Group} from "Types/group";
+import styles from "Styles/Artists.module.css";
 
 type Props = {
   groups: Group[];
@@ -15,16 +15,16 @@ export default ({groups}: Props) => {
         const _name = `${name} * ${enName}`;
         return (
           <Link href={`/group/${id}`}>
-            <div key={id} className={styles.memberContainer}>
+            <div key={id} className={styles.artistContainer}>
               <Image
-                className={styles.memberImage}
+                className={styles.artistImage}
                 src={profileImage}
                 alt={_name}
                 width={250}
                 height={250}
               />
-              <h4 className={styles.memberName}>{_name}</h4>
-              <p className={styles.memberStatus}>{statusMessage}</p>
+              <h4 className={styles.artistName}>{_name}</h4>
+              <p className={styles.artistStatus}>{statusMessage}</p>
             </div>
           </Link>
         );

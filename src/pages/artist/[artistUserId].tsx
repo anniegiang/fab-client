@@ -11,10 +11,12 @@ export default ({messages}: Props) => {
   return <Messages messages={messages} />;
 };
 
-export const getServerSideProps = async (context: {params: {artistId: Id}}) => {
-  const {artistId} = context.params;
+export const getServerSideProps = async (context: {
+  params: {artistUserId: Id};
+}) => {
+  const {artistUserId} = context.params;
   const response: ArtistMessageResponse = await ArtistController.getMessages(
-    artistId
+    artistUserId
   );
 
   return {

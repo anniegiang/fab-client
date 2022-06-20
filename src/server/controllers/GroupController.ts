@@ -1,7 +1,7 @@
 import axios from "axios";
 import BaseController from "Controllers/BaseController";
 import {Id} from "Types/common";
-import {GroupResponse} from "Types/groups";
+import {GroupResponse} from "Types/group";
 import {GroupMessageResponse} from "Types/message";
 
 class GroupController extends BaseController {

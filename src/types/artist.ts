@@ -20,12 +20,12 @@ export type Artist = {
   agencyEnName: number;
 };
 
-export type Member = User & {
+export type ArtistUser = User & {
   artist: Artist;
   isFollow: YesNo;
   followedUpdatedAt: TimeValueOf;
 };
 
 export type ArtistResponse = {
-  artistUsers: Member[];
+  artistUsers: ArtistUser[];
 };

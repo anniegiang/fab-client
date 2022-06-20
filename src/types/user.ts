@@ -1,5 +1,5 @@
 import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf, Id} from "Types/common";
-import {Member} from "Types/artist";
+import {ArtistUser} from "Types/artist";
 
 export type User = {
   id: Id;
@@ -18,7 +18,7 @@ export type User = {
 
 export type UserInfo = User & {
   fanletterCount: number;
-  follows: Member[];
+  follows: ArtistUser[];
   followCount: number;
   savedMessageCount: number;
   points: number;

@@ -2,7 +2,7 @@ import axios from "axios";
 import BaseController from "Controllers/BaseController";
 import {UserInfoResponse} from "Types/user";
 import {ArtistResponse} from "Types/artist";
-import {SubscribedGroupsResponse} from "Types/groups";
+import {SubscribedGroupsResponse} from "Types/group";
 
 export class UserController extends BaseController {
   constructor() {
