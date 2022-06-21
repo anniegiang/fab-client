@@ -20,6 +20,12 @@ class LocalSession {
   set updateUserId(userId: string) {
     LocalStorage.set(UserId, userId);
   }
+
+  logout() {
+    LocalStorage.remove(UserId);
+    LocalStorage.remove(AccessToken);
+    window.location.reload();
+  }
 }
 
 export default new LocalSession();

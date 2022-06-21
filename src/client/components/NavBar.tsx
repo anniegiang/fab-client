@@ -4,6 +4,7 @@ import {UserInfo} from "Types/user";
 import styles from "Client/styles/NavBar.module.css";
 import Link from "next/link";
 import AuthContext from "Client/context/AuthContext";
+import LocalSession from "Client/LocalSession";
 
 export default () => {
   const authContext = useContext(AuthContext);
@@ -14,6 +15,8 @@ export default () => {
       .post("/api/user", authContext)
       .then((response) => setUser(response.data));
   }, []);
+
+  const handleLogout = () => LocalSession.logout();
 
   const name = user?.nickName ?? user?.id;
   return (
@@ -35,6 +38,9 @@ export default () => {
               <p>Points: {user?.points}</p>
             </li>
           )}
+          <li className={styles.item}>
+            <button onClick={handleLogout}>Log out</button>
+          </li>
         </div>
       </ul>
     </nav>
