@@ -16,37 +16,6 @@ type Props = {
 };
 
 export default ({subscribedArtists, subscribedGroups}: Props) => {
-  const {userId, setUserId} = useUserId();
-  const {accessToken, setAccessToken} = useAccessToken();
-  const [isLoginFailed, setIsLoginFailed] = useState(false);
-
-  const handleSubmit = async (e: FormEvent, fields: LoginFields) => {
-    e.preventDefault();
-    return axios
-      .post("/api/login", {
-        userId: Number(fields.userId),
-        accessToken: fields.accessToken
-      })
-      .then((response) => {
-        if (response.data.isAuthenticated) {
-          setUserId(fields.userId);
-          setAccessToken(fields.accessToken);
-          setIsLoginFailed(false);
-        } else {
-          setIsLoginFailed(true);
-        }
-      })
-      .catch(() => {
-        setIsLoginFailed(true);
-      });
-  };
-
-  if (!userId && !accessToken) {
-    return (
-      <LoginForm handleSubmit={handleSubmit} isLoginFailed={isLoginFailed} />
-    );
-  }
-
   return (
     <div>
       <h1>Subscribed Artists</h1>

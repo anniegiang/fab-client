@@ -1,14 +1,18 @@
 import axios from "axios";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {UserInfo} from "Types/user";
 import styles from "Client/styles/NavBar.module.css";
 import Link from "next/link";
+import AuthContext from "Client/context/AuthContext";
 
 export default () => {
+  const authContext = useContext(AuthContext);
   const [user, setUser] = useState<UserInfo | undefined>();
 
   useEffect(() => {
-    axios.get("/api/user").then((response) => setUser(response.data));
+    axios
+      .post("/api/user", authContext)
+      .then((response) => setUser(response.data));
   }, []);
 
   const name = user?.nickName ?? user?.id;
