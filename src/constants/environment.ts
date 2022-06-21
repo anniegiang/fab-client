@@ -1,3 +1,4 @@
 export default {
-  development: "development"
+  development: "development",
+  production: "production"
 } as const;

@@ -1,10 +1,7 @@
 import HttpClient, {HttpClientInstance} from "Server/services/HttpClient";
 import api from "Config/api";
-import {Id} from "Types/common";
 
 export default class BaseController extends HttpClient {
-  accessToken?: string;
-  userId?: Id;
   host: string;
   hostDomain: string;
   apiVersion: string;
@@ -13,8 +10,6 @@ export default class BaseController extends HttpClient {
 
   constructor() {
     super();
-    this.accessToken = api.accessToken;
-    this.userId = api.userId;
     this.host = api.host;
     this.hostDomain = api.hostDomain;
     this.apiVersion = api.apiVersion;
@@ -25,16 +20,9 @@ export default class BaseController extends HttpClient {
   get api(): HttpClientInstance {
     return this.httpClient.create({
       baseURL: this.baseApi,
-      headers: this.defaultHeaders
+      headers: this.defaultHeaders,
+      timeout: 2000
     });
-  }
-
-  get isAuthenticated(): boolean {
-    const _isAuthenticated = !!this.accessToken && !!this.userId;
-    if (!_isAuthenticated) {
-      this.logWarning("User is not authenticated");
-    }
-    return _isAuthenticated;
   }
 
   get baseApi(): string {
@@ -42,14 +30,10 @@ export default class BaseController extends HttpClient {
   }
 
   get defaultHeaders() {
-    if (!this.isAuthenticated) return;
-
     return {
       Host: this.host,
       os: this.os,
-      userid: this.userId!,
       "User-Agent": this.userAgent,
-      accesstoken: this.accessToken!,
       Accept: "*/*",
       Connection: "keep-alive",
       "Cache-Control": "no-cache",

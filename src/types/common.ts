@@ -14,8 +14,6 @@ export type Id = number;
 export type Environment = keyof typeof environment;
 
 export type ApiConfig = {
-  accessToken?: string;
-  userId?: Id;
   host: string;
   hostDomain: string;
   apiVersion: string;
