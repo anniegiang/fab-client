@@ -1,14 +1,14 @@
 import {createContext} from "react";
-import {Id} from "Types/common";
+import {Id, Nullable} from "Types/common";
 
 export type AuthContextState = {
-  userid?: Id;
-  accesstoken?: string;
+  userid: Nullable<Id>;
+  accesstoken: Nullable<string>;
 };
 
 const initialState: AuthContextState = {
-  userid: undefined,
-  accesstoken: undefined
+  userid: null,
+  accesstoken: null
 };
 
 const AuthContext = createContext(initialState);

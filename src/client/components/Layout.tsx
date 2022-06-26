@@ -41,7 +41,7 @@ export default ({children}: Props) => {
 
   return (
     <AuthContext.Provider
-      value={{userid: Number(userId), accesstoken: accessToken!}}
+      value={{userid: Number(userId), accesstoken: accessToken}}
     >
       <NavBar />
       {children}
