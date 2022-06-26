@@ -1,13 +1,19 @@
+import {withSessionSsr} from "Config/withSession";
 import moment from "moment-timezone";
 import MessageController from "Controllers/MessageController";
 import {Message, LetterMessageResponse} from "Types/message";
 import {CommentsResponse, Comment} from "Types/comment";
+import {Id} from "Types/common";
 import {yesNo} from "Constants/common";
 import styles from "Client/styles/MessageDetail.module.css";
 
 type Props = {
   message: Message;
   comments: Comment[];
+};
+
+type ServerSideParams = {
+  messageId: Id;
 };
 
 export default ({message, comments}: Props) => {
@@ -48,12 +54,14 @@ export default ({message, comments}: Props) => {
   );
 };
 
-export const getServerSideProps = async (context: {
-  params: {messageId: any};
-}) => {
-  const {messageId} = context.params;
-  const response: LetterMessageResponse =
-    await MessageController.getMessageDetails(messageId);
+export const getServerSideProps = withSessionSsr<Props>(async function (
+  context
+) {
+  const {authHeaders} = context.req.session;
+  const {messageId} = context.params as unknown as ServerSideParams;
+
+  const messageDetailsResponse: LetterMessageResponse =
+    await MessageController.getMessageDetails(messageId, authHeaders);
 
   let done = false;
   let oldestMessageId = undefined;
@@ -61,24 +69,30 @@ export const getServerSideProps = async (context: {
 
   while (!done) {
     const commentsResponse: CommentsResponse =
-      await MessageController.getMessageComments(messageId, oldestMessageId);
+      await MessageController.getMessageComments(
+        authHeaders,
+        messageId,
+        oldestMessageId
+      );
 
     const {comments} = commentsResponse;
 
-    if (!comments.length) {
+    if (!comments || (comments && !comments.length)) {
       oldestMessageId = undefined;
       done = true;
       break;
     }
 
-    oldestMessageId = comments[0].id;
-    allComments = [...comments, ...allComments];
+    if (comments && comments.length) {
+      oldestMessageId = comments[0].id;
+      allComments = [...comments, ...allComments];
+    }
   }
 
   return {
     props: {
-      message: response.message,
-      comments: allComments ?? []
+      message: messageDetailsResponse.message,
+      comments: allComments
     }
   };
-};
+});
