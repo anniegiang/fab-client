@@ -9,7 +9,7 @@ import styles from "Client/styles/LoginForm.module.css";
 
 type Props = {
   isLoginFailed: boolean;
-  handleSubmit: (e: FormEvent, fields: LoginFields) => Promise<void>;
+  handleSubmit: (fields: LoginFields) => Promise<void>;
 };
 
 const MINIMUM_USER_ID_LENGTH = 1;
@@ -21,8 +21,9 @@ export default ({handleSubmit, isLoginFailed}: Props) => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
     setSubmitting(true);
-    handleSubmit(e, {userId, accessToken}).finally(() => setSubmitting(false));
+    handleSubmit({userId, accessToken}).finally(() => setSubmitting(false));
   };
 
   const handlUserIdChange: ChangeEventHandler<HTMLInputElement> = (

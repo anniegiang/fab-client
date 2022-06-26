@@ -1,6 +1,6 @@
 import NavBar from "Components/NavBar";
 import axios from "axios";
-import {useState, ReactNode, FormEvent} from "react";
+import {useState, ReactNode} from "react";
 import {useAccessToken, useUserId} from "Client/hooks/useLocalSession";
 import LoginForm from "Client/components/LoginForm";
 import {LoginFields} from "Types/session";
@@ -15,8 +15,7 @@ export default ({children}: Props) => {
   const {accessToken, setAccessToken} = useAccessToken();
   const [isLoginFailed, setIsLoginFailed] = useState(false);
 
-  const handleSubmit = async (e: FormEvent, fields: LoginFields) => {
-    e.preventDefault();
+  const handleSubmit = async (fields: LoginFields) => {
     return axios
       .post("/api/login", {
         userId: Number(fields.userId),
