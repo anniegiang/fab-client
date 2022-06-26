@@ -25,10 +25,9 @@ export default class SessionContoller extends BaseController {
       } else {
         this.logWarning("Invalid credentials");
       }
-      console.log({isAuthenticated});
+
       return {isAuthenticated, isError: false};
     } catch (error) {
-      console.log("error ", error);
       this.logWarning("Error logging in");
       return {isAuthenticated, isError: true};
     }
