@@ -9,7 +9,7 @@ import styles from "Client/styles/LoginForm.module.css";
 
 type Props = {
   isLoginFailed: boolean;
-  handleSubmit: (e: FormEvent, fields: LoginFields) => any;
+  handleSubmit: (e: FormEvent, fields: LoginFields) => Promise<void>;
 };
 
 const MINIMUM_USER_ID_LENGTH = 1;
@@ -18,8 +18,12 @@ const MINIMUM_ACCESS_TOKEN_LENGTH = 10;
 export default ({handleSubmit, isLoginFailed}: Props) => {
   const [userId, setUserId] = useState<string>("");
   const [accessToken, setAccessToken] = useState<string>("");
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const onSubmit = (e: FormEvent) => handleSubmit(e, {userId, accessToken});
+  const onSubmit = (e: FormEvent) => {
+    setSubmitting(true);
+    handleSubmit(e, {userId, accessToken}).finally(() => setSubmitting(false));
+  };
 
   const handlUserIdChange: ChangeEventHandler<HTMLInputElement> = (
     e: ChangeEvent<HTMLInputElement>
@@ -33,7 +37,8 @@ export default ({handleSubmit, isLoginFailed}: Props) => {
     !userId ||
     !accessToken ||
     userId.length < MINIMUM_USER_ID_LENGTH ||
-    accessToken.length < MINIMUM_ACCESS_TOKEN_LENGTH;
+    accessToken.length < MINIMUM_ACCESS_TOKEN_LENGTH ||
+    submitting;
 
   return (
     <div className={styles.container}>
@@ -62,7 +67,7 @@ export default ({handleSubmit, isLoginFailed}: Props) => {
           className={styles.submitButton}
           disabled={isSubmitButtonDisabled}
           type="submit"
-          value="Login"
+          value={submitting ? "Logging in..." : "Login"}
         />
         {isLoginFailed && (
           <h3 className={styles.errorMessage}>
