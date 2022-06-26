@@ -25,7 +25,9 @@ class MessageController extends UserController {
     messageId: Id,
     lastMessageId?: Id
   ): Promise<CommentsResponse> {
-    const baseUrl = `${this.baseUrl}/message/${messageId}/ncomments`;
+    const baseUrl = `${this.baseUrl(
+      authHeaders.userid
+    )}/message/${messageId}/ncomments`;
 
     const paginatedUrl =
       lastMessageId !== undefined
