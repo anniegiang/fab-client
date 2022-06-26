@@ -1,10 +1,9 @@
-import NavBar from "Components/NavBar";
 import axios from "axios";
 import {useState, ReactNode} from "react";
 import {useAccessToken, useUserId} from "Client/hooks/useLocalSession";
-import LoginForm from "Client/components/LoginForm";
+import AuthenticatedLayout from "Components/AuthenticatedLayout";
+import LoginForm from "Components/LoginForm";
 import {LoginFields} from "Types/session";
-import AuthContext from "Client/context/AuthContext";
 
 type Props = {
   children: ReactNode;
@@ -40,11 +39,8 @@ export default ({children}: Props) => {
   }
 
   return (
-    <AuthContext.Provider
-      value={{userid: Number(userId), accesstoken: accessToken}}
-    >
-      <NavBar />
+    <AuthenticatedLayout userid={Number(userId)} accesstoken={accessToken}>
       {children}
-    </AuthContext.Provider>
+    </AuthenticatedLayout>
   );
 };
