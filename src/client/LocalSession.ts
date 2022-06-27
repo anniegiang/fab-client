@@ -24,7 +24,6 @@ class LocalSession {
   logout() {
     LocalStorage.remove(UserId);
     LocalStorage.remove(AccessToken);
-    window.location.reload();
   }
 }
 

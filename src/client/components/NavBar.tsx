@@ -16,7 +16,10 @@ export default () => {
       .then((response) => setUser(response.data));
   }, []);
 
-  const handleLogout = () => LocalSession.logout();
+  const handleLogout = () => {
+    LocalSession.logout();
+    window.location.reload();
+  };
 
   const name = user?.nickName ?? user?.id;
   return (
