@@ -18,8 +18,8 @@ export default ({artistUsers}: Props) => {
           : `${artist.name} * ${artist.enName}`;
 
         return (
-          <Link href={`/artist/${id}`}>
-            <div key={id} className={styles.artistContainer}>
+          <Link key={id} href={`/artist/${id}`}>
+            <div className={styles.artistContainer}>
               <Image
                 className={styles.artistImage}
                 src={profileImage}

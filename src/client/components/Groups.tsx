@@ -14,8 +14,8 @@ export default ({groups}: Props) => {
         const {id, name, enName, profileImage, statusMessage} = group;
         const _name = `${name} * ${enName}`;
         return (
-          <Link href={`/group/${id}`}>
-            <div key={id} className={styles.artistContainer}>
+          <Link key={id} href={`/group/${id}`}>
+            <div className={styles.artistContainer}>
               <Image
                 className={styles.artistImage}
                 src={profileImage}
