@@ -1,6 +1,9 @@
+import axios from "axios";
+import {useEffect, useRef, useState} from "react";
 import {withSessionSsr} from "Config/withSession";
 import moment from "moment-timezone";
 import MessageController from "Controllers/MessageController";
+import MessageCommentForm from "Components/MessageCommentForm";
 import {Message, LetterMessageResponse} from "Types/message";
 import {CommentsResponse, Comment} from "Types/comment";
 import {Id} from "Types/common";
@@ -17,39 +20,62 @@ type ServerSideParams = {
 };
 
 export default ({message, comments}: Props) => {
+  const [addedComments, setAddedComments] = useState<Comment[]>([]);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      const offsetBottom = ref.current.offsetTop + ref.current.offsetHeight;
+      window.scrollTo({top: offsetBottom});
+    }
+  }, []);
+
+  const handleAddComment = (comment: string) => {
+    return axios
+      .post("/api/addMessageComment", {messageId: message.id, comment})
+      .then((response) =>
+        setAddedComments([...addedComments, response.data.comment])
+      );
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={ref}>
       <h5 className={styles.messageTimestamp}>
         {moment(message.createdAt).format("MMMM D, YYYY h:mm a")}
       </h5>
-      {comments.map(({id, comment, createdAt, isArtist}: Comment) => {
-        const writtenByArtist = isArtist === yesNo.yes;
+      {[...comments, ...addedComments].map(
+        ({id, comment, createdAt, isArtist}: Comment) => {
+          const writtenByArtist = isArtist === yesNo.yes;
 
-        const commentPositionStyles = {
-          alignSelf: writtenByArtist ? "flex-start" : "flex-end",
-          backgroundColor: writtenByArtist ? "white" : "#ec53c6"
-        };
+          const commentPositionStyles = {
+            alignSelf: writtenByArtist ? "flex-start" : "flex-end",
+            backgroundColor: writtenByArtist ? "white" : "#ec53c6"
+          };
 
-        const commentText = {
-          color: writtenByArtist ? "black" : "white"
-        };
+          const commentText = {
+            color: writtenByArtist ? "black" : "white"
+          };
 
-        return (
-          <div
-            className={styles.commentContainer}
-            style={commentPositionStyles}
-            key={id}
-          >
-            <p style={{...commentPositionStyles, ...commentText}}>{comment}</p>
-            <p
-              className={styles.commentTimestamp}
-              style={{...commentPositionStyles, ...commentText}}
+          return (
+            <div
+              className={styles.commentContainer}
+              style={commentPositionStyles}
+              key={id}
             >
-              {moment(createdAt).format("h:mm a")}
-            </p>
-          </div>
-        );
-      })}
+              <p style={{...commentPositionStyles, ...commentText}}>
+                {comment}
+              </p>
+              <p
+                className={styles.commentTimestamp}
+                style={{...commentPositionStyles, ...commentText}}
+              >
+                {moment(createdAt).format("h:mm a")}
+              </p>
+            </div>
+          );
+        }
+      )}
+      <MessageCommentForm handleAddComment={handleAddComment} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import {Id} from "Types/common";
 import {UserController} from "Controllers/UserController";
 import {LetterMessageResponse} from "Types/message";
-import {CommentsResponse} from "Types/comment";
+import {CommentsResponse, Comment} from "Types/comment";
 import {AuthHeaders} from "Types/session";
 
 class MessageController extends UserController {
@@ -37,6 +37,27 @@ class MessageController extends UserController {
     const response = await this.api.get(paginatedUrl, {
       headers: {...this.defaultHeaders, ...authHeaders}
     });
+    return this.respond(response);
+  }
+
+  async addMessageComment(
+    authHeaders: AuthHeaders,
+    messageId: Id,
+    comment: string
+  ): Promise<Comment> {
+    const response = await this.api({
+      method: "POST",
+      url: `${this.baseUrl(
+        authHeaders.userid
+      )}/message/${messageId}/comment/add`,
+      data: comment,
+      headers: {
+        ...this.defaultHeaders,
+        ...authHeaders,
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
+
     return this.respond(response);
   }
 }
