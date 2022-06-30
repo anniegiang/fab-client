@@ -9,6 +9,11 @@ type Props = {
 
 export default ({messages}: Props) => {
   const messagesByMonth = groupedAndSortedMessagesByMonth(messages);
+
+  if (messagesByMonth.length === 0) {
+    return <h1>No messages</h1>;
+  }
+
   return (
     <div className={styles.container}>
       {messagesByMonth.map((month) => {
