@@ -5,9 +5,10 @@ import Message from "Components/Message";
 
 type Props = {
   messages: MessageType[];
+  showSectionTitle?: boolean;
 };
 
-export default ({messages}: Props) => {
+export default ({messages, showSectionTitle = true}: Props) => {
   const messagesByMonth = groupedAndSortedMessagesByMonth(messages);
 
   if (messagesByMonth.length === 0) {
@@ -20,7 +21,9 @@ export default ({messages}: Props) => {
         const sectionTitle = moment(month[0].createdAt).format("YYYY/M");
         return (
           <section key={sectionTitle} className={styles.section}>
-            <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
+            {showSectionTitle && (
+              <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
+            )}
             <div className={styles.sectionMessages}>
               {month.map((message: MessageType) => (
                 <Message key={message.id} message={message} />

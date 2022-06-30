@@ -1,22 +1,39 @@
 import {withSessionSsr} from "Config/withSession";
 import UserController from "Controllers/UserController";
+import MessageController from "Controllers/MessageController";
 import Artists from "Components/Artists";
 import Groups from "Components/Groups";
+import Messages from "Components/Messages";
 import {ArtistResponse, ArtistUser} from "Types/artist";
 import {SubscribedGroupsResponse, Group} from "Types/group";
 import styles from "Client/styles/Index.module.css";
+import {NewestMessagesResponse, Message} from "Types/message";
 
 type Props = {
   subscribedArtists: ArtistUser[];
   subscribedGroups: Group[];
+  newestMessages: Message[];
 };
 
-export default ({subscribedArtists, subscribedGroups}: Props) => {
+export default ({
+  subscribedArtists,
+  subscribedGroups,
+  newestMessages
+}: Props) => {
   const hasSubscribedArtists = subscribedArtists.length > 0;
   const hasSubscribedgroups = subscribedGroups.length > 0;
+  const hasNewestMessages = newestMessages.length > 0;
 
   return (
     <div>
+      <section>
+        <h1 className={styles.sectionTitle}>
+          {hasNewestMessages ? "Newest messages" : "No newest messages"}
+        </h1>
+        {hasNewestMessages && (
+          <Messages messages={newestMessages} showSectionTitle={false} />
+        )}
+      </section>
       <section>
         <h1 className={styles.sectionTitle}>
           {hasSubscribedArtists
@@ -45,10 +62,14 @@ export const getServerSideProps = withSessionSsr(
     const subscribedArtistsReponse: ArtistResponse =
       await UserController.getSubscribedArtists(authHeaders);
 
+    const newestMessagesResponse: NewestMessagesResponse =
+      await MessageController.getNewestMessages(authHeaders);
+
     return {
       props: {
         subscribedArtists: subscribedArtistsReponse.artistUsers,
-        subscribedGroups: subscribedGroupsReponse.groups
+        subscribedGroups: subscribedGroupsReponse.groups,
+        newestMessages: newestMessagesResponse.messages
       }
     };
   }

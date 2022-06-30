@@ -1,12 +1,22 @@
 import {Id} from "Types/common";
 import {UserController} from "Controllers/UserController";
-import {LetterMessageResponse} from "Types/message";
+import {LetterMessageResponse, NewestMessagesResponse} from "Types/message";
 import {CommentsResponse, Comment} from "Types/comment";
 import {AuthHeaders} from "Types/session";
 
 class MessageController extends UserController {
   constructor() {
     super();
+  }
+
+  async getNewestMessages(
+    authHeaders: AuthHeaders
+  ): Promise<NewestMessagesResponse> {
+    const response = await this.api.get(
+      `${this.baseUrl(authHeaders.userid)}/messages`,
+      {headers: {...this.defaultHeaders, ...authHeaders}}
+    );
+    return this.respond(response);
   }
 
   async getMessageDetails(

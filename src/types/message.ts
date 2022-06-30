@@ -66,3 +66,7 @@ export type GroupMessageResponse = {
 export type LetterMessageResponse = {
   message: Message;
 };
+
+export type NewestMessagesResponse = {
+  messages: Message;
+};
