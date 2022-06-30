@@ -9,13 +9,16 @@ class MessageController extends UserController {
     super();
   }
 
+  async defaultGet(api: string, authHeaders: AuthHeaders) {
+    return this.api.get(`${this.baseUrl(authHeaders.userid)}${api}`, {
+      headers: {...this.defaultHeaders, ...authHeaders}
+    });
+  }
+
   async getNewestMessages(
     authHeaders: AuthHeaders
   ): Promise<NewestMessagesResponse> {
-    const response = await this.api.get(
-      `${this.baseUrl(authHeaders.userid)}/messages`,
-      {headers: {...this.defaultHeaders, ...authHeaders}}
-    );
+    const response = await this.defaultGet("/messages", authHeaders);
     return this.respond(response);
   }
 
@@ -23,9 +26,9 @@ class MessageController extends UserController {
     messageId: Id,
     authHeaders: AuthHeaders
   ): Promise<LetterMessageResponse> {
-    const response = await this.api.get(
-      `${this.baseUrl(authHeaders.userid)}/message/${messageId}`,
-      {headers: {...this.defaultHeaders, ...authHeaders}}
+    const response = await this.defaultGet(
+      `/message/${messageId}`,
+      authHeaders
     );
     return this.respond(response);
   }
@@ -35,18 +38,13 @@ class MessageController extends UserController {
     messageId: Id,
     lastMessageId?: Id
   ): Promise<CommentsResponse> {
-    const baseUrl = `${this.baseUrl(
-      authHeaders.userid
-    )}/message/${messageId}/ncomments`;
-
+    const baseUrl = `/message/${messageId}/ncomments`;
     const paginatedUrl =
       lastMessageId !== undefined
         ? `${baseUrl}/${lastMessageId}?direction=P`
         : baseUrl;
 
-    const response = await this.api.get(paginatedUrl, {
-      headers: {...this.defaultHeaders, ...authHeaders}
-    });
+    const response = await this.defaultGet(paginatedUrl, authHeaders);
     return this.respond(response);
   }
 

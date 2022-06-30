@@ -13,13 +13,17 @@ class GroupController extends BaseController {
     return "/groups";
   }
 
+  async defaultGet(api: string, authHeaders: AuthHeaders) {
+    return this.api.get(`${this.baseUrl}${api}`, {
+      headers: {...this.defaultHeaders, ...authHeaders}
+    });
+  }
+
   async getGroupInfo(
     groupId: Id,
     authHeaders: AuthHeaders
   ): Promise<GroupResponse> {
-    const response = await this.api.get(`${this.baseUrl}/${groupId}`, {
-      headers: {...this.defaultHeaders, ...authHeaders}
-    });
+    const response = await this.defaultGet(`/${groupId}`, authHeaders);
     return this.respond(response);
   }
 
@@ -27,9 +31,7 @@ class GroupController extends BaseController {
     groupId: Id,
     authHeaders: AuthHeaders
   ): Promise<GroupMessageResponse> {
-    const response = await this.api.get(`${this.baseUrl}/${groupId}/messages`, {
-      headers: {...this.defaultHeaders, ...authHeaders}
-    });
+    const response = await this.defaultGet(`/${groupId}/messages`, authHeaders);
     return this.respond(response);
   }
 }

@@ -12,13 +12,17 @@ class ArtistController extends BaseController {
     return `/artists/${artistId}`;
   }
 
+  async defaultGet(artistId: Id, slug: string, authHeaders: AuthHeaders) {
+    return this.api.get(`${this.baseUrl(artistId)}${slug}`, {
+      headers: {...this.defaultHeaders, ...authHeaders}
+    });
+  }
+
   async getMessages(
     artistId: Id,
     authHeaders: AuthHeaders
   ): Promise<ArtistMessageResponse> {
-    const response = await this.api.get(`${this.baseUrl(artistId)}/messages`, {
-      headers: {...this.defaultHeaders, ...authHeaders}
-    });
+    const response = await this.defaultGet(artistId, "/messages", authHeaders);
     return this.respond(response);
   }
 }
