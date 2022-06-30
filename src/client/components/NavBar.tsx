@@ -42,7 +42,9 @@ export default () => {
             </li>
           )}
           <li className={styles.item}>
-            <button onClick={handleLogout}>Log out</button>
+            <button className={styles.logout} onClick={handleLogout}>
+              Log out
+            </button>
           </li>
         </div>
       </ul>
