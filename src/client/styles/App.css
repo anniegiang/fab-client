@@ -1,6 +1,7 @@
 :root {
   --border-radius: 10px;
   --primary-color: dimgrey;
+  --brand-color: #ec53c6;
 }
 
 html,
@@ -12,6 +13,7 @@ body {
   height: 100%;
 }
 
+a,
 p,
 h1,
 h2,
@@ -19,7 +21,11 @@ h3,
 h4,
 h5,
 h6 {
-  color: grey;
+  color: var(--primary-color);
   margin: 0;
   padding: 0;
+}
+
+a:hover {
+  color: var(--brand-color);
 }
