@@ -4,6 +4,7 @@ import Artists from "Components/Artists";
 import Groups from "Components/Groups";
 import {ArtistResponse, ArtistUser} from "Types/artist";
 import {SubscribedGroupsResponse, Group} from "Types/group";
+import styles from "Client/styles/Index.module.css";
 
 type Props = {
   subscribedArtists: ArtistUser[];
@@ -13,10 +14,14 @@ type Props = {
 export default ({subscribedArtists, subscribedGroups}: Props) => {
   return (
     <div>
-      <h1>Subscribed Artists</h1>
-      <Artists artistUsers={subscribedArtists} />
-      <h1>Subscribed Groups</h1>
-      <Groups groups={subscribedGroups} />
+      <section>
+        <h1 className={styles.sectionTitle}>Subscribed artists</h1>
+        <Artists artistUsers={subscribedArtists} />
+      </section>
+      <section>
+        <h1 className={styles.sectionTitle}>Subscribed groups</h1>
+        <Groups groups={subscribedGroups} />
+      </section>
     </div>
   );
 };

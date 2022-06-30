@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import {ArtistUser} from "Types/artist";
-import styles from "Client/styles/Artists.module.css";
+import cardStyles from "Client/styles/Card.module.css";
+import artistStyles from "Client/styles/Artists.module.css";
 
 type Props = {
   artistUsers: ArtistUser[];
@@ -9,7 +10,7 @@ type Props = {
 
 export default ({artistUsers}: Props) => {
   return (
-    <div className={styles.container}>
+    <div className={cardStyles.rootContainer}>
       {artistUsers.map((artistUser) => {
         const {id, profileImage, artist} = artistUser;
 
@@ -19,17 +20,19 @@ export default ({artistUsers}: Props) => {
 
         return (
           <Link key={id} href={`/artist/${id}`}>
-            <div className={styles.artistContainer}>
+            <div className={cardStyles.contentContainer}>
               <Image
-                className={styles.artistImage}
+                className={cardStyles.artistImage}
                 src={profileImage}
                 alt={name}
                 width={250}
                 height={250}
               />
-              <div className={styles.content}>
-                <h4 className={styles.artistName}>{name}</h4>
-                <p className={styles.artistStatus}>{artist.statusMessage}</p>
+              <div className={cardStyles.content}>
+                <h4 className={artistStyles.artistName}>{name}</h4>
+                <p className={artistStyles.artistStatus}>
+                  {artist.statusMessage}
+                </p>
               </div>
             </div>
           </Link>

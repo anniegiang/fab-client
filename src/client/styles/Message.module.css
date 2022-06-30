@@ -2,11 +2,14 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
+  justify-content: space-around;
   margin: 10px;
-  border: 1px dotted var(--primary-color);
   border-radius: var(--border-radius);
+  height: fit-content;
+}
+
+.message:hover {
+  outline: dotted 2px var(--brand-color);
 }
 
 .messageImage {

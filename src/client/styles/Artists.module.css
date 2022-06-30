@@ -1,30 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.artistContainer {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-  max-width: 15%;
-  margin: 5px;
-  border: 1px dashed var(--primary-color);
-  border-radius: var(--border-radius);
-}
-
-.content {
-  padding: 10px;
-}
-
-.artistImage {
-  border-radius: var(--border-radius);
-}
-
 .artistName {
   text-align: center;
   margin-top: 10px;
