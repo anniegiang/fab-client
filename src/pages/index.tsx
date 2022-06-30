@@ -8,11 +8,13 @@ import {ArtistResponse, ArtistUser} from "Types/artist";
 import {SubscribedGroupsResponse, Group} from "Types/group";
 import styles from "Client/styles/Index.module.css";
 import {NewestMessagesResponse, Message} from "Types/message";
+import {NotificationsReponse, Notification} from "Types/notification";
 
 type Props = {
   subscribedArtists: ArtistUser[];
   subscribedGroups: Group[];
   newestMessages: Message[];
+  notifications: Notification[];
 };
 
 export default ({
@@ -65,11 +67,15 @@ export const getServerSideProps = withSessionSsr(
     const newestMessagesResponse: NewestMessagesResponse =
       await MessageController.getNewestMessages(authHeaders);
 
+    const notificationsResponse: NotificationsReponse =
+      await UserController.getNotifications(authHeaders);
+
     return {
       props: {
         subscribedArtists: subscribedArtistsReponse.artistUsers,
         subscribedGroups: subscribedGroupsReponse.groups,
-        newestMessages: newestMessagesResponse.messages
+        newestMessages: newestMessagesResponse.messages,
+        notifications: notificationsResponse.notifications
       }
     };
   }

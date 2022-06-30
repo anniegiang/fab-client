@@ -4,6 +4,7 @@ import {ArtistResponse} from "Types/artist";
 import {SubscribedGroupsResponse} from "Types/group";
 import {Id} from "Types/common";
 import {AuthHeaders} from "Types/session";
+import {NotificationsReponse} from "Types/notification";
 
 export class UserController extends BaseController {
   constructor() {
@@ -37,6 +38,16 @@ export class UserController extends BaseController {
   ): Promise<ArtistResponse> {
     const response = await this.api.get(
       `${this.baseUrl(authHeaders.userid)}/artists`,
+      {headers: {...this.defaultHeaders, ...authHeaders}}
+    );
+    return this.respond(response);
+  }
+
+  async getNotifications(
+    authHeaders: AuthHeaders
+  ): Promise<NotificationsReponse> {
+    const response = await this.api.get(
+      `${this.baseUrl(authHeaders.userid)}/notifications`,
       {headers: {...this.defaultHeaders, ...authHeaders}}
     );
     return this.respond(response);

@@ -68,5 +68,5 @@ export type LetterMessageResponse = {
 };
 
 export type NewestMessagesResponse = {
-  messages: Message;
+  messages: Message[];
 };
