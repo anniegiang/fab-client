@@ -76,6 +76,12 @@ export default ({handleSubmit, isLoginFailed}: Props) => {
           </h3>
         )}
       </form>
+      <a
+        target="_blank"
+        href="https://github.com/anniegiang/fab-web-client#how-to-get-your-fab-userid-and-accesstoken"
+      >
+        How to get your FAB userid and accesstoken
+      </a>
     </div>
   );
 };
