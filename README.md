@@ -1,4 +1,4 @@
-# (This is still under development)
+# (This is still under development as of 6/29/2022)
 
 ## Intro
 
@@ -7,16 +7,23 @@ A simplied web version of the FAB app.
 #### Features:
 
 - View messages and comments from artists and groups
+- Send messages
 
 #### Not supported:
 
 - Purchasing points
-- Images in messages
+- Unable to see images in messages
 
 ## Pre-reqs
 
 - npm
-- Your Fab `userid` and `acesstoken` (located in the HTTP request header). Use a proxy to inspect the network traffic.
+- Your FAB `userid` and `acesstoken`
+
+# How to get your FAB `userid` and `accesstoken`
+
+In order to use this client, you will need to know your FAB `userid` and `accesstoken`.
+This information is located in the _HTTP request headers_.
+To see the request headers, use a proxy to inspect the network traffic. On iOS and Android, there are apps that let you inspect network traffic.
 
 ## Run locally
 
@@ -31,5 +38,7 @@ Open http://localhost:3000/
 
 ## Disclaimer
 
-- Zero data is collected and stored.
-- The developer does not intend to make a profit.
+- Actions that cost points in the originl app will also cost points in this client. (ex: it cost points to open new messages and send messages.)
+- Zero data is collected. All data is stored on the user's local machine.
+- The developer has no intention to make a profit.
+- The developer is not responsible for any loss or damages.
