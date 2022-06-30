@@ -26,6 +26,6 @@
 }
 
 .logout:hover {
-  background-color: #e595d1;
+  background-color: var(--brand-color);
   color: white;
 }
