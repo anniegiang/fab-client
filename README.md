@@ -1,4 +1,4 @@
-# WIP
+# (This is still under development)
 
 ## Intro
 
@@ -10,7 +10,6 @@ A simplied web version of the FAB app.
 
 #### Not supported:
 
-- Sending comments
 - Purchasing points
 - Images in messages
 
