@@ -12,15 +12,24 @@ type Props = {
 };
 
 export default ({subscribedArtists, subscribedGroups}: Props) => {
+  const hasSubscribedArtists = subscribedArtists.length > 0;
+  const hasSubscribedgroups = subscribedGroups.length > 0;
+
   return (
     <div>
       <section>
-        <h1 className={styles.sectionTitle}>Subscribed artists</h1>
-        <Artists artistUsers={subscribedArtists} />
+        <h1 className={styles.sectionTitle}>
+          {hasSubscribedArtists
+            ? "Subscribed artists"
+            : "No subscribed artists"}
+        </h1>
+        {hasSubscribedArtists && <Artists artistUsers={subscribedArtists} />}
       </section>
       <section>
-        <h1 className={styles.sectionTitle}>Subscribed groups</h1>
-        <Groups groups={subscribedGroups} />
+        <h1 className={styles.sectionTitle}>
+          {hasSubscribedgroups ? "Subscribed groups" : "No subscribed groups"}
+        </h1>
+        {hasSubscribedgroups && <Groups groups={subscribedGroups} />}
       </section>
     </div>
   );
