@@ -1,21 +1,13 @@
-import axios from "axios";
-import {useState, useEffect, useContext} from "react";
 import {UserInfo} from "Types/user";
 import styles from "Client/styles/NavBar.module.css";
 import Link from "next/link";
-import AuthContext from "Client/context/AuthContext";
 import LocalSession from "Client/LocalSession";
 
-export default () => {
-  const authContext = useContext(AuthContext);
-  const [user, setUser] = useState<UserInfo | undefined>();
+type Props = {
+  user: UserInfo;
+};
 
-  useEffect(() => {
-    axios
-      .post("/api/user", authContext)
-      .then((response) => setUser(response.data));
-  }, []);
-
+export default ({user}: Props) => {
   const handleLogout = () => {
     LocalSession.logout();
     window.location.reload();
