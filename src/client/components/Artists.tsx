@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "Components/Image";
 import {ArtistUser} from "Types/artist";
 import cardStyles from "Client/styles/Card.module.css";
 import artistStyles from "Client/styles/Artists.module.css";
@@ -25,8 +25,8 @@ export default ({artistUsers}: Props) => {
                 className={cardStyles.artistImage}
                 src={profileImage}
                 alt={name}
-                width={250}
-                height={250}
+                initialwidth={250}
+                initialheight={250}
               />
               <div className={cardStyles.content}>
                 <h4 className={artistStyles.artistName}>{name}</h4>
