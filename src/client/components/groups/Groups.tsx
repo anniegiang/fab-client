@@ -1,4 +1,4 @@
-import Group from "client/components/Group";
+import Group from "client/components/groups/Group";
 import {Group as GroupType} from "types/group";
 import cardStyles from "client/styles/Card.module.css";
 

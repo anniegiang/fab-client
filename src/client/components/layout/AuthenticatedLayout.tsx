@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ReactNode, useEffect, useState} from "react";
 import AuthContext from "client/context/AuthContext";
-import NavBar from "client/components/NavBar";
+import NavBar from "client/components/layout/NavBar";
 import {Id, Nullable} from "types/common";
 import {UserInfo} from "types/user";
 import styles from "client/styles/Layout.module.css";

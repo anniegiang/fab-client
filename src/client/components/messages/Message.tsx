@@ -2,7 +2,7 @@ import moment from "moment-timezone";
 import {Message} from "types/message";
 import {yesNo} from "constants/common";
 import styles from "client/styles/Message.module.css";
-import Card from "client/components/Card";
+import Card from "client/components/base/Card";
 
 type Props = {
   message: Message;

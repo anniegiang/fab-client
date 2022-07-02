@@ -1,8 +1,8 @@
 import axios from "axios";
 import {useState, ReactNode} from "react";
 import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
-import AuthenticatedLayout from "client/components/AuthenticatedLayout";
-import LoginForm from "client/components/LoginForm";
+import AuthenticatedLayout from "client/components/layout/AuthenticatedLayout";
+import LoginForm from "client/components/forms/LoginForm";
 import {LoginFields} from "types/session";
 import {AuthHeaders} from "types/session";
 

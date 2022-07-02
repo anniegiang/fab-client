@@ -1,6 +1,6 @@
 import {CSSProperties, ReactNode} from "react";
 import Link from "next/link";
-import Image from "client/components/Image";
+import Image from "client/components/base/Image";
 import styles from "client/styles/Card.module.css";
 
 type Props = {

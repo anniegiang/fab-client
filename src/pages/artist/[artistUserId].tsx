@@ -1,7 +1,7 @@
 import {withSessionSsr} from "config/withSession";
 import ArtistController from "server/controllers/ArtistController";
 import {ArtistMessageResponse, Message} from "types/message";
-import Messages from "client/components/Messages";
+import Messages from "client/components/messages/Messages";
 import {Id} from "types/common";
 
 type Props = {

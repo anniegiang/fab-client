@@ -1,7 +1,7 @@
 import {withSessionSsr} from "config/withSession";
 import UserController from "server/controllers/UserController";
 import MessageController from "server/controllers/MessageController";
-import Messages from "client/components/Messages";
+import Messages from "client/components/messages/Messages";
 import styles from "client/styles/Index.module.css";
 import {NewestMessagesResponse, Message} from "types/message";
 import {NotificationsReponse, Notification} from "types/notification";

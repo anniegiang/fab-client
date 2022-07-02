@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {withSessionSsr} from "config/withSession";
 import moment from "moment-timezone";
 import MessageController from "server/controllers/MessageController";
-import MessageCommentForm from "client/components/MessageCommentForm";
+import MessageCommentForm from "client/components/forms/MessageCommentForm";
 import {Message, LetterMessageResponse} from "types/message";
 import {CommentsResponse, Comment} from "types/comment";
 import {Id} from "types/common";

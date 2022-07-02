@@ -1,4 +1,4 @@
-import Card from "client/components/Card";
+import Card from "client/components/base/Card";
 import {ArtistUser} from "types/artist";
 import artistStyles from "client/styles/Artists.module.css";
 

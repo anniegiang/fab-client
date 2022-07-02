@@ -1,6 +1,6 @@
 import {ArtistUser} from "types/artist";
 import cardStyles from "client/styles/Card.module.css";
-import Artist from "client/components/Artist";
+import Artist from "client/components/artists/Artist";
 
 type Props = {
   artistUsers: ArtistUser[];

@@ -1,7 +1,7 @@
 import {withSessionSsr} from "config/withSession";
 import UserController from "server/controllers/UserController";
-import Artists from "client/components/Artists";
-import Groups from "client/components/Groups";
+import Artists from "client/components/artists/Artists";
+import Groups from "client/components/groups/Groups";
 import {ArtistResponse, ArtistUser} from "types/artist";
 import {SubscribedGroupsResponse, Group} from "types/group";
 import styles from "client/styles/Index.module.css";
