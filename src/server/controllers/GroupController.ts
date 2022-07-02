@@ -1,8 +1,8 @@
-import BaseController from "Controllers/BaseController";
-import {Id} from "Types/common";
-import {GroupResponse} from "Types/group";
-import {GroupMessageResponse} from "Types/message";
-import {AuthHeaders} from "Types/session";
+import BaseController from "server/controllers/BaseController";
+import {Id} from "types/common";
+import {GroupResponse} from "types/group";
+import {GroupMessageResponse} from "types/message";
+import {AuthHeaders} from "types/session";
 
 class GroupController extends BaseController {
   constructor() {

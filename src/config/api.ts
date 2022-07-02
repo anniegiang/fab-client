@@ -1,7 +1,7 @@
 import "dotenv/config";
-import environment from "Config/environment";
-import environments from "Constants/environment";
-import {ApiConfig, ApiConfigByEnvironment} from "Types/common";
+import environment from "config/environment";
+import environments from "constants/environment";
+import {ApiConfig, ApiConfigByEnvironment} from "types/common";
 
 const defaultHeaders = {
   host: "vip-fab-api.myfab.tv",

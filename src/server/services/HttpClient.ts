@@ -5,7 +5,7 @@ import axios, {
   AxiosError,
   AxiosInstance
 } from "axios";
-import Logger from "Server/services/Logger";
+import Logger from "server/services/Logger";
 
 export type HttpClientRequestConfig = AxiosRequestConfig;
 export type HttpClientResponse = AxiosResponse;

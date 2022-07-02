@@ -1,7 +1,7 @@
 import {AppProps} from "next/app";
-import Layout from "Components/Layout";
-import "Client/styles/App.css";
-import LoadingBar from "Components/LoadingBar";
+import Layout from "client/components/Layout";
+import "client/styles/App.css";
+import LoadingBar from "client/components/LoadingBar";
 
 export default ({Component, pageProps}: AppProps) => {
   return (

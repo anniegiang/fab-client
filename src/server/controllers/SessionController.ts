@@ -1,6 +1,6 @@
-import BaseController from "Controllers/BaseController";
-import {SessionResponse} from "Types/session";
-import {Id} from "Types/common";
+import BaseController from "server/controllers/BaseController";
+import {SessionResponse} from "types/session";
+import {Id} from "types/common";
 
 export default class SessionContoller extends BaseController {
   constructor() {

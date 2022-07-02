@@ -1,5 +1,5 @@
-import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf, Id} from "Types/common";
-import {ArtistUser} from "Types/artist";
+import {YesNo, ImageUrl, ZeroOrOne, TimeValueOf, Id} from "types/common";
+import {ArtistUser} from "types/artist";
 
 export type User = {
   id: Id;

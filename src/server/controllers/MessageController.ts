@@ -1,8 +1,8 @@
-import {Id} from "Types/common";
-import {UserController} from "Controllers/UserController";
-import {LetterMessageResponse, NewestMessagesResponse} from "Types/message";
-import {CommentsResponse, Comment} from "Types/comment";
-import {AuthHeaders} from "Types/session";
+import {Id} from "types/common";
+import {UserController} from "server/controllers/UserController";
+import {LetterMessageResponse, NewestMessagesResponse} from "types/message";
+import {CommentsResponse, Comment} from "types/comment";
+import {AuthHeaders} from "types/session";
 
 class MessageController extends UserController {
   constructor() {

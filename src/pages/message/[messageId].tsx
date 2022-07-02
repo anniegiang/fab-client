@@ -1,14 +1,14 @@
 import axios from "axios";
 import {useEffect, useRef, useState} from "react";
-import {withSessionSsr} from "Config/withSession";
+import {withSessionSsr} from "config/withSession";
 import moment from "moment-timezone";
-import MessageController from "Controllers/MessageController";
-import MessageCommentForm from "Components/MessageCommentForm";
-import {Message, LetterMessageResponse} from "Types/message";
-import {CommentsResponse, Comment} from "Types/comment";
-import {Id} from "Types/common";
-import {yesNo} from "Constants/common";
-import styles from "Client/styles/MessageDetail.module.css";
+import MessageController from "server/controllers/MessageController";
+import MessageCommentForm from "client/components/MessageCommentForm";
+import {Message, LetterMessageResponse} from "types/message";
+import {CommentsResponse, Comment} from "types/comment";
+import {Id} from "types/common";
+import {yesNo} from "constants/common";
+import styles from "client/styles/MessageDetail.module.css";
 
 type Props = {
   message: Message;

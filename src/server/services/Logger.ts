@@ -1,4 +1,4 @@
-import {HttpClientResponse, HttpClientError} from "Server/services/HttpClient";
+import {HttpClientResponse, HttpClientError} from "server/services/HttpClient";
 
 export default class Logger {
   log(message: string): void {

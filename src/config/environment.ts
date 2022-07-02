@@ -1,6 +1,6 @@
 import "dotenv/config";
-import environment from "Constants/environment";
-import {Environment} from "Types/common";
+import environment from "constants/environment";
+import {Environment} from "types/common";
 
 const _environment: Environment =
   (process.env.NEXT_PUBLIC_ENVIRONMENT as Environment) ??

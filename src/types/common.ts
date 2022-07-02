@@ -1,5 +1,5 @@
-import environment from "Constants/environment";
-import {yesNo, zeroOrOne} from "Constants/common";
+import environment from "constants/environment";
+import {yesNo, zeroOrOne} from "constants/common";
 
 export type GenericObject = {[key: string]: any};
 export type Nullable<T> = T | null;

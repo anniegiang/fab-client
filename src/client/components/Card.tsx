@@ -1,7 +1,7 @@
 import {CSSProperties, ReactNode} from "react";
 import Link from "next/link";
-import Image from "Components/Image";
-import styles from "Client/styles/Card.module.css";
+import Image from "client/components/Image";
+import styles from "client/styles/Card.module.css";
 
 type Props = {
   linkHref: string;

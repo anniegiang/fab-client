@@ -5,7 +5,7 @@ import {
   TimeValueOf,
   TimestampWithTimezone,
   ImageUrl
-} from "Types/common";
+} from "types/common";
 
 export type Comment = {
   id: Id;

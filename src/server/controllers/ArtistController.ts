@@ -1,7 +1,7 @@
-import BaseController from "Controllers/BaseController";
-import {Id} from "Types/common";
-import {ArtistMessageResponse} from "Types/message";
-import {AuthHeaders} from "Types/session";
+import BaseController from "server/controllers/BaseController";
+import {Id} from "types/common";
+import {ArtistMessageResponse} from "types/message";
+import {AuthHeaders} from "types/session";
 
 class ArtistController extends BaseController {
   constructor() {

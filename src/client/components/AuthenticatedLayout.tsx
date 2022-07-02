@@ -1,10 +1,10 @@
 import axios from "axios";
 import {ReactNode, useEffect, useState} from "react";
-import AuthContext from "Client/context/AuthContext";
-import NavBar from "Components/NavBar";
-import {Id, Nullable} from "Types/common";
-import styles from "Client/styles/Layout.module.css";
-import {UserInfo} from "Types/user";
+import AuthContext from "client/context/AuthContext";
+import NavBar from "client/components/NavBar";
+import {Id, Nullable} from "types/common";
+import {UserInfo} from "types/user";
+import styles from "client/styles/Layout.module.css";
 
 type Props = {
   userid: Nullable<Id>;

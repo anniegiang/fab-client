@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import MessageController from "Controllers/MessageController";
-import {withSessionRoute} from "Config/withSession";
-import {Comment} from "Types/comment";
+import MessageController from "server/controllers/MessageController";
+import {withSessionRoute} from "config/withSession";
+import {Comment} from "types/comment";
 import querystring from "querystring";
 
 type AddMessageCommentRequest = NextApiRequest & {

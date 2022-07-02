@@ -1,6 +1,6 @@
-import Card from "Components/Card";
-import {Group} from "Types/group";
-import styles from "Client/styles/Artists.module.css";
+import Card from "client/components/Card";
+import {Group} from "types/group";
+import styles from "client/styles/Artists.module.css";
 
 type Props = {
   group: Group;

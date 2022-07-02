@@ -1,6 +1,6 @@
 import LocalStorage from "./LocalStorage";
-import LocalStorageKeys from "Constants/localStorageKeys";
-import {Nullable} from "Types/common";
+import LocalStorageKeys from "constants/localStorageKeys";
+import {Nullable} from "types/common";
 
 const {AccessToken, UserId} = LocalStorageKeys;
 

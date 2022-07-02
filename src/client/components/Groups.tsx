@@ -1,6 +1,6 @@
-import Group from "Components/Group";
-import {Group as GroupType} from "Types/group";
-import cardStyles from "Client/styles/Card.module.css";
+import Group from "client/components/Group";
+import {Group as GroupType} from "types/group";
+import cardStyles from "client/styles/Card.module.css";
 
 type Props = {
   groups: GroupType[];

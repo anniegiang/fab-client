@@ -1,10 +1,10 @@
-import BaseController from "Controllers/BaseController";
-import {UserInfoResponse} from "Types/user";
-import {ArtistResponse} from "Types/artist";
-import {SubscribedGroupsResponse} from "Types/group";
-import {Id} from "Types/common";
-import {AuthHeaders} from "Types/session";
-import {NotificationsReponse} from "Types/notification";
+import BaseController from "server/controllers/BaseController";
+import {UserInfoResponse} from "types/user";
+import {ArtistResponse} from "types/artist";
+import {SubscribedGroupsResponse} from "types/group";
+import {Id} from "types/common";
+import {AuthHeaders} from "types/session";
+import {NotificationsReponse} from "types/notification";
 
 export class UserController extends BaseController {
   constructor() {

@@ -4,7 +4,7 @@ import {
   NextApiHandler
 } from "next";
 import {withIronSessionApiRoute, withIronSessionSsr} from "iron-session/next";
-import ironOptions from "Config/ironOptions";
+import ironOptions from "config/ironOptions";
 
 const sessionOptions = ironOptions;
 

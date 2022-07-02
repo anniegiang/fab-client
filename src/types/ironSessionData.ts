@@ -1,4 +1,4 @@
-import {AuthHeaders} from "Types/session";
+import {AuthHeaders} from "types/session";
 
 declare module "iron-session" {
   interface IronSessionData {

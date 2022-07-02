@@ -1,10 +1,10 @@
-import {withSessionSsr} from "Config/withSession";
-import UserController from "Controllers/UserController";
-import MessageController from "Controllers/MessageController";
-import Messages from "Components/Messages";
-import styles from "Client/styles/Index.module.css";
-import {NewestMessagesResponse, Message} from "Types/message";
-import {NotificationsReponse, Notification} from "Types/notification";
+import {withSessionSsr} from "config/withSession";
+import UserController from "server/controllers/UserController";
+import MessageController from "server/controllers/MessageController";
+import Messages from "client/components/Messages";
+import styles from "client/styles/Index.module.css";
+import {NewestMessagesResponse, Message} from "types/message";
+import {NotificationsReponse, Notification} from "types/notification";
 
 type Props = {
   newestMessages: Message[];

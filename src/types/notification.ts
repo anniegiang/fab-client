@@ -1,5 +1,5 @@
-import {Id, ImageUrl, ZeroOrOne, YesNo, TimeValueOf} from "Types/common";
-import {ArtistUser} from "Types/artist";
+import {Id, ImageUrl, ZeroOrOne, YesNo, TimeValueOf} from "types/common";
+import {ArtistUser} from "types/artist";
 
 export type Notification = {
   id: Id;

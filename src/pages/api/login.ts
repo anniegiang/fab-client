@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {SessionControllerInstance} from "Controllers/SessionController";
-import {withSessionRoute} from "Config/withSession";
-import {AuthHeaders, SessionResponse} from "Types/session";
+import {SessionControllerInstance} from "server/controllers/SessionController";
+import {withSessionRoute} from "config/withSession";
+import {AuthHeaders, SessionResponse} from "types/session";
 
 type UserLoginApiRequest = NextApiRequest & {
   body: AuthHeaders;

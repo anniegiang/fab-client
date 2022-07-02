@@ -1,10 +1,10 @@
 import axios from "axios";
 import {useState, ReactNode} from "react";
-import {useAccessToken, useUserId} from "Client/hooks/useLocalSession";
-import AuthenticatedLayout from "Components/AuthenticatedLayout";
-import LoginForm from "Components/LoginForm";
-import {LoginFields} from "Types/session";
-import {AuthHeaders} from "Types/session";
+import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
+import AuthenticatedLayout from "client/components/AuthenticatedLayout";
+import LoginForm from "client/components/LoginForm";
+import {LoginFields} from "types/session";
+import {AuthHeaders} from "types/session";
 
 type Props = {
   children: ReactNode;

@@ -1,10 +1,10 @@
-import {withSessionSsr} from "Config/withSession";
-import UserController from "Controllers/UserController";
-import Artists from "Components/Artists";
-import Groups from "Components/Groups";
-import {ArtistResponse, ArtistUser} from "Types/artist";
-import {SubscribedGroupsResponse, Group} from "Types/group";
-import styles from "Client/styles/Index.module.css";
+import {withSessionSsr} from "config/withSession";
+import UserController from "server/controllers/UserController";
+import Artists from "client/components/Artists";
+import Groups from "client/components/Groups";
+import {ArtistResponse, ArtistUser} from "types/artist";
+import {SubscribedGroupsResponse, Group} from "types/group";
+import styles from "client/styles/Index.module.css";
 
 type Props = {
   subscribedArtists: ArtistUser[];

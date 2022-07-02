@@ -1,6 +1,6 @@
 import {createContext} from "react";
-import {Id, Nullable} from "Types/common";
-import {UserInfo} from "Types/user";
+import {Id, Nullable} from "types/common";
+import {UserInfo} from "types/user";
 
 export type AuthContextState = {
   userid: Nullable<Id>;

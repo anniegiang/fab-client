@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
-import {Nullable} from "Types/common";
-import LocalSession from "Client/LocalSession";
+import {Nullable} from "types/common";
+import LocalSession from "client/LocalSession";
 
 export const useAccessToken = () => {
   const [accessToken, setAccessToken] = useState<Nullable<string>>(null);

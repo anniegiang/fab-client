@@ -1,8 +1,8 @@
-import {withSessionSsr} from "Config/withSession";
-import ArtistController from "Controllers/ArtistController";
-import {ArtistMessageResponse, Message} from "Types/message";
-import Messages from "Components/Messages";
-import {Id} from "Types/common";
+import {withSessionSsr} from "config/withSession";
+import ArtistController from "server/controllers/ArtistController";
+import {ArtistMessageResponse, Message} from "types/message";
+import Messages from "client/components/Messages";
+import {Id} from "types/common";
 
 type Props = {
   messages: Message[];

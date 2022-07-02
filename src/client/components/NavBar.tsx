@@ -1,7 +1,7 @@
-import {UserInfo} from "Types/user";
-import styles from "Client/styles/NavBar.module.css";
+import {UserInfo} from "types/user";
+import styles from "client/styles/NavBar.module.css";
 import Link from "next/link";
-import LocalSession from "Client/LocalSession";
+import LocalSession from "client/LocalSession";
 
 type Props = {
   user: UserInfo;

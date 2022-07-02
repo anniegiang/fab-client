@@ -1,5 +1,5 @@
-import HttpClient, {HttpClientInstance} from "Server/services/HttpClient";
-import api from "Config/api";
+import HttpClient, {HttpClientInstance} from "server/services/HttpClient";
+import api from "config/api";
 
 export default class BaseController extends HttpClient {
   host: string;

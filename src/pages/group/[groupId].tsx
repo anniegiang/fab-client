@@ -1,10 +1,10 @@
-import GroupController from "Controllers/GroupController";
-import {GroupResponse, Group} from "Types/group";
-import {GroupMessageResponse, Message} from "Types/message";
-import Artists from "Components/Artists";
-import Messages from "Components/Messages";
-import {Id} from "Types/common";
-import {withSessionSsr} from "Config/withSession";
+import GroupController from "server/controllers/GroupController";
+import {GroupResponse, Group} from "types/group";
+import {GroupMessageResponse, Message} from "types/message";
+import Artists from "client/components/Artists";
+import Messages from "client/components/Messages";
+import {Id} from "types/common";
+import {withSessionSsr} from "config/withSession";
 
 type Props = {
   group: Group;
