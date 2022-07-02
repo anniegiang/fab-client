@@ -29,6 +29,9 @@ export default () => {
           <li className={styles.item}>
             <Link href="/">Home</Link>
           </li>
+          <li className={styles.item}>
+            <Link href="/subscribed">Subscribed</Link>
+          </li>
         </div>
         <div>
           {!!name && (
