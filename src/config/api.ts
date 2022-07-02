@@ -12,8 +12,16 @@ const defaultHeaders = {
 };
 
 const api: ApiConfigByEnvironment = {
-  [environments.development]: defaultHeaders,
-  [environments.production]: defaultHeaders
+  [environments.development]: {
+    ...defaultHeaders,
+    userid: process.env.NEXT_PUBLIC_USER_ID ?? null,
+    accesstoken: process.env.NEXT_PUBLIC_ACCESS_TOKEN ?? null
+  },
+  [environments.production]: {
+    ...defaultHeaders,
+    userid: null,
+    accesstoken: null
+  }
 };
 
 export default api[environment] as ApiConfig;

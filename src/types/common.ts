@@ -1,5 +1,6 @@
 import environment from "constants/environment";
 import {yesNo, zeroOrOne} from "constants/common";
+import {LocalUserId, LocalAccessToken} from "types/session";
 
 export type GenericObject = {[key: string]: any};
 export type Nullable<T> = T | null;
@@ -19,6 +20,8 @@ export type ApiConfig = {
   apiVersion: string;
   os: string;
   userAgent: string;
+  userid: LocalUserId;
+  accesstoken: LocalAccessToken;
 };
 
 export type ApiConfigByEnvironment = {

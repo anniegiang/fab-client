@@ -1,4 +1,4 @@
-import {Id} from "./common";
+import {Id, Nullable} from "types/common";
 
 export type SessionResponse = {
   isAuthenticated: boolean;
@@ -14,3 +14,6 @@ export type AuthHeaders = {
   userid: Id;
   accesstoken: string;
 };
+
+export type LocalUserId = Nullable<string>;
+export type LocalAccessToken = Nullable<string>;
