@@ -1,9 +1,8 @@
 import moment from "moment-timezone";
-import Link from "next/link";
-import Image from "Components/Image";
 import {Message} from "Types/message";
 import {yesNo} from "Constants/common";
 import styles from "Client/styles/Message.module.css";
+import Card from "Components/Card";
 
 type Props = {
   message: Message;
@@ -12,38 +11,53 @@ type Props = {
 const IMAGE_WIDTH = 300;
 const IMAGE_HEIGHT = 300;
 
+const cardStyles = {
+  maxWidth: "25%",
+  margin: 10
+};
+
 export default ({message}: Props) => {
   const {id, letter, postcard, createdAt, isRead} = message;
   const isOpened = isRead === yesNo.yes;
 
-  return (
-    <Link key={id} href={`/message/${id}`}>
-      <div className={styles.message}>
-        {letter && letter.thumbnail && (
-          <Image
-            src={letter.thumbnail}
-            initialwidth={IMAGE_WIDTH}
-            initialheight={IMAGE_HEIGHT}
-            className={styles.messageImage}
-          />
-        )}
-        {postcard && postcard.thumbnail && (
-          <Image
-            src={postcard.thumbnail}
-            initialwidth={IMAGE_WIDTH}
-            initialheight={IMAGE_HEIGHT}
-            className={styles.messageImage}
-          />
-        )}
-        <div className={styles.content}>
-          <h5 className={styles.timestamp}>{getTimestamp(createdAt)}</h5>
-          <p className={styles.readStatus}>
-            {isOpened ? "Opened" : "Not opened (charge points)"}
-          </p>
-        </div>
-      </div>
-    </Link>
+  const content = (
+    <>
+      <h5 className={styles.timestamp}>{getTimestamp(createdAt)}</h5>
+      <p className={styles.readStatus}>
+        {isOpened ? "Opened" : "Not opened (charge points)"}
+      </p>
+    </>
   );
+
+  if (postcard && postcard.thumbnail) {
+    return (
+      <Card
+        key={id}
+        linkHref={`/message/${id}`}
+        imageSrc={postcard.thumbnail}
+        imageHeight={IMAGE_WIDTH}
+        imageWidth={IMAGE_HEIGHT}
+        cardContainerStyles={cardStyles}
+      >
+        {content}
+      </Card>
+    );
+  }
+
+  if (letter && letter.thumbnail) {
+    return (
+      <Card
+        key={id}
+        linkHref={`/message/${id}`}
+        imageSrc={letter.thumbnail}
+        imageHeight={IMAGE_WIDTH}
+        imageWidth={IMAGE_HEIGHT}
+        cardContainerStyles={cardStyles}
+      >
+        {content}
+      </Card>
+    );
+  }
 };
 
 const getTimestamp = (timestamp: number) => {

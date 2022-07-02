@@ -1,25 +1,3 @@
-.message {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 10px;
-  border-radius: var(--border-radius);
-  height: fit-content;
-}
-
-.message:hover {
-  outline: dotted 2px var(--brand-color);
-}
-
-.messageImage {
-  border-radius: var(--border-radius);
-}
-
-.content {
-  padding: 10px;
-}
-
 .timestamp {
   text-align: center;
 }
