@@ -5,5 +5,3 @@ declare module "iron-session" {
     authHeaders: AuthHeaders;
   }
 }
-
-export {};
