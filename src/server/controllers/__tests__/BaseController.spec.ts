@@ -1,13 +1,12 @@
 import axios from "axios";
 import BaseController from "server/controllers/BaseController";
+import {DEFAULT_BASE_API} from "../../../mocks/authHeadersFactory";
 
 const host = "vip-fab-api.myfab.tv";
-const hostDomain = "fapi";
-const apiVersion = "2";
 const os = "ios";
 const userAgent = "fab|ios|appstore|1.2.0|15.5|iPhone11,8|apple|en|US";
 
-const baseApi = `https://${host}/${hostDomain}/${apiVersion}`;
+const baseApi = DEFAULT_BASE_API;
 
 const defaultHeaders = {
   Host: host,
