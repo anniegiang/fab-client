@@ -1,5 +1,6 @@
 import {rest} from "msw";
 import {setupServer} from "msw/node";
+import setupServerActions from "../../../mocks/setupServerActions";
 import UserController from "server/controllers/UserController";
 import {mockUserInfoResponse} from "../../../mocks/userFactory";
 import {mockArtistResponse} from "../../../mocks/artistFactory";
@@ -53,9 +54,7 @@ const server = setupServer(
   mockGetNotifications
 );
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+setupServerActions(server);
 
 describe("UserController", () => {
   test("getInfo", async () => {

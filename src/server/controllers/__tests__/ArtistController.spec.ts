@@ -1,6 +1,7 @@
 import ArtistController from "server/controllers/ArtistController";
 import {rest} from "msw";
 import {setupServer} from "msw/node";
+import setupServerActions from "../../../mocks/setupServerActions";
 import {mockArtistUser} from "../../../mocks/artistFactory";
 import {
   mockMessage,
@@ -27,9 +28,7 @@ const mockGetArtistMessages = rest.get(
 
 const server = setupServer(mockGetArtistMessages);
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+setupServerActions(server);
 
 describe("ArtistController", () => {
   test("getMessages", async () => {

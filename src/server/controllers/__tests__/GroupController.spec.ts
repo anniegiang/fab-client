@@ -1,6 +1,7 @@
 import GroupController from "server/controllers/GroupController";
 import {rest} from "msw";
 import {setupServer} from "msw/node";
+import setupServerActions from "../../../mocks/setupServerActions";
 import {mockGroup, mockGroupResponse} from "../../../mocks/groupFactory";
 import {mockGroupMessagseResponse} from "../../../mocks/messageFactory";
 import {
@@ -29,9 +30,7 @@ const mockGetGroupMessages = rest.get(
 
 const server = setupServer(mockGetGroupInfo, mockGetGroupMessages);
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+setupServerActions(server);
 
 describe("GroupController", () => {
   test("getGroupInfo", async () => {
