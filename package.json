@@ -6,6 +6,7 @@
   "scripts": {
     "start": "next dev",
     "test": "jest --watch",
+    "test-coverage": "jest --coverage --collectCoverageFrom='./src/**'",
     "prepare": "husky install",
     "lint": "eslint . --config .eslintrc --ext .ts --fix",
     "format": "prettier --write .",
