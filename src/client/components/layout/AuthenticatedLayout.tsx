@@ -16,9 +16,7 @@ export default ({userid, accesstoken, children}: Props) => {
   const [user, setUser] = useState<UserInfo | undefined>();
 
   useEffect(() => {
-    axios
-      .post("/api/user", {userid, accesstoken})
-      .then((response) => setUser(response.data));
+    axios.post("/api/user").then((response) => setUser(response.data));
   }, [userid, accesstoken]);
 
   if (!user) return null;

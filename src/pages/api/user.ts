@@ -1,7 +1,15 @@
 import {NextApiRequest, NextApiResponse} from "next";
+import {withSessionRoute} from "config/withSession";
 import UserController from "server/controllers/UserController";
+import {UserInfo} from "types/user";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const response = await UserController.getInfo(req.body);
+async function userInfoRoute(
+  req: NextApiRequest,
+  res: NextApiResponse<UserInfo>
+) {
+  const {authHeaders} = req.session;
+  const response = await UserController.getInfo(authHeaders);
   return res.status(200).json(response.user);
-};
+}
+
+export default withSessionRoute(userInfoRoute);
