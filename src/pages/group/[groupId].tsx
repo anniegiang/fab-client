@@ -1,6 +1,6 @@
 import GroupController from "server/controllers/GroupController";
 import {GroupResponse, Group} from "types/group";
-import {GroupMessageResponse, Message} from "types/message";
+import {GroupMessagseResponse, Message} from "types/message";
 import Artists from "client/components/artists/Artists";
 import Messages from "client/components/messages/Messages";
 import {Id} from "types/common";
@@ -41,7 +41,7 @@ export const getServerSideProps = withSessionSsr<Props>(async (context) => {
     authHeaders
   );
 
-  const groupMessagesResponse: GroupMessageResponse =
+  const groupMessagesResponse: GroupMessagseResponse =
     await GroupController.getGroupMessages(groupId, authHeaders);
 
   return {

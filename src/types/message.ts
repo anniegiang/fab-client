@@ -59,7 +59,7 @@ export type ArtistMessageResponse = {
   messages: Message[];
 };
 
-export type GroupMessageResponse = {
+export type GroupMessagseResponse = {
   messages: Message[];
 };
 

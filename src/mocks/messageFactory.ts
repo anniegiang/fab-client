@@ -7,7 +7,7 @@ import {
   PostCard,
   Message,
   ArtistMessageResponse,
-  GroupMessageResponse,
+  GroupMessagseResponse,
   LetterMessageResponse,
   NewestMessagesResponse
 } from "types/message";
@@ -87,9 +87,9 @@ export const mockArtistMessageResponse = (
   ...customValues
 });
 
-export const mockGroupMessageResponse = (
-  customValues?: Partial<GroupMessageResponse>
-): GroupMessageResponse => ({
+export const mockGroupMessagseResponse = (
+  customValues?: Partial<GroupMessagseResponse>
+): GroupMessagseResponse => ({
   messages: [message],
   ...customValues
 });

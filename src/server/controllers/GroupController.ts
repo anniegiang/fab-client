@@ -1,7 +1,7 @@
 import BaseController from "server/controllers/BaseController";
 import {Id} from "types/common";
 import {GroupResponse} from "types/group";
-import {GroupMessageResponse} from "types/message";
+import {GroupMessagseResponse} from "types/message";
 import {AuthHeaders} from "types/session";
 
 class GroupController extends BaseController {
@@ -30,7 +30,7 @@ class GroupController extends BaseController {
   async getGroupMessages(
     groupId: Id,
     authHeaders: AuthHeaders
-  ): Promise<GroupMessageResponse> {
+  ): Promise<GroupMessagseResponse> {
     const response = await this.defaultGet(`/${groupId}/messages`, authHeaders);
     return this.respond(response);
   }
