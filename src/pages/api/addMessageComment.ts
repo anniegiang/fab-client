@@ -14,7 +14,7 @@ async function addMessageCommentRoute(
 ) {
   const {authHeaders} = req.session;
   const {messageId, comment} = req.body;
-  console.log({body: req.body, authHeaders});
+
   const response = await MessageController.addMessageComment(
     authHeaders,
     messageId,
