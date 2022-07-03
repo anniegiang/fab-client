@@ -103,7 +103,8 @@
     "noEmit": true,
     "incremental": true,
     "resolveJsonModule": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "isolatedModules": true
   },
   "include": ["."],
   "exclude": ["node_modules", ".husky", ".next"]
