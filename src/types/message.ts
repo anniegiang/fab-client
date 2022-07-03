@@ -7,7 +7,7 @@ export type LetterImage = {
   image: ImageUrl;
 };
 
-type Letter = {
+export type Letter = {
   id: Id;
   messageId: Id;
   userId: Id;
@@ -20,7 +20,7 @@ type Letter = {
   images: LetterImage[];
 };
 
-type PostCard = {
+export type PostCard = {
   id: Id;
   messageId: Id;
   userId: Id;
