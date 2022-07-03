@@ -18,14 +18,14 @@ const artist = mockArtistUser({id: userid});
 const message = mockMessage({userId: userid});
 const artistMessageResponse = mockArtistMessageResponse({messages: [message]});
 
-const mockGetUserInfo = rest.get(
+const mockGetArtistMessages = rest.get(
   `${DEFAULT_BASE_API}/artists/${userid}/messages`,
   (_, res, ctx) => {
     return res(ctx.status(200), ctx.json(artistMessageResponse));
   }
 );
 
-const server = setupServer(mockGetUserInfo);
+const server = setupServer(mockGetArtistMessages);
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
