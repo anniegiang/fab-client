@@ -1,6 +1,6 @@
 import axios from "axios";
 import BaseController from "server/controllers/BaseController";
-import {DEFAULT_BASE_API} from "../../../mocks/authHeadersFactory";
+import {DEFAULT_BASE_API} from "mocks/authHeadersFactory";
 
 const host = "vip-fab-api.myfab.tv";
 const os = "ios";

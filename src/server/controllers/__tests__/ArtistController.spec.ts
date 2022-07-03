@@ -1,17 +1,10 @@
 import ArtistController from "server/controllers/ArtistController";
 import {rest} from "msw";
 import {setupServer} from "msw/node";
-import setupServerActions from "../../../mocks/setupServerActions";
-import {mockArtistUser} from "../../../mocks/artistFactory";
-import {
-  mockMessage,
-  mockArtistMessageResponse
-} from "../../../mocks/messageFactory";
-
-import {
-  mockAuthHeaders,
-  DEFAULT_BASE_API
-} from "../../../mocks/authHeadersFactory";
+import setupServerActions from "mocks/setupServerActions";
+import {mockArtistUser} from "mocks/artistFactory";
+import {mockMessage, mockArtistMessageResponse} from "mocks/messageFactory";
+import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
 
 const authHeaders = mockAuthHeaders();
 const {userid} = authHeaders;

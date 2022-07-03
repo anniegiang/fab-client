@@ -21,7 +21,8 @@ const customJestConfig = {
     "^constants/(.*)$": "<rootDir>/src/constants/$1",
     "^types/(.*)$": "<rootDir>/src/types/$1",
     "^client/(.*)$": "<rootDir>/src/client/$1",
-    "^server/(.*)$": "<rootDir>/src/server/$1"
+    "^server/(.*)$": "<rootDir>/src/server/$1",
+    "^mocks/(.*)$": "<rootDir>/src/mocks/$1"
   }
 };
 

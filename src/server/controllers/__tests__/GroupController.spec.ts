@@ -1,13 +1,10 @@
 import GroupController from "server/controllers/GroupController";
 import {rest} from "msw";
 import {setupServer} from "msw/node";
-import setupServerActions from "../../../mocks/setupServerActions";
-import {mockGroup, mockGroupResponse} from "../../../mocks/groupFactory";
-import {mockGroupMessagseResponse} from "../../../mocks/messageFactory";
-import {
-  mockAuthHeaders,
-  DEFAULT_BASE_API
-} from "../../../mocks/authHeadersFactory";
+import setupServerActions from "mocks/setupServerActions";
+import {mockGroup, mockGroupResponse} from "mocks/groupFactory";
+import {mockGroupMessagseResponse} from "mocks/messageFactory";
+import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
 
 const authHeaders = mockAuthHeaders();
 const group = mockGroup();

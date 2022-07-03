@@ -1,15 +1,12 @@
 import {rest} from "msw";
 import {setupServer} from "msw/node";
-import setupServerActions from "../../../mocks/setupServerActions";
+import setupServerActions from "mocks/setupServerActions";
 import UserController from "server/controllers/UserController";
-import {mockUserInfoResponse} from "../../../mocks/userFactory";
-import {mockArtistResponse} from "../../../mocks/artistFactory";
-import {mockSubscribedGroupsResponse} from "../../../mocks/groupFactory";
-import {mockNotificationsReponse} from "../../../mocks/notificationFactory";
-import {
-  mockAuthHeaders,
-  DEFAULT_BASE_API
-} from "../../../mocks/authHeadersFactory";
+import {mockUserInfoResponse} from "mocks/userFactory";
+import {mockArtistResponse} from "mocks/artistFactory";
+import {mockSubscribedGroupsResponse} from "mocks/groupFactory";
+import {mockNotificationsReponse} from "mocks/notificationFactory";
+import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
 
 const authHeaders = mockAuthHeaders();
 const {userid} = authHeaders;
