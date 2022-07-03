@@ -37,6 +37,7 @@ describe("SessionContoller", () => {
   });
 
   test("login (fail)", async () => {
+    const spy = jest.spyOn(console, "warn");
     server.use(
       rest.get(`${DEFAULT_BASE_API}/users/${userid}/info`, (_, res, ctx) =>
         res(ctx.status(400), ctx.json({error: "no"}))
@@ -47,6 +48,9 @@ describe("SessionContoller", () => {
       authHeaders.userid,
       authHeaders.accesstoken
     );
+
     expect(response).toEqual(sessionFailResponse);
+    expect(spy).toHaveBeenNthCalledWith(1, "[warn]: Error logging in");
+    spy.mockRestore();
   });
 });

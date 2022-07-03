@@ -19,7 +19,7 @@ describe("Logger", () => {
     spy.mockRestore();
   });
 
-  test("logError - logs a message as a warning", () => {
+  test("logWarning - logs a message as a warning", () => {
     const spy = jest.spyOn(console, "warn");
     logger.logWarning(message);
     expect(spy).toHaveBeenNthCalledWith(1, `[warn]: ${message}`);
