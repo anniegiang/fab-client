@@ -14,7 +14,7 @@ export default class Logger {
   }
 
   logSuccessReponse(response: HttpClientResponse): void {
-    return this.log(
+    this.log(
       `${response.status} ${
         response.statusText
       } - ${response.config.method?.toUpperCase()} ${response.config.url}`
