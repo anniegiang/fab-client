@@ -1,4 +1,3 @@
-import {mockUser} from "./userFactory";
 import {mockGroup} from "./groupFactory";
 import {mockArtistUser} from "./artistFactory";
 import {yesNo, zeroOrOne} from "constants/common";
@@ -14,7 +13,6 @@ import {
 } from "types/message";
 
 const todayValueOf = new Date().valueOf();
-const user = mockUser();
 const group = mockGroup();
 const artistUser = mockArtistUser();
 
@@ -34,7 +32,7 @@ export const mockLetterImage = (
 export const mockLetter = (customValues?: Partial<Letter>): Letter => ({
   id: LETTER_ID,
   messageId: MESSAGE_ID,
-  userId: user.id,
+  userId: artistUser.id,
   text: "letter text",
   thumbnail: "https//thumbnail.com",
   isEncrypted: yesNo.no,
@@ -48,7 +46,7 @@ export const mockLetter = (customValues?: Partial<Letter>): Letter => ({
 export const mockPostCard = (customValues?: Partial<PostCard>): PostCard => ({
   id: POST_CARD_ID,
   messageId: MESSAGE_ID,
-  userId: user.id,
+  userId: artistUser.id,
   postcardImage: "https//post-card-image.com",
   postcardVideo: "https//post-card-video.com",
   thumbnail: "https//thumbnail.com",
@@ -62,7 +60,7 @@ export const mockPostCard = (customValues?: Partial<PostCard>): PostCard => ({
 
 export const mockMessage = (customValues?: Partial<Message>): Message => ({
   id: MESSAGE_ID,
-  userId: user.id,
+  userId: artistUser.id,
   groupId: group.id,
   type: zeroOrOne.one,
   isGroup: yesNo.no,
