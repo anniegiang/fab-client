@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import {HttpClientResponse, HttpClientError} from "server/services/HttpClient";
 
 export default class Logger {
