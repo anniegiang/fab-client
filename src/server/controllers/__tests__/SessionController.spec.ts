@@ -15,6 +15,10 @@ const sessionFailResponse = mockSessionResponse({
   isAuthenticated: false,
   isError: true
 });
+const sessionInvalidResponse = mockSessionResponse({
+  isAuthenticated: false,
+  isError: false
+});
 
 const mockLoginSuccess = rest.get(
   `${DEFAULT_BASE_API}/users/${userid}/info`,
@@ -40,7 +44,7 @@ describe("SessionContoller", () => {
     const spy = jest.spyOn(console, "warn");
     server.use(
       rest.get(`${DEFAULT_BASE_API}/users/${userid}/info`, (_, res, ctx) =>
-        res(ctx.status(400), ctx.json({error: "no"}))
+        res(ctx.status(500))
       )
     );
 
@@ -51,6 +55,24 @@ describe("SessionContoller", () => {
 
     expect(response).toEqual(sessionFailResponse);
     expect(spy).toHaveBeenNthCalledWith(1, "[warn]: Error logging in");
+    spy.mockRestore();
+  });
+
+  test("login (success & invalid credentials)", async () => {
+    const spy = jest.spyOn(console, "warn");
+    server.use(
+      rest.get(`${DEFAULT_BASE_API}/users/${userid}/info`, (_, res, ctx) =>
+        res(ctx.status(201), ctx.json({error: "invalid credentials"}))
+      )
+    );
+
+    const response = await SessionControllerInstance.login(
+      authHeaders.userid,
+      authHeaders.accesstoken
+    );
+
+    expect(response).toEqual(sessionInvalidResponse);
+    expect(spy).toHaveBeenNthCalledWith(1, "[warn]: Invalid credentials");
     spy.mockRestore();
   });
 });
