@@ -12,13 +12,13 @@ import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
 export default ({Component, pageProps}: AppProps) => {
   const {userId, setUserId} = useUserId();
   const {accessToken, setAccessToken} = useAccessToken();
-  const [user, setUser] = useState<UserInfo | undefined>();
+  const [_, setUser] = useState<UserInfo | undefined>();
 
   useEffect(() => {
     if (userId && accessToken) {
       axios.post("/api/user").then((response) => setUser(response.data));
     }
-  }, [userId, userId]);
+  }, [userId, accessToken]);
 
   return (
     <AuthContext.Provider
@@ -31,11 +31,7 @@ export default ({Component, pageProps}: AppProps) => {
     >
       <LoadingBar />
       <RouteGuard>
-        <AuthenticatedLayout
-          user={user}
-          userid={Number(userId)}
-          accesstoken={accessToken}
-        >
+        <AuthenticatedLayout>
           <Component {...pageProps} />
         </AuthenticatedLayout>
       </RouteGuard>
