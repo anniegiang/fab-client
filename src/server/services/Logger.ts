@@ -23,7 +23,15 @@ export default class Logger {
     );
   }
 
-  logErrorReponse(error: HttpClientError): void {
+  logErrorReponse({data: {error}}: HttpClientResponse): void {
+    this.logError(
+      `${error.error_code} ${error.config.method?.toUpperCase()} ${
+        error.config.url
+      } - ${error.error_msg}`
+    );
+  }
+
+  logHttpError(error: HttpClientError): void {
     this.logError(
       `${error.code} ${error.message} - ${error.config.method?.toUpperCase()} ${
         error.config.url

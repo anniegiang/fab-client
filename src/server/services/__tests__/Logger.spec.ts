@@ -50,6 +50,34 @@ describe("Logger", () => {
 
   test("logErrorReponse", () => {
     const spy = jest.spyOn(console, "error");
+    const config = {method: "GET", url: "api.endpoint"};
+
+    const response: HttpClientResponse = {
+      data: {
+        error: {error_code: 401, error_msg: "nope", config}
+      },
+      status: 200,
+      statusText: "OK",
+      headers: {},
+      config
+    };
+
+    logger.logErrorReponse(response);
+
+    const {error} = response.data;
+
+    expect(spy).toHaveBeenNthCalledWith(
+      1,
+      `[error]: ${error.error_code} ${error.config.method.toUpperCase()} ${
+        error.config.url
+      } - ${error.error_msg}`
+    );
+
+    spy.mockRestore();
+  });
+
+  test("logHttpError", () => {
+    const spy = jest.spyOn(console, "error");
     const error: HttpClientError = {
       code: "400",
       message: "oh no",
@@ -59,7 +87,7 @@ describe("Logger", () => {
       toJSON: jest.fn()
     };
 
-    logger.logErrorReponse(error);
+    logger.logHttpError(error);
 
     expect(spy).toHaveBeenNthCalledWith(
       1,
