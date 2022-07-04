@@ -68,6 +68,35 @@ describe("HttpClient", () => {
     spy.mockRestore();
   });
 
+  test("respond - when response is not successful", () => {
+    const spy = jest.spyOn(console, "error");
+    const config = {method: "GET", url: "api.endpoint"};
+
+    const response: HttpClientResponse = {
+      data: {
+        error: {error_code: 401, error_msg: "nope", config}
+      },
+      status: 500,
+      statusText: "nope",
+      headers: {},
+      config
+    };
+
+    const res = httpClient.respond(response);
+
+    const {error} = response.data;
+
+    expect(res).toEqual(response.data);
+    expect(spy).toHaveBeenNthCalledWith(
+      1,
+      `[error]: ${error.error_code} ${error.config.method.toUpperCase()} ${
+        error.config.url
+      } - ${error.error_msg}`
+    );
+
+    spy.mockRestore();
+  });
+
   test("respond - fail", () => {
     const spy = jest.spyOn(console, "error");
     const error: HttpClientError = {
