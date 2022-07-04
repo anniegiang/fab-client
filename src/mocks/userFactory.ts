@@ -1,6 +1,12 @@
-import {User, UserInfo, UserInfoResponse} from "types/user";
 import {yesNo, zeroOrOne} from "constants/common";
 import {mockAuthHeaders} from "./authHeadersFactory";
+import {
+  User,
+  UserInfo,
+  UserInfoResponse,
+  FollowArtistResponse,
+  UnfollowArtistResponse
+} from "types/user";
 
 const todayValueOf = new Date().valueOf();
 const authHeaders = mockAuthHeaders();
@@ -35,5 +41,19 @@ export const mockUserInfoResponse = (
   customValues?: Partial<UserInfoResponse>
 ): UserInfoResponse => ({
   user: mockUserInfo(),
+  ...customValues
+});
+
+export const mockFollowArtistResponse = (
+  customValues?: Partial<FollowArtistResponse>
+): FollowArtistResponse => ({
+  result: "OK",
+  ...customValues
+});
+
+export const mockUnfollowArtistResponse = (
+  customValues?: Partial<UnfollowArtistResponse>
+): UnfollowArtistResponse => ({
+  result: "OK",
   ...customValues
 });

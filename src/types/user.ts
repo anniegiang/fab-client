@@ -27,3 +27,11 @@ export type UserInfo = User & {
 export type UserInfoResponse = {
   user: UserInfo;
 };
+
+export type FollowArtistResponse = {
+  result: string;
+};
+
+export type UnfollowArtistResponse = {
+  result: string;
+};

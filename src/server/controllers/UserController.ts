@@ -1,10 +1,14 @@
 import BaseController from "server/controllers/BaseController";
-import {UserInfoResponse} from "types/user";
 import {ArtistResponse} from "types/artist";
 import {SubscribedGroupsResponse} from "types/group";
 import {Id} from "types/common";
 import {AuthHeaders} from "types/session";
 import {NotificationsReponse} from "types/notification";
+import {
+  UserInfoResponse,
+  FollowArtistResponse,
+  UnfollowArtistResponse
+} from "types/user";
 
 export class UserController extends BaseController {
   constructor() {
@@ -17,6 +21,12 @@ export class UserController extends BaseController {
 
   async defaultGet(api: string, authHeaders: AuthHeaders) {
     return this.api.get(`${this.baseUrl(authHeaders.userid)}${api}`, {
+      headers: {...this.defaultHeaders, ...authHeaders}
+    });
+  }
+
+  async defaultPost(api: string, authHeaders: AuthHeaders, body?: any) {
+    return this.api.post(`${this.baseUrl(authHeaders.userid)}${api}`, body, {
       headers: {...this.defaultHeaders, ...authHeaders}
     });
   }
@@ -44,6 +54,28 @@ export class UserController extends BaseController {
     authHeaders: AuthHeaders
   ): Promise<NotificationsReponse> {
     const response = await this.defaultGet("/notifications", authHeaders);
+    return this.respond(response);
+  }
+
+  async followArtist(
+    artistUserId: Id,
+    authHeaders: AuthHeaders
+  ): Promise<FollowArtistResponse> {
+    const response = await this.defaultPost(
+      `/follow/artist/${artistUserId}`,
+      authHeaders
+    );
+    return this.respond(response);
+  }
+
+  async unfollowArtist(
+    artistUserId: Id,
+    authHeaders: AuthHeaders
+  ): Promise<UnfollowArtistResponse> {
+    const response = await this.defaultPost(
+      `/unfollow/artist/${artistUserId}`,
+      authHeaders
+    );
     return this.respond(response);
   }
 }

@@ -2,11 +2,15 @@ import {rest} from "msw";
 import {setupServer} from "msw/node";
 import setupServerActions from "mocks/setupServerActions";
 import UserController from "server/controllers/UserController";
-import {mockUserInfoResponse} from "mocks/userFactory";
-import {mockArtistResponse} from "mocks/artistFactory";
+import {mockArtistResponse, mockArtist} from "mocks/artistFactory";
 import {mockSubscribedGroupsResponse} from "mocks/groupFactory";
 import {mockNotificationsReponse} from "mocks/notificationFactory";
 import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
+import {
+  mockUserInfoResponse,
+  mockFollowArtistResponse,
+  mockUnfollowArtistResponse
+} from "mocks/userFactory";
 
 const authHeaders = mockAuthHeaders();
 const {userid} = authHeaders;
@@ -15,6 +19,9 @@ const userInfoResponse = mockUserInfoResponse();
 const subscribedArtistsResponse = mockArtistResponse();
 const subscribedGroupsResponse = mockSubscribedGroupsResponse();
 const notificationsResponse = mockNotificationsReponse();
+const followArtistResponse = mockFollowArtistResponse();
+const unfollowArtistResponse = mockUnfollowArtistResponse();
+const artist = mockArtist();
 
 const mockGetUserInfo = rest.get(
   `${DEFAULT_BASE_API}/users/${userid}/info`,
@@ -44,11 +51,27 @@ const mockGetNotifications = rest.get(
   }
 );
 
+const mockFollowArtist = rest.post(
+  `${DEFAULT_BASE_API}/users/${userid}/follow/artist/${artist.artistUserId}`,
+  (_, res, ctx) => {
+    return res(ctx.status(200), ctx.json(followArtistResponse));
+  }
+);
+
+const mockUnfollowArtist = rest.post(
+  `${DEFAULT_BASE_API}/users/${userid}/unfollow/artist/${artist.artistUserId}`,
+  (_, res, ctx) => {
+    return res(ctx.status(200), ctx.json(unfollowArtistResponse));
+  }
+);
+
 const server = setupServer(
   mockGetUserInfo,
   mockGetSubscribedArtists,
   mockGetSubscribedGroups,
-  mockGetNotifications
+  mockGetNotifications,
+  mockFollowArtist,
+  mockUnfollowArtist
 );
 
 setupServerActions(server);
@@ -72,5 +95,21 @@ describe("UserController", () => {
   test("getNotifications", async () => {
     const response = await UserController.getNotifications(authHeaders);
     expect(response).toEqual(notificationsResponse);
+  });
+
+  test("followArtist", async () => {
+    const response = await UserController.followArtist(
+      artist.artistUserId,
+      authHeaders
+    );
+    expect(response).toEqual(followArtistResponse);
+  });
+
+  test("unfollowArtist", async () => {
+    const response = await UserController.unfollowArtist(
+      artist.artistUserId,
+      authHeaders
+    );
+    expect(response).toEqual(unfollowArtistResponse);
   });
 });
