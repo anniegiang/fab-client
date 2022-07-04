@@ -19,6 +19,7 @@ textarea {
   border-color: var(--primary-color);
   border-radius: var(--border-radius);
   padding: 8px;
+  border-width: 1px;
 }
 
 input:focus,
