@@ -5,7 +5,7 @@ import {UserInfo} from "types/user";
 export type AuthContextState = {
   userid: Nullable<Id>;
   accesstoken: Nullable<string>;
-  loggedInUser?: UserInfo;
+  user?: UserInfo;
   setUserId?: (userId: string) => void;
   setAccessToken?: (accesstoken: string) => void;
 };
