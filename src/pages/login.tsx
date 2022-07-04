@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import {useRouter} from "next/router";
 import LoginForm from "client/components/forms/LoginForm";
 import {LoginFields} from "types/session";
@@ -8,8 +8,15 @@ import AuthContext from "client/context/AuthContext";
 
 export default () => {
   const router = useRouter();
-  const {setUserId, setAccessToken} = useContext(AuthContext);
+  const {userid, accesstoken, setUserId, setAccessToken} =
+    useContext(AuthContext);
   const [isLoginFailed, setIsLoginFailed] = useState(false);
+
+  useEffect(() => {
+    if (userid && accesstoken) {
+      router.back();
+    }
+  }, []);
 
   const handleSubmit = async (fields: LoginFields) => {
     if (setUserId && setAccessToken) {
