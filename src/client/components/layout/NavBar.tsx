@@ -1,3 +1,4 @@
+import {useRouter} from "next/router";
 import {UserInfo} from "types/user";
 import styles from "client/styles/NavBar.module.css";
 import Link from "next/link";
@@ -8,9 +9,11 @@ type Props = {
 };
 
 export default ({user}: Props) => {
+  const router = useRouter();
+
   const handleLogout = () => {
     LocalSession.logout();
-    window.location.reload();
+    router.reload();
   };
 
   const name = user?.nickName ?? user?.id;
