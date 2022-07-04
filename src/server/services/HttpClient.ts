@@ -21,14 +21,23 @@ export default class HttpClient extends Logger {
 
   respond(response: HttpClientResponse | HttpClientError) {
     const _response = response as HttpClientResponse;
+    const isResponseError = !!(_response.data && _response.data.error);
+    const isSuccess = this.isSuccess(_response.status);
 
-    if (this.isSuccess(_response.status)) {
+    if (isSuccess && !isResponseError) {
       this.logSuccessReponse(_response);
       return _response.data;
     }
 
-    this.logErrorReponse(response as HttpClientError);
-    return response as HttpClientError;
+    if (isResponseError || (isResponseError && isSuccess)) {
+      this.logErrorReponse(_response);
+      return _response.data;
+    }
+
+    const httpError = response as HttpClientError;
+    this.logHttpError(httpError);
+
+    return httpError;
   }
 
   isSuccess(status: number): boolean {
