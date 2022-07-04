@@ -1,9 +1,9 @@
-import {useState, useEffect, useContext, ReactNode} from "react";
+import {useState, useEffect, useContext, ReactElement} from "react";
 import {useRouter} from "next/router";
 import AuthContext from "client/context/AuthContext";
 
 type Props = {
-  children: ReactNode;
+  children: ReactElement;
 };
 
 const publicPaths = ["/login"];
@@ -39,5 +39,5 @@ export default ({children}: Props) => {
     }
   }
 
-  return authorized && children;
+  return (authorized && children) || null;
 };
