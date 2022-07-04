@@ -12,7 +12,6 @@ export default ({children}: Props) => {
   const router = useRouter();
   const {userid, accesstoken} = useContext(AuthContext);
   const [authorized, setAuthorized] = useState(false);
-
   const isLoggedIn = !!(userid && accesstoken);
 
   useEffect(() => {
@@ -26,18 +25,23 @@ export default ({children}: Props) => {
       router.events.off("routeChangeStart", hideContent);
       router.events.off("routeChangeComplete", authCheck);
     };
-
-    function authCheck(url: string) {
-      const path = url.split("?")[0];
-
-      if (!isLoggedIn && !publicPaths.includes(path)) {
-        setAuthorized(false);
-        router.push({pathname: "/login"});
-      } else {
-        setAuthorized(true);
-      }
-    }
   }, [userid, accesstoken]);
+
+  const authCheck = (url: string) => {
+    const path = url.split("?")[0];
+
+    if (isLoggedIn && path === "/login") {
+      router.back();
+      return;
+    }
+
+    if (!isLoggedIn && !publicPaths.includes(path)) {
+      setAuthorized(false);
+      router.push({pathname: "/login"});
+    } else {
+      setAuthorized(true);
+    }
+  };
 
   return (authorized && children) || null;
 };
