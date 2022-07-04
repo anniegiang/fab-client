@@ -31,7 +31,7 @@ class LocalSession {
   }
 }
 
-class LocalStorageDev extends Logger {
+class LocalSessionDev extends Logger {
   unsupportedError() {
     this.logError("This action is not supported locally");
   }
@@ -58,5 +58,5 @@ class LocalStorageDev extends Logger {
 }
 
 export default environment === environments.development
-  ? new LocalStorageDev()
+  ? new LocalSessionDev()
   : new LocalSession();

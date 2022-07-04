@@ -1,4 +1,4 @@
-const errorMessage = "Storage is not availble";
+const errorMessage = "Storage is not available";
 
 class LocalStorage {
   storage: Storage | undefined;

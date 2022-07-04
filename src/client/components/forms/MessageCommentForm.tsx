@@ -5,7 +5,6 @@ import React, {
   ChangeEvent
 } from "react";
 import styles from "client/styles/LoginForm.module.css";
-import {Id} from "types/common";
 
 type Props = {
   handleAddComment: (comment: string) => Promise<any>;
