@@ -6,12 +6,13 @@ export type AuthContextState = {
   userid: Nullable<Id>;
   accesstoken: Nullable<string>;
   loggedInUser?: UserInfo;
+  setUserId?: (userId: Id) => void;
+  setAccessToken?: (accesstoken: string) => void;
 };
 
 const initialState: AuthContextState = {
   userid: null,
-  accesstoken: null,
-  loggedInUser: undefined
+  accesstoken: null
 };
 
 const AuthContext = createContext(initialState);
