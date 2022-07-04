@@ -22,8 +22,8 @@ export default () => {
         .post("/api/login", requestBody)
         .then((response) => {
           if (response.data.isAuthenticated) {
-            setUserId(requestBody.userid);
-            setAccessToken(requestBody.accesstoken);
+            setUserId(fields.userId);
+            setAccessToken(fields.accessToken);
             router.push({pathname: "/home"});
           } else {
             setIsLoginFailed(true);

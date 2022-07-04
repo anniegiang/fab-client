@@ -6,7 +6,7 @@ export type AuthContextState = {
   userid: Nullable<Id>;
   accesstoken: Nullable<string>;
   loggedInUser?: UserInfo;
-  setUserId?: (userId: Id) => void;
+  setUserId?: (userId: string) => void;
   setAccessToken?: (accesstoken: string) => void;
 };
 
