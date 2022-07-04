@@ -16,7 +16,7 @@ export default ({userid, accesstoken, user, children}: Props) => {
   return (
     <AuthContext.Provider value={{userid, accesstoken, user}}>
       {user && <NavBar user={user} />}
-      <div className={styles.container}>{children}</div>
+      <main className={user && styles.container}>{children}</main>
     </AuthContext.Provider>
   );
 };
