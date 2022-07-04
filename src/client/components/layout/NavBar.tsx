@@ -19,7 +19,7 @@ export default ({user}: Props) => {
       <ul className={styles.list}>
         <div>
           <li className={styles.item}>
-            <Link href="/">Home</Link>
+            <Link href="/home">Home</Link>
           </li>
           <li className={styles.item}>
             <Link href="/subscribed">Subscribed</Link>

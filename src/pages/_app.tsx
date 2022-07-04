@@ -1,12 +1,12 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
-import {AppProps} from "next/app";
 import "client/styles/App.css";
+import {AppProps} from "next/app";
+import {UserInfo} from "types/user";
+import AuthContext from "client/context/AuthContext";
 import LoadingBar from "client/components/layout/LoadingBar";
 import RouteGuard from "client/components/layout/RouteGuard";
 import AuthenticatedLayout from "client/components/layout/AuthenticatedLayout";
-import AuthContext from "client/context/AuthContext";
-import {UserInfo} from "types/user";
 import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
 
 export default ({Component, pageProps}: AppProps) => {

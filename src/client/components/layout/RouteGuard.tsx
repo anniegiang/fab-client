@@ -26,18 +26,18 @@ export default ({children}: Props) => {
       router.events.off("routeChangeStart", hideContent);
       router.events.off("routeChangeComplete", authCheck);
     };
-  }, []);
 
-  function authCheck(url: string) {
-    const path = url.split("?")[0];
+    function authCheck(url: string) {
+      const path = url.split("?")[0];
 
-    if (!isLoggedIn && !publicPaths.includes(path)) {
-      setAuthorized(false);
-      router.push({pathname: "/login"});
-    } else {
-      setAuthorized(true);
+      if (!isLoggedIn && !publicPaths.includes(path)) {
+        setAuthorized(false);
+        router.push({pathname: "/login"});
+      } else {
+        setAuthorized(true);
+      }
     }
-  }
+  }, [userid, accesstoken]);
 
   return (authorized && children) || null;
 };
