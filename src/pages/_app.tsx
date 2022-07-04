@@ -12,7 +12,7 @@ import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
 export default ({Component, pageProps}: AppProps) => {
   const {userId, setUserId} = useUserId();
   const {accessToken, setAccessToken} = useAccessToken();
-  const [_, setUser] = useState<UserInfo | undefined>();
+  const [user, setUser] = useState<UserInfo | undefined>();
 
   useEffect(() => {
     if (userId && accessToken) {
@@ -23,6 +23,7 @@ export default ({Component, pageProps}: AppProps) => {
   return (
     <AuthContext.Provider
       value={{
+        user,
         userid: userId ? Number(userId) : null,
         accesstoken: accessToken,
         setUserId,
