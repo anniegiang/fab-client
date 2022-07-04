@@ -1,22 +1,18 @@
-import {ReactNode} from "react";
+import {useContext, ReactNode} from "react";
 import AuthContext from "client/context/AuthContext";
 import NavBar from "client/components/layout/NavBar";
-import {Id, Nullable} from "types/common";
-import {UserInfo} from "types/user";
 import styles from "client/styles/Layout.module.css";
 
 type Props = {
-  userid: Nullable<Id>;
-  accesstoken: Nullable<string>;
-  user?: UserInfo;
   children: ReactNode;
 };
 
-export default ({userid, accesstoken, user, children}: Props) => {
+export default ({children}: Props) => {
+  const {user} = useContext(AuthContext);
   return (
-    <AuthContext.Provider value={{userid, accesstoken, user}}>
+    <>
       {user && <NavBar user={user} />}
       <main className={user && styles.container}>{children}</main>
-    </AuthContext.Provider>
+    </>
   );
 };
