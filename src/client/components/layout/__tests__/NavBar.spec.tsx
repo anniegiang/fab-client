@@ -1,6 +1,10 @@
-import {render} from "@testing-library/react";
+import {fireEvent, render} from "@testing-library/react";
 import NavBar, {Props} from "client/components/layout/NavBar";
 import {mockUserInfo, mockUser} from "mocks/userFactory";
+import LocalStorageKeys from "constants/localStorageKeys";
+import * as router from "next/router";
+
+const {AccessToken, UserId} = LocalStorageKeys;
 
 const nickName = "Bob";
 const points = 100;
@@ -54,4 +58,25 @@ test("renders the user's points", () => {
 test("renders a log out button", () => {
   const {queryByRole} = renderComponent();
   expect(queryByRole("button", {name: "Log out"})).not.toBeNull();
+});
+
+test("clicking the log out button clears the auth headers and reloads the page", () => {
+  const spy = jest.spyOn(localStorage, "removeItem");
+  const useRouter = jest.spyOn(router, "useRouter") as jest.Mock<any>;
+
+  const reload = jest.fn();
+
+  useRouter.mockImplementation(() => ({reload}));
+
+  const {getByRole} = renderComponent();
+  const button = getByRole("button", {name: "Log out"});
+
+  fireEvent.click(button);
+
+  expect(spy).toHaveBeenCalledWith(UserId);
+  expect(spy).toHaveBeenCalledWith(AccessToken);
+  expect(reload).toHaveBeenCalledTimes(1);
+
+  spy.mockRestore();
+  jest.resetAllMocks();
 });
