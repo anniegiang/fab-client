@@ -17,13 +17,19 @@ const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+    "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.ts",
+    "^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i":
+      "<rootDir>/__mocks__/fileMock.ts",
     "^config/(.*)$": "<rootDir>/src/config/$1",
     "^constants/(.*)$": "<rootDir>/src/constants/$1",
     "^types/(.*)$": "<rootDir>/src/types/$1",
     "^client/(.*)$": "<rootDir>/src/client/$1",
     "^server/(.*)$": "<rootDir>/src/server/$1",
     "^mocks/(.*)$": "<rootDir>/src/mocks/$1"
-  }
+  },
+  transform: {"^.+\\.(js|jsx|ts|tsx)$": "ts-jest"},
+  transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"]
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
