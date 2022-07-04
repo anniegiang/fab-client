@@ -5,6 +5,7 @@ import LoginForm from "client/components/forms/LoginForm";
 import {LoginFields} from "types/session";
 import {AuthHeaders} from "types/session";
 import AuthContext from "client/context/AuthContext";
+import {paths} from "constants/pages";
 
 export default () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default () => {
           if (response.data.isAuthenticated) {
             setUserId(fields.userId);
             setAccessToken(fields.accessToken);
-            router.push({pathname: "/home"});
+            router.push({pathname: paths.home});
           } else {
             setIsLoginFailed(true);
           }

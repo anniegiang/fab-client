@@ -1,12 +1,11 @@
 import {useState, useEffect, useContext, ReactElement} from "react";
 import {useRouter} from "next/router";
 import AuthContext from "client/context/AuthContext";
+import {paths, publicPaths} from "constants/pages";
 
 type Props = {
   children: ReactElement;
 };
-
-const publicPaths = ["/login"];
 
 export default ({children}: Props) => {
   const router = useRouter();
@@ -30,14 +29,14 @@ export default ({children}: Props) => {
   const authCheck = (url: string) => {
     const path = url.split("?")[0];
 
-    if (isLoggedIn && path === "/login") {
+    if (isLoggedIn && path === paths.login) {
       router.back();
       return;
     }
 
     if (!isLoggedIn && !publicPaths.includes(path)) {
       setAuthorized(false);
-      router.push({pathname: "/login"});
+      router.push({pathname: paths.login});
     } else {
       setAuthorized(true);
     }

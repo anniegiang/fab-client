@@ -3,6 +3,7 @@ import {UserInfo} from "types/user";
 import styles from "client/styles/NavBar.module.css";
 import Link from "next/link";
 import LocalSession from "client/LocalSession";
+import {pages} from "constants/pages";
 
 type Props = {
   user: UserInfo;
@@ -22,10 +23,10 @@ export default ({user}: Props) => {
       <ul className={styles.list}>
         <div>
           <li className={styles.item}>
-            <Link href="/home">Home</Link>
+            <Link href={pages.home}>Home</Link>
           </li>
           <li className={styles.item}>
-            <Link href="/subscribed">Subscribed</Link>
+            <Link href={pages.subscribed}>Subscribed</Link>
           </li>
         </div>
         <div>
