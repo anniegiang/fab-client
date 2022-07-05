@@ -5,33 +5,16 @@ import styles from "client/styles/Card.module.css";
 
 type Props = {
   linkHref: string;
-  imageHeight: number;
-  imageWidth: number;
-  imageSrc: string;
+  imageSrc?: string;
   children: ReactNode;
-  imageName?: string;
   cardContainerStyles?: CSSProperties;
 };
 
-export default ({
-  linkHref,
-  imageSrc,
-  imageName,
-  imageWidth,
-  imageHeight,
-  cardContainerStyles,
-  children
-}: Props) => {
+export default ({linkHref, imageSrc, cardContainerStyles, children}: Props) => {
   return (
     <Link href={linkHref}>
       <div className={styles.contentContainer} style={cardContainerStyles}>
-        <Image
-          className={styles.image}
-          src={imageSrc}
-          alt={imageName}
-          initialwidth={imageWidth}
-          initialheight={imageHeight}
-        />
+        {imageSrc && <Image className={styles.image} src={imageSrc} />}
         <div className={styles.content}>{children}</div>
       </div>
     </Link>

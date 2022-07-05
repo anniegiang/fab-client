@@ -8,56 +8,20 @@ type Props = {
   message: Message;
 };
 
-const IMAGE_WIDTH = 300;
-const IMAGE_HEIGHT = 300;
-
-const cardStyles = {
-  maxWidth: "25%",
-  margin: 10
-};
-
 export default ({message}: Props) => {
   const {id, letter, postcard, createdAt, isRead} = message;
   const isOpened = isRead === yesNo.yes;
 
-  const content = (
-    <>
+  const imageSrc = postcard?.thumbnail ?? letter?.thumbnail;
+
+  return (
+    <Card key={id} linkHref={`/message/${id}`} imageSrc={imageSrc}>
       <h5 className={styles.timestamp}>{getTimestamp(createdAt)}</h5>
       <p className={styles.readStatus}>
         {isOpened ? "Opened" : "Not opened (charge points)"}
       </p>
-    </>
+    </Card>
   );
-
-  if (postcard && postcard.thumbnail) {
-    return (
-      <Card
-        key={id}
-        linkHref={`/message/${id}`}
-        imageSrc={postcard.thumbnail}
-        imageHeight={IMAGE_WIDTH}
-        imageWidth={IMAGE_HEIGHT}
-        cardContainerStyles={cardStyles}
-      >
-        {content}
-      </Card>
-    );
-  }
-
-  if (letter && letter.thumbnail) {
-    return (
-      <Card
-        key={id}
-        linkHref={`/message/${id}`}
-        imageSrc={letter.thumbnail}
-        imageHeight={IMAGE_WIDTH}
-        imageWidth={IMAGE_HEIGHT}
-        cardContainerStyles={cardStyles}
-      >
-        {content}
-      </Card>
-    );
-  }
 };
 
 const getTimestamp = (timestamp: number) => {

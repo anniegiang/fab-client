@@ -9,11 +9,6 @@ type Props = {
   artistUser: ArtistUser;
 };
 
-const cardStyles = {
-  maxWidth: "15%",
-  margin: 10
-};
-
 export default ({artistUser}: Props) => {
   const {id, profileImage, artist, isFollow} = artistUser;
   const {affectionateName, name, enName, statusMessage} = artist;
@@ -36,17 +31,9 @@ export default ({artistUser}: Props) => {
   };
 
   return (
-    <Card
-      key={id}
-      linkHref={`/artist/${id}`}
-      imageSrc={profileImage}
-      imageName={_name}
-      imageHeight={250}
-      imageWidth={250}
-      cardContainerStyles={cardStyles}
-    >
+    <Card key={id} linkHref={`/artist/${id}`} imageSrc={profileImage}>
       <div className={styles.content}>
-        <h4 className={styles.artistName}>{name}</h4>
+        <h4 className={styles.artistName}>{_name}</h4>
         <p className={styles.artistStatus}>{statusMessage}</p>
         <button
           className={`${styles.button} ${
