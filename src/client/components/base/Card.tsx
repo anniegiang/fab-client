@@ -6,7 +6,7 @@ import styles from "client/styles/Card.module.css";
 type Props = {
   linkHref: string;
   imageSrc?: string;
-  children: ReactNode;
+  children?: ReactNode;
   cardContainerStyles?: CSSProperties;
 };
 

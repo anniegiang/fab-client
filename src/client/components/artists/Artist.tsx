@@ -4,6 +4,7 @@ import Card from "client/components/base/Card";
 import {ArtistUser} from "types/artist";
 import styles from "client/styles/Artists.module.css";
 import {yesNo} from "constants/common";
+import {getArtistName} from "client/utils/getArtistName";
 
 type Props = {
   artistUser: ArtistUser;
@@ -11,10 +12,8 @@ type Props = {
 
 export default ({artistUser}: Props) => {
   const {id, profileImage, artist, isFollow} = artistUser;
-  const {affectionateName, name, enName, statusMessage} = artist;
+  const {statusMessage} = artist;
   const [isFollowing, setIsFollowing] = useState(isFollow === yesNo.yes);
-
-  const _name = affectionateName ? affectionateName : `${name} * ${enName}`;
 
   const handleSubscribe: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -33,7 +32,7 @@ export default ({artistUser}: Props) => {
   return (
     <Card key={id} linkHref={`/artist/${id}`} imageSrc={profileImage}>
       <div className={styles.content}>
-        <h4 className={styles.artistName}>{_name}</h4>
+        <h4 className={styles.artistName}>{getArtistName(artist)}</h4>
         <p className={styles.artistStatus}>{statusMessage}</p>
         <button
           className={`${styles.button} ${
