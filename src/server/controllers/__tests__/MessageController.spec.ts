@@ -5,7 +5,7 @@ import setupServerActions from "mocks/setupServerActions";
 import {mockComment, mockCommentsReponse} from "mocks/commentFactory";
 import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
 import {
-  mockMessage,
+  mockArtistMessage,
   mockNewestMessagesResponse,
   mockLetterMessageResponse
 } from "mocks/messageFactory";
@@ -13,7 +13,7 @@ import {
 const authHeaders = mockAuthHeaders();
 const {userid} = authHeaders;
 
-const message = mockMessage({userId: userid});
+const message = mockArtistMessage({userId: userid});
 const comment1 = mockComment({id: 1, messageId: message.id});
 const comment2 = mockComment({id: 2, messageId: message.id});
 

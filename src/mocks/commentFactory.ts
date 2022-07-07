@@ -1,16 +1,17 @@
 import {yesNo, zeroOrOne} from "constants/common";
 import {Comment, CommentsResponse} from "types/comment";
-import {mockMessage} from "mocks/messageFactory";
+import {mockArtistMessage} from "mocks/messageFactory";
 
 const todayValueOf = new Date().valueOf();
 const todayUTC = new Date().toUTCString();
-const message = mockMessage();
+const message = mockArtistMessage();
+const author = message.user!;
 
 export const mockComment = (customValues?: Partial<Comment>): Comment => ({
   id: 32,
   messageId: message.id,
   parentId: 31,
-  userId: message.user.id,
+  userId: author.id,
   groupId: message.groupId,
   isGroup: message.isGroup,
   comment: "message comment",
@@ -18,10 +19,10 @@ export const mockComment = (customValues?: Partial<Comment>): Comment => ({
   createdAt: todayValueOf,
   updatedAt: todayUTC,
   isArtist: yesNo.yes,
-  name: message.user.artist.name,
-  enName: message.user.artist.enName,
-  profileImage: message.user.profileImage,
-  userNickname: message.user.nickName,
+  name: author.artist.name,
+  enName: author.artist.enName,
+  profileImage: author.profileImage,
+  userNickname: author.nickName,
   isLike: yesNo.no,
   subComments: [],
   ...customValues

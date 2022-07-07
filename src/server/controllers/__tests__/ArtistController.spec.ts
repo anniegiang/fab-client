@@ -3,13 +3,16 @@ import {rest} from "msw";
 import {setupServer} from "msw/node";
 import setupServerActions from "mocks/setupServerActions";
 import {mockArtistUser} from "mocks/artistFactory";
-import {mockMessage, mockArtistMessageResponse} from "mocks/messageFactory";
 import {mockAuthHeaders, DEFAULT_BASE_API} from "mocks/authHeadersFactory";
+import {
+  mockArtistMessage,
+  mockArtistMessageResponse
+} from "mocks/messageFactory";
 
 const authHeaders = mockAuthHeaders();
 const {userid} = authHeaders;
 const artist = mockArtistUser({id: userid});
-const message = mockMessage({userId: userid});
+const message = mockArtistMessage({userId: userid});
 const artistMessageResponse = mockArtistMessageResponse({messages: [message]});
 
 const mockGetArtistMessages = rest.get(

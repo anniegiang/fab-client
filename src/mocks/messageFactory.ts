@@ -68,7 +68,6 @@ export const mockMessage = (customValues?: Partial<Message>): Message => ({
   publishedAt: todayValueOf,
   createdAt: todayValueOf,
   updatedAt: todayValueOf,
-  user: artistUser,
   isLike: yesNo.no,
   isSave: yesNo.no,
   isRead: yesNo.yes,
@@ -78,7 +77,21 @@ export const mockMessage = (customValues?: Partial<Message>): Message => ({
   ...customValues
 });
 
-const message = mockMessage();
+export const mockArtistMessage = (
+  customValues?: Partial<Message>
+): Message => ({
+  ...mockMessage(),
+  user: artistUser,
+  ...customValues
+});
+
+export const mockGroupMessage = (customValues?: Partial<Message>): Message => ({
+  ...mockMessage(),
+  group,
+  ...customValues
+});
+
+const message = mockArtistMessage();
 
 export const mockArtistMessageResponse = (
   customValues?: Partial<ArtistMessageResponse>
