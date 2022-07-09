@@ -5,7 +5,8 @@ export const paths = {
   subscribed: "/subscribed",
   group: "/group",
   artist: "/artist",
-  message: "/message"
+  message: "/message",
+  fanLetters: "/letters"
 };
 
 export const publicPaths = [paths.login];

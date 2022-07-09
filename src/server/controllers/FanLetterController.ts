@@ -9,7 +9,7 @@ import {
   DeleteFanLetterResponse
 } from "types/fanLetter";
 
-export default class FanLetterController extends UserController {
+class FanLetterController extends UserController {
   async getFanLetter(
     fanLetterId: Id,
     authHeaders: AuthHeaders
@@ -50,3 +50,5 @@ export default class FanLetterController extends UserController {
     return this.respond(response);
   }
 }
+
+export default new FanLetterController();

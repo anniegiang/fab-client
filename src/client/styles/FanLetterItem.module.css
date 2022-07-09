@@ -1,0 +1,9 @@
+.topContent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.letterTitle {
+  margin-bottom: 5px;
+}

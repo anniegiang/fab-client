@@ -1,7 +1,7 @@
 import {YesNo, Id, ImageUrl, ZeroOrOne, TimeValueOf} from "types/common";
 import {ArtistUser} from "types/artist";
 
-type FanLetter = {
+export type FanLetter = {
   id: Id;
   userId: Id;
   profileImage: ImageUrl;

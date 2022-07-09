@@ -27,6 +27,9 @@ export default ({user}: Props) => {
           <li className={styles.item}>
             <Link href={paths.subscribed}>Subscribed</Link>
           </li>
+          <li className={styles.item}>
+            <Link href={paths.fanLetters}>Letters</Link>
+          </li>
         </div>
         <div>
           <li className={styles.item}>

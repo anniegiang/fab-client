@@ -1,0 +1,17 @@
+.container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.createdAt {
+  margin-bottom: 20px;
+  justify-self: flex-end;
+}
+
+.letterTitle {
+  margin-bottom: 20px;
+}
+
+.letterText {
+  font-size: 20px;
+}
