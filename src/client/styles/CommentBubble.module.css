@@ -1,0 +1,32 @@
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 15px;
+  max-width: 55%;
+  overflow-wrap: anywhere;
+}
+
+.commentTimestamp {
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.messageTimestamp {
+  text-align: center;
+}
+
+.artistComment {
+  align-self: flex-start;
+  background-color: white;
+  color: black;
+}
+
+.userComment {
+  align-self: flex-end;
+  background-color: var(--brand-color);
+  color: white;
+}

@@ -7,8 +7,8 @@ import MessageCommentForm from "client/components/forms/MessageCommentForm";
 import {Message, LetterMessageResponse} from "types/message";
 import {CommentsResponse, Comment} from "types/comment";
 import {Id} from "types/common";
-import {yesNo} from "constants/common";
 import styles from "client/styles/MessageDetail.module.css";
+import CommentBubble from "client/components/messages/CommentBubble";
 
 type Props = {
   message: Message;
@@ -43,38 +43,9 @@ export default ({message, comments}: Props) => {
       <h5 className={styles.messageTimestamp}>
         {moment(message.createdAt).format("MMMM D, YYYY h:mm a")}
       </h5>
-      {[...comments, ...addedComments].map(
-        ({id, comment, createdAt, isArtist}: Comment) => {
-          const writtenByArtist = isArtist === yesNo.yes;
-
-          const commentPositionStyles = {
-            alignSelf: writtenByArtist ? "flex-start" : "flex-end",
-            backgroundColor: writtenByArtist ? "white" : "#ec53c6"
-          };
-
-          const commentText = {
-            color: writtenByArtist ? "black" : "white"
-          };
-
-          return (
-            <div
-              className={styles.commentContainer}
-              style={commentPositionStyles}
-              key={id}
-            >
-              <p style={{...commentPositionStyles, ...commentText}}>
-                {comment}
-              </p>
-              <p
-                className={styles.commentTimestamp}
-                style={{...commentPositionStyles, ...commentText}}
-              >
-                {moment(createdAt).format("h:mm a")}
-              </p>
-            </div>
-          );
-        }
-      )}
+      {[...comments, ...addedComments].map((comment) => (
+        <CommentBubble key={comment.id} comment={comment} />
+      ))}
       <MessageCommentForm handleAddComment={handleAddComment} />
     </div>
   );
