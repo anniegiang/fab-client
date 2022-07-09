@@ -1,7 +1,7 @@
 import {useState, ChangeEventHandler, FormEventHandler} from "react";
 import {useRouter} from "next/router";
 import axios from "axios";
-import styles from "client/styles/LoginForm.module.css";
+import styles from "client/styles/Form.module.css";
 
 const MINIMUM_COMMENT_LENGTH = 1;
 

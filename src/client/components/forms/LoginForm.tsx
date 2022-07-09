@@ -5,7 +5,7 @@ import React, {
   ChangeEvent
 } from "react";
 import {LoginFields} from "types/session";
-import styles from "client/styles/LoginForm.module.css";
+import styles from "client/styles/Form.module.css";
 
 type Props = {
   isLoginFailed: boolean;
