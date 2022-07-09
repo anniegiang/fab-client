@@ -5,6 +5,7 @@ import {yesNo} from "constants/common";
 import styles from "client/styles/Message.module.css";
 import Card from "client/components/base/Card";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
+import {paths} from "constants/pages";
 
 type Props = {
   message: Message;
@@ -18,7 +19,7 @@ export default ({message}: Props) => {
 
   const {id, letter, postcard, createdAt, isRead} = message;
 
-  const linkHref = `/message/${id}`;
+  const linkHref = `${paths.message}/${id}`;
   const isFollow = author.isFollow === yesNo.yes;
   const isOpened = isRead === yesNo.yes;
 

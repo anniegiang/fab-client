@@ -1,6 +1,7 @@
 import Card from "client/components/base/Card";
 import {Group} from "types/group";
 import styles from "client/styles/Artists.module.css";
+import {paths} from "constants/pages";
 
 type Props = {
   group: Group;
@@ -11,7 +12,7 @@ export default ({group}: Props) => {
   const _name = `${name} * ${enName}`;
 
   return (
-    <Card key={id} linkHref={`/group/${id}`} imageSrc={profileImage}>
+    <Card key={id} linkHref={`${paths.group}/${id}`} imageSrc={profileImage}>
       <h4 className={styles.artistName}>{_name}</h4>
       <p className={styles.artistStatus}>{statusMessage}</p>
     </Card>

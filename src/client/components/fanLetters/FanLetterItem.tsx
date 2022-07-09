@@ -4,6 +4,7 @@ import {getArtistName} from "client/utils/getArtistName";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import {shortenTextAddEllipses} from "client/utils/shortenTextAddEllipses";
 import styles from "client/styles/FanLetterItem.module.css";
+import {paths} from "constants/pages";
 
 type Props = {
   fanLetter: FanLetter;
@@ -20,7 +21,11 @@ export default ({fanLetter}: Props) => {
   const {profileImage, artist} = artistUser;
 
   return (
-    <Card key={id} linkHref={`/letters/${id}`} imageSrc={profileImage}>
+    <Card
+      key={id}
+      linkHref={`${paths.fanLetters}/${id}`}
+      imageSrc={profileImage}
+    >
       <div className={styles.topContent}>
         <h4>{getArtistName(artist)}</h4>
         <h5>{getMessageTimestamp(createdAt)}</h5>
