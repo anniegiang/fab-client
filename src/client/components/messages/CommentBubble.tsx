@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default ({comment}: Props) => {
-  const {id, comment: commentText, createdAt, isArtist} = comment;
+  const {comment: commentText, createdAt, isArtist} = comment;
   const writtenByArtist = isArtist === yesNo.yes;
 
   const commentStyles = writtenByArtist
@@ -16,7 +16,7 @@ export default ({comment}: Props) => {
     : styles.userComment;
 
   return (
-    <div className={`${styles.commentContainer} ${commentStyles}`} key={id}>
+    <div className={`${styles.commentContainer} ${commentStyles}`}>
       <p className={commentStyles}>{commentText}</p>
       <p className={`${styles.commentTimestamp} ${commentStyles}`}>
         {moment(createdAt).format("h:mm a")}

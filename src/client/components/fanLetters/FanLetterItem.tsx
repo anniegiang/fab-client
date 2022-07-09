@@ -21,11 +21,7 @@ export default ({fanLetter}: Props) => {
   const {profileImage, artist} = artistUser;
 
   return (
-    <Card
-      key={id}
-      linkHref={`${paths.fanLetters}/${id}`}
-      imageSrc={profileImage}
-    >
+    <Card linkHref={`${paths.fanLetters}/${id}`} imageSrc={profileImage}>
       <div className={styles.topContent}>
         <h4>{getArtistName(artist)}</h4>
         <h5>{getMessageTimestamp(createdAt)}</h5>
