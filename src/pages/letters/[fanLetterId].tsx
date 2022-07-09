@@ -1,6 +1,10 @@
+import axios from "axios";
+import {MouseEventHandler} from "react";
+import {useRouter} from "next/router";
 import {Id} from "types/common";
 import {withSessionSsr} from "config/withSession";
 import FanLetterController from "server/controllers/FanLetterController";
+import PrimaryButton from "client/components/base/PrimaryButton";
 import {FanLetter, FanLetterResponse} from "types/fanLetter";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import styles from "client/styles/FanLetter.module.css";
@@ -14,11 +18,27 @@ type ServerSideParams = {
 };
 
 export default ({fanLetter}: Props) => {
-  const {title, text, createdAt} = fanLetter;
+  const router = useRouter();
+
+  const {title, text, createdAt, id} = fanLetter;
+
+  const handleDeleteLetter: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+
+    if (window.confirm("Delete letter?")) {
+      axios
+        .post("/api/deleteFanLetter", {fanLetterId: id})
+        .then(() => router.back())
+        .catch(() => alert("Error deleting letter"));
+    }
+  };
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.createdAt}>{getMessageTimestamp(createdAt)}</h4>
+      <div className={styles.topContent}>
+        <h4>{getMessageTimestamp(createdAt)}</h4>
+        <PrimaryButton text="Delete letter" onClick={handleDeleteLetter} />
+      </div>
       <h2 className={styles.letterTitle}>{title}</h2>
       <p className={styles.letterText}>{text}</p>
     </div>

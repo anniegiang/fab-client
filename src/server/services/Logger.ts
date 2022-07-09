@@ -25,8 +25,8 @@ export default class Logger {
 
   logErrorReponse({data: {error}}: HttpClientResponse): void {
     this.logError(
-      `${error.error_code} ${error.config.method?.toUpperCase()} ${
-        error.config.url
+      `${error.error_code} ${error.config?.method?.toUpperCase()} ${
+        error.config?.url
       } - ${error.error_msg}`
     );
   }

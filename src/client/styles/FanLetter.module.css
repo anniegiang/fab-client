@@ -3,9 +3,10 @@
   margin: 0 auto;
 }
 
-.createdAt {
+.topContent {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
-  justify-self: flex-end;
 }
 
 .letterTitle {

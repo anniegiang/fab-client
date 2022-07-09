@@ -5,7 +5,6 @@ import {
   FanLetterResponse,
   FanLettersReponse,
   SendFanLetterResponse,
-  SendFanLetterPayload,
   DeleteFanLetterResponse
 } from "types/fanLetter";
 
@@ -29,7 +28,7 @@ class FanLetterController extends UserController {
   async sendFanLetter(
     artistUserId: Id,
     authHeaders: AuthHeaders,
-    body: SendFanLetterPayload
+    body: string
   ): Promise<SendFanLetterResponse> {
     const response = await this.defaultPost(
       `/fanletter/add/artist/${artistUserId}`,
