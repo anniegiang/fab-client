@@ -36,10 +36,10 @@ export default ({fanLetter}: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.topContent}>
-        <h4>{getMessageTimestamp(createdAt)}</h4>
+        <h5>{getMessageTimestamp(createdAt)}</h5>
         <PrimaryButton text="Delete letter" onClick={handleDeleteLetter} />
       </div>
-      <h2 className={styles.letterTitle}>{title}</h2>
+      <h3 className={styles.letterTitle}>{title}</h3>
       <p className={styles.letterText}>{text}</p>
     </div>
   );

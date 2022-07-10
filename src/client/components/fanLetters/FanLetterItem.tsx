@@ -23,12 +23,12 @@ export default ({fanLetter}: Props) => {
   return (
     <Card linkHref={`${paths.fanLetters}/${id}`} imageSrc={profileImage}>
       <div className={styles.topContent}>
-        <h4>{getArtistName(artist)}</h4>
+        <h5>{getArtistName(artist)}</h5>
         <h5>{getMessageTimestamp(createdAt)}</h5>
       </div>
-      <h3 className={styles.letterTitle}>
+      <h4 className={styles.letterTitle}>
         {shortenTextAddEllipses(title, TITLE_MAX_LENGTH)}
-      </h3>
+      </h4>
       <p>{shortenTextAddEllipses(text, TEXT_MAX_LENGTH)}</p>
     </Card>
   );

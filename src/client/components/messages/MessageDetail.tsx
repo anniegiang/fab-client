@@ -56,10 +56,7 @@ export default ({message, thumbnail}: Props) => {
       <section className={styles.messageContent} style={{alignItems: align}}>
         {filteredContent.map(({type, size, text, color}) =>
           type === MessageContentType.Text ? (
-            <p
-              className={styles.text}
-              style={{fontSize: size + 3, color: color}}
-            >
+            <p className={styles.text} style={{fontSize: size, color: color}}>
               {text}
             </p>
           ) : (
