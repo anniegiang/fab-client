@@ -1,6 +1,5 @@
 import {MouseEvent} from "react";
 import moment from "moment-timezone";
-import {Id} from "types/common";
 import {Comment} from "types/comment";
 import {YES_NO} from "constants/common";
 import styles from "client/styles/CommentBubble.module.css";
@@ -8,8 +7,7 @@ import styles from "client/styles/CommentBubble.module.css";
 type Props = {
   comment: Comment;
   onDelete: (
-    e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
-    commentId: Id
+    e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) => unknown;
 };
 
@@ -21,12 +19,6 @@ export default ({comment, onDelete}: Props) => {
     ? styles.artistComment
     : styles.userComment;
 
-  const handleDeleteComment = (
-    e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
-  ) => {
-    return onDelete(e, comment.id);
-  };
-
   return (
     <div className={styles.container}>
       <div className={`${styles.commentContainer} ${commentStyles}`}>
@@ -36,7 +28,7 @@ export default ({comment, onDelete}: Props) => {
         </p>
       </div>
       {!writtenByArtist && (
-        <a className={styles.deleteComment} onClick={handleDeleteComment}>
+        <a className={styles.deleteComment} onClick={onDelete}>
           Delete
         </a>
       )}

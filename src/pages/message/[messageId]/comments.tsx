@@ -43,19 +43,17 @@ export default ({comments}: Props) => {
 
   const handleDeleteComment = (
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
-    commentId: Id
+    commentIndex: number
   ) => {
     e.preventDefault();
     if (window.confirm("Delete comment? Points will not be redunded.")) {
+      const comment = allComments[commentIndex];
       axios
         .post("/api/deleteMessageComment", {
           messageId: Number(messageId),
-          commentId
+          commentId: comment.id
         })
         .then(() => {
-          const commentIndex = allComments.findIndex(
-            (comment) => comment.id === commentId
-          );
           setAllComments([
             ...allComments.slice(0, commentIndex),
             ...allComments.slice(commentIndex + 1)
@@ -126,11 +124,11 @@ export default ({comments}: Props) => {
   return (
     <div className={styles.container} ref={ref}>
       {allComments.length ? (
-        allComments.map((comment) => (
+        allComments.map((comment, index) => (
           <CommentBubble
             key={comment.id}
             comment={comment}
-            onDelete={handleDeleteComment}
+            onDelete={(e) => handleDeleteComment(e, index)}
           />
         ))
       ) : (
