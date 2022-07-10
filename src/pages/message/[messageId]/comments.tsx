@@ -1,7 +1,13 @@
+import {
+  MouseEventHandler,
+  MouseEvent,
+  useEffect,
+  useRef,
+  useState
+} from "react";
+import axios from "axios";
 import moment from "moment-timezone";
 import {useRouter} from "next/router";
-import {MouseEventHandler, useEffect, useRef, useState} from "react";
-import axios from "axios";
 import {Id} from "types/common";
 import {withSessionSsr} from "config/withSession";
 import styles from "client/styles/MessageComments.module.css";
@@ -25,10 +31,8 @@ export default ({comments}: Props) => {
   const router = useRouter();
   const {messageId} = router.query;
 
-  const [addedComments, setAddedComments] = useState<Comment[]>([]);
+  const [allComments, setAllComments] = useState<Comment[]>(comments);
   const ref = useRef<HTMLDivElement>(null);
-
-  const _comments = [...comments, ...addedComments];
 
   useEffect(() => {
     if (ref.current) {
@@ -37,10 +41,34 @@ export default ({comments}: Props) => {
     }
   }, []);
 
+  const handleDeleteComment = (
+    e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
+    commentId: Id
+  ) => {
+    e.preventDefault();
+    if (window.confirm("Delete comment? Points will not be redunded.")) {
+      axios
+        .post("/api/deleteMessageComment", {
+          messageId: Number(messageId),
+          commentId
+        })
+        .then(() => {
+          const commentIndex = allComments.findIndex(
+            (comment) => comment.id === commentId
+          );
+          setAllComments([
+            ...allComments.slice(0, commentIndex),
+            ...allComments.slice(commentIndex + 1)
+          ]);
+        })
+        .catch(() => alert("Error deleting comment"));
+    }
+  };
+
   const handleExportCommentsTxt: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
 
-    const allComments = _comments.map(
+    const _allComments = allComments.map(
       ({isArtist, comment, createdAt, enName}) => {
         const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
         const name = isArtist === YES_NO.yes ? enName : "Me";
@@ -49,7 +77,7 @@ export default ({comments}: Props) => {
     );
 
     const element = document.createElement("a");
-    const file = new Blob(allComments, {type: "text/plain"});
+    const file = new Blob(_allComments, {type: "text/plain"});
 
     element.href = URL.createObjectURL(file);
     element.download = `message-${messageId}-comments`;
@@ -59,7 +87,7 @@ export default ({comments}: Props) => {
 
   const handleExportCommentsCSV: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    const commentRows = _comments.map(
+    const commentRows = allComments.map(
       ({isArtist, comment, createdAt, enName}) => {
         const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
         const name = isArtist === YES_NO.yes ? enName : "Me";
@@ -80,30 +108,30 @@ export default ({comments}: Props) => {
       )
       .join("\r\n"); // rows starting on new lines
 
-    // Create a blob
     const blob = new Blob([toCSVString], {type: "text/csv;charset=utf-8;"});
     const url = URL.createObjectURL(blob);
 
-    // Create a link to download it
-    const pom = document.createElement("a");
-    pom.href = url;
-    pom.setAttribute("download", `message-${messageId}-comments.csv`);
-    pom.click();
+    const anchorTag = document.createElement("a");
+    anchorTag.href = url;
+    anchorTag.setAttribute("download", `message-${messageId}-comments.csv`);
+    anchorTag.click();
   };
 
   const handleAddComment = (comment: string) => {
     return axios
       .post("/api/addMessageComment", {messageId, comment})
-      .then((response) =>
-        setAddedComments([...addedComments, response.data.comment])
-      );
+      .then((response) => setAllComments([...comments, response.data.comment]));
   };
 
   return (
     <div className={styles.container} ref={ref}>
-      {_comments.length ? (
-        _comments.map((comment) => (
-          <CommentBubble key={comment.id} comment={comment} />
+      {allComments.length ? (
+        allComments.map((comment) => (
+          <CommentBubble
+            key={comment.id}
+            comment={comment}
+            onDelete={handleDeleteComment}
+          />
         ))
       ) : (
         <h4 className={styles.noComments}>No comments</h4>

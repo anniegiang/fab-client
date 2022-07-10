@@ -1,7 +1,7 @@
 import {Id} from "types/common";
 import {UserController} from "server/controllers/UserController";
 import {LetterMessageResponse, NewestMessagesResponse} from "types/message";
-import {CommentsResponse, Comment} from "types/comment";
+import {CommentsResponse, Comment, DeleteCommentResponse} from "types/comment";
 import {AuthHeaders} from "types/session";
 
 class MessageController extends UserController {
@@ -59,6 +59,26 @@ class MessageController extends UserController {
         authHeaders.userid
       )}/message/${messageId}/comment/add`,
       data: comment,
+      headers: {
+        ...this.defaultHeaders,
+        ...authHeaders,
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
+
+    return this.respond(response);
+  }
+
+  async deleteMessageComment(
+    authHeaders: AuthHeaders,
+    messageId: Id,
+    commentId: Id
+  ): Promise<DeleteCommentResponse> {
+    const response = await this.api({
+      method: "POST",
+      url: `${this.baseUrl(
+        authHeaders.userid
+      )}/message/${messageId}/comment/${commentId}/delete`,
       headers: {
         ...this.defaultHeaders,
         ...authHeaders,

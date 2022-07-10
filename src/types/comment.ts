@@ -30,3 +30,7 @@ export type Comment = {
 export type CommentsResponse = {
   comments: Comment[];
 };
+
+export type DeleteCommentResponse = {
+  result: string;
+};
