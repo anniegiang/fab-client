@@ -1,10 +1,13 @@
 import React, {
   useState,
+  useContext,
   FormEvent,
   ChangeEventHandler,
   ChangeEvent
 } from "react";
 import styles from "client/styles/Form.module.css";
+import AuthContext from "client/context/AuthContext";
+import {POINTS} from "constants/points";
 
 type Props = {
   handleAddComment: (comment: string) => Promise<any>;
@@ -13,13 +16,21 @@ type Props = {
 const MINIMUM_COMMENT_LENGTH = 1;
 
 export default ({handleAddComment}: Props) => {
+  const {user} = useContext(AuthContext);
+
   const [comment, setComment] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
 
+  const hasEnoughPoints = user!.points >= POINTS.sendComment;
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
 
+    if (!hasEnoughPoints) {
+      return alert("You do not have enough points to send a comment.");
+    }
+
+    setSubmitting(true);
     handleAddComment(comment)
       .then(() => setComment(""))
       .finally(() => setSubmitting(false));

@@ -1,18 +1,26 @@
-import {useState, ChangeEventHandler, FormEventHandler} from "react";
+import {
+  useState,
+  useContext,
+  ChangeEventHandler,
+  FormEventHandler
+} from "react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import styles from "client/styles/Form.module.css";
 import {POINTS} from "constants/points";
+import AuthContext from "client/context/AuthContext";
 
 const MINIMUM_COMMENT_LENGTH = 1;
 
 export default () => {
   const router = useRouter();
   const {artistUserId} = router.query;
+  const {user} = useContext(AuthContext);
 
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const hasEnoughPoints = user!.points >= POINTS.sendLetter;
 
   const handleTitleOnChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setTitle(e.target.value);
@@ -22,6 +30,11 @@ export default () => {
 
   const handleSend: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
+    if (!hasEnoughPoints) {
+      return alert("You do not have enough points to send a letter.");
+    }
+    setSubmitting(true);
     axios
       .post("/api/sendFanLetter", {
         title,

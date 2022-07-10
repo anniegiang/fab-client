@@ -1,4 +1,4 @@
-import {MouseEventHandler} from "react";
+import {useContext, MouseEventHandler} from "react";
 import {useRouter} from "next/router";
 import {Message} from "types/message";
 import {YES_NO} from "constants/common";
@@ -7,12 +7,14 @@ import Card from "client/components/base/Card";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import {PATHS} from "constants/pages";
 import {POINTS} from "constants/points";
+import AuthContext from "client/context/AuthContext";
 
 type Props = {
   message: Message;
 };
 
 export default ({message}: Props) => {
+  const {user} = useContext(AuthContext);
   const router = useRouter();
   const author = (
     message.isGroup === YES_NO.yes ? message.group : message.user
@@ -24,6 +26,7 @@ export default ({message}: Props) => {
   const linkHref = `${PATHS.message}/${id}?thumbnail=${imageSrc}`;
   const isFollow = author.isFollow === YES_NO.yes;
   const isOpened = isRead === YES_NO.yes;
+  const hasEnoughPoints = user!.points >= POINTS.openMessage;
 
   const handleClick: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -36,7 +39,12 @@ export default ({message}: Props) => {
     }
 
     if (!isOpened) {
+      if (!hasEnoughPoints) {
+        return alert("You do not have enough points to open this message.");
+      }
+
       if (
+        hasEnoughPoints &&
         window.confirm(
           `Opening a message for the first time will cost ${POINTS.openMessage} points.`
         )
