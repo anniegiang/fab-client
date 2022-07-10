@@ -59,9 +59,6 @@ export default ({comments}: Props) => {
 
   const handleExportCommentsCSV: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    // const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
-    // const name = isArtist === yesNo.yes ? enName : "Me";
-    // return `[${name} ${timestamp}]\n${comment}\n\n`;
     const commentRows = _comments.map(
       ({isArtist, comment, createdAt, enName}) => {
         const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
