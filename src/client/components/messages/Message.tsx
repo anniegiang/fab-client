@@ -6,6 +6,7 @@ import styles from "client/styles/Message.module.css";
 import Card from "client/components/base/Card";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import {paths} from "constants/pages";
+import {POINTS} from "constants/points";
 
 type Props = {
   message: Message;
@@ -41,7 +42,11 @@ export default ({message}: Props) => {
       imageSrc={imageSrc}
     >
       <h5 className={styles.timestamp}>{getMessageTimestamp(createdAt)}</h5>
-      <p className={styles.readStatus}>{isOpened ? "Opened" : "Not opened"}</p>
+      <p className={styles.readStatus}>
+        {isOpened
+          ? "Opened"
+          : `Not opened (costs ${POINTS.openMessage} points)`}
+      </p>
     </Card>
   );
 };

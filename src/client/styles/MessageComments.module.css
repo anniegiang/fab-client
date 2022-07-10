@@ -6,3 +6,9 @@
   width: 35%;
   background-color: rgba(200, 200, 200, 0.3);
 }
+
+.disclaimer {
+  font-style: italic;
+  font-size: 10px;
+  text-align: center;
+}

@@ -27,7 +27,7 @@
 
 .submitButton {
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   border-radius: var(--border-radius);
   color: white;
   background-color: var(--brand-color);
@@ -47,4 +47,10 @@
 
 .errorMessage {
   color: rgb(220, 116, 116);
+}
+
+.disclaimer {
+  font-style: italic;
+  font-size: 10px;
+  text-align: center;
 }

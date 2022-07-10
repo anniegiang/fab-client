@@ -8,6 +8,8 @@ type Props = {
   artistUserId: Id;
 };
 
+const ERROR_MESSAGE = "There was an error. Please try again";
+
 export default ({isFollowing, artistUserId}: Props) => {
   const [isFollow, setIsFollow] = useState(isFollowing);
 
@@ -15,14 +17,18 @@ export default ({isFollowing, artistUserId}: Props) => {
     e.preventDefault();
     axios
       .post("/api/followArtist", {artistUserId})
-      .then(() => setIsFollow(true));
+      .then(() => setIsFollow(true))
+      .catch(() => alert(ERROR_MESSAGE));
   };
 
   const handleUnsubscribe: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    axios
-      .post("/api/unfollowArtist", {artistUserId})
-      .then(() => setIsFollow(false));
+    if (window.confirm("Unsubscribe?")) {
+      axios
+        .post("/api/unfollowArtist", {artistUserId})
+        .then(() => setIsFollow(false))
+        .catch(() => alert(ERROR_MESSAGE));
+    }
   };
 
   return (

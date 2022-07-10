@@ -4,10 +4,12 @@ import axios from "axios";
 import {Id} from "types/common";
 import {withSessionSsr} from "config/withSession";
 import styles from "client/styles/MessageComments.module.css";
+import formStyles from "client/styles/Form.module.css";
 import MessageController from "server/controllers/MessageController";
 import MessageCommentForm from "client/components/forms/MessageCommentForm";
 import {CommentsResponse, Comment} from "types/comment";
 import CommentBubble from "client/components/messages/CommentBubble";
+import {POINTS} from "constants/points";
 
 type Props = {
   comments: Comment[];
@@ -39,12 +41,27 @@ export default ({comments}: Props) => {
       );
   };
 
+  const _comments = [...comments, ...addedComments];
+
   return (
     <div className={styles.container} ref={ref}>
-      {[...comments, ...addedComments].map((comment) => (
-        <CommentBubble key={comment.id} comment={comment} />
-      ))}
+      {_comments.length ? (
+        _comments.map((comment) => (
+          <CommentBubble key={comment.id} comment={comment} />
+        ))
+      ) : (
+        <h4 className={styles.noComments}>No comments</h4>
+      )}
       <MessageCommentForm handleAddComment={handleAddComment} />
+      {[
+        `* Sending comments costs ${POINTS.sendComment} point`,
+        "* Your comments are sent in real time",
+        "* Responses are not recieved in real time"
+      ].map((text) => (
+        <p key={text} className={formStyles.disclaimer}>
+          {text}
+        </p>
+      ))}
     </div>
   );
 };

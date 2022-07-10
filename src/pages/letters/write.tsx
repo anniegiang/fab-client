@@ -2,6 +2,7 @@ import {useState, ChangeEventHandler, FormEventHandler} from "react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import styles from "client/styles/Form.module.css";
+import {POINTS} from "constants/points";
 
 const MINIMUM_COMMENT_LENGTH = 1;
 
@@ -67,6 +68,11 @@ export default () => {
           className={styles.submitButton}
         />
       </form>
+      {[`* Sending a letter costs ${POINTS.sendLetter} points`].map((text) => (
+        <p key={text} className={styles.disclaimer}>
+          {text}
+        </p>
+      ))}
     </div>
   );
 };
