@@ -10,3 +10,4 @@ export const paths = {
 };
 
 export const publicPaths = [paths.login];
+export const hideBackButtonPaths = [paths.login, paths.home, paths.root];

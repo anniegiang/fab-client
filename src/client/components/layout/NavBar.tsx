@@ -3,7 +3,8 @@ import {UserInfo} from "types/user";
 import styles from "client/styles/NavBar.module.css";
 import Link from "next/link";
 import LocalSession from "client/LocalSession";
-import {paths} from "constants/pages";
+import {paths, hideBackButtonPaths} from "constants/pages";
+import {MouseEventHandler} from "react";
 
 export type Props = {
   user: UserInfo;
@@ -17,10 +18,26 @@ export default ({user}: Props) => {
     router.reload();
   };
 
+  const handleBackButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    router.back();
+  };
+
   return (
     <nav>
       <ul className={styles.list}>
         <div>
+          {!hideBackButtonPaths.includes(router.pathname) && (
+            <li className={styles.item}>
+              <button
+                className={`${styles.button} ${styles.backButton}`}
+                onClick={handleBackButton}
+              >
+                Back
+              </button>
+            </li>
+          )}
+
           <li className={styles.item}>
             <Link href={paths.home}>Home</Link>
           </li>
@@ -39,7 +56,7 @@ export default ({user}: Props) => {
             <p>Points: {user?.points}</p>
           </li>
           <li className={styles.item}>
-            <button className={styles.logout} onClick={handleLogout}>
+            <button className={styles.button} onClick={handleLogout}>
               Log out
             </button>
           </li>

@@ -17,7 +17,7 @@
   text-decoration: none;
 }
 
-.logout {
+.button {
   border: none;
   cursor: pointer;
   border-radius: var(--border-radius);
@@ -25,7 +25,17 @@
   color: var(--primary-color);
 }
 
-.logout:hover {
+.button:hover {
   background-color: var(--brand-color);
   color: white;
+}
+
+.backButton {
+  padding: 5px 20px;
+  background-color: var(--brand-color);
+  color: white;
+}
+
+.backButton:hover {
+  background-color: var(--primary-color);
 }
