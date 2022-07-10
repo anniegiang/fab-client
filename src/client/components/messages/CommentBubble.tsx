@@ -11,31 +11,58 @@ type Props = {
   ) => unknown;
 };
 
+const TIMESTAMP_FORMAT = "h:mm a";
 export default ({comment, onDelete}: Props) => {
-  const {comment: commentText, createdAt, isArtist, isLike} = comment;
+  const {
+    comment: commentText,
+    createdAt,
+    isArtist,
+    isLike,
+    subComments
+  } = comment;
   const writtenByArtist = isArtist === YES_NO.yes;
   const isLiked = isLike === YES_NO.yes;
+  const hasReplies = !!(subComments.length && !writtenByArtist);
 
   const commentStyles = writtenByArtist
     ? styles.artistComment
     : styles.userComment;
 
   return (
-    <div className={styles.container}>
-      <div className={`${styles.commentContainer} ${commentStyles}`}>
-        <p className={commentStyles}>{commentText}</p>
-        <p className={`${styles.commentTimestamp} ${commentStyles}`}>
-          {moment(createdAt).format("h:mm a")}
-        </p>
-        {isLiked && !writtenByArtist && (
-          <span className={styles.likedComment}>❤️</span>
+    <>
+      <div className={styles.container}>
+        <div className={`${styles.commentContainer} ${commentStyles}`}>
+          <p className={commentStyles}>{commentText}</p>
+          <p className={`${styles.commentTimestamp} ${commentStyles}`}>
+            {moment(createdAt).format(TIMESTAMP_FORMAT)}
+          </p>
+          {isLiked && !writtenByArtist && (
+            <span className={styles.likedComment}>❤️</span>
+          )}
+        </div>
+        {!writtenByArtist && (
+          <a className={styles.deleteComment} onClick={onDelete}>
+            Delete
+          </a>
         )}
       </div>
-      {!writtenByArtist && (
-        <a className={styles.deleteComment} onClick={onDelete}>
-          Delete
-        </a>
-      )}
-    </div>
+      {hasReplies &&
+        subComments.map((subComment) => (
+          <div className={styles.container}>
+            <div
+              className={`${styles.commentContainer} ${styles.artistComment} ${styles.repliedComment}`}
+            >
+              <p className={`${styles.artistComment} ${styles.repliedComment}`}>
+                {subComment.comment}
+              </p>
+              <p
+                className={`${styles.commentTimestamp} ${styles.artistComment} ${styles.repliedComment}`}
+              >
+                {moment(subComment.createdAt).format(TIMESTAMP_FORMAT)}
+              </p>
+            </div>
+          </div>
+        ))}
+    </>
   );
 };

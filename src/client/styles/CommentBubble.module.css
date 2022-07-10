@@ -50,3 +50,7 @@
   bottom: -9px;
   left: -7px;
 }
+
+.repliedComment {
+  background-color: #fffce4;
+}
