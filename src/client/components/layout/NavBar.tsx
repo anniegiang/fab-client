@@ -3,7 +3,7 @@ import {UserInfo} from "types/user";
 import styles from "client/styles/NavBar.module.css";
 import Link from "next/link";
 import LocalSession from "client/LocalSession";
-import {paths, hideBackButtonPaths} from "constants/pages";
+import {PATHS, HIDE_BACK_BUTTON_PATHS} from "constants/pages";
 import {MouseEventHandler} from "react";
 
 export type Props = {
@@ -29,7 +29,7 @@ export default ({user}: Props) => {
     <nav>
       <ul className={styles.list}>
         <div>
-          {!hideBackButtonPaths.includes(router.pathname) && (
+          {!HIDE_BACK_BUTTON_PATHS.includes(router.pathname) && (
             <li className={styles.item}>
               <button
                 className={`${styles.button} ${styles.backButton}`}
@@ -41,13 +41,13 @@ export default ({user}: Props) => {
           )}
 
           <li className={styles.item}>
-            <Link href={paths.home}>Home</Link>
+            <Link href={PATHS.home}>Home</Link>
           </li>
           <li className={styles.item}>
-            <Link href={paths.subscribed}>Subscribed</Link>
+            <Link href={PATHS.subscribed}>Subscribed</Link>
           </li>
           <li className={styles.item}>
-            <Link href={paths.fanLetters}>Letters</Link>
+            <Link href={PATHS.fanLetters}>Letters</Link>
           </li>
         </div>
         <div>

@@ -5,7 +5,7 @@ import ArtistController from "server/controllers/ArtistController";
 import {ArtistMessageResponse, Message} from "types/message";
 import Messages from "client/components/messages/Messages";
 import PrimaryButton from "client/components/base/PrimaryButton";
-import {paths} from "constants/pages";
+import {PATHS} from "constants/pages";
 
 type Props = {
   messages: Message[];
@@ -23,7 +23,7 @@ export default ({messages}: Props) => {
     <div>
       <PrimaryButton
         text="Write letter"
-        linkHref={`${paths.fanLetters}/write?artistUserId=${artistUserId}`}
+        linkHref={`${PATHS.fanLetters}/write?artistUserId=${artistUserId}`}
       />
       <Messages messages={messages} />;
     </div>

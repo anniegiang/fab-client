@@ -4,7 +4,7 @@ import Image from "client/components/base/Image";
 import {ImageUrl} from "types/common";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import PrimaryButton from "client/components/base/PrimaryButton";
-import {paths} from "constants/pages";
+import {PATHS} from "constants/pages";
 import formStyles from "client/styles/Form.module.css";
 
 type Props = {
@@ -19,7 +19,7 @@ export default ({message, thumbnail}: Props) => {
       <span className={styles.commentButton}>
         <PrimaryButton
           text="Comments"
-          linkHref={`${paths.message}/${id}/comments`}
+          linkHref={`${PATHS.message}/${id}/comments`}
         />
       </span>
       {thumbnail && (

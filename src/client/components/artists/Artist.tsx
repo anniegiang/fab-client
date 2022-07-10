@@ -4,7 +4,7 @@ import styles from "client/styles/Artists.module.css";
 import {YES_NO} from "constants/common";
 import {getArtistName} from "client/utils/getArtistName";
 import ArtistSubscriptionButton from "client/components/artists/ArtistSubscriptionButton";
-import {paths} from "constants/pages";
+import {PATHS} from "constants/pages";
 
 type Props = {
   artistUser: ArtistUser;
@@ -15,7 +15,7 @@ export default ({artistUser}: Props) => {
   const {statusMessage} = artist;
 
   return (
-    <Card key={id} linkHref={`${paths.artist}/${id}`} imageSrc={profileImage}>
+    <Card key={id} linkHref={`${PATHS.artist}/${id}`} imageSrc={profileImage}>
       <div className={styles.content}>
         <h4 className={styles.artistName}>{getArtistName(artist)}</h4>
         <p className={styles.artistStatus}>{statusMessage}</p>

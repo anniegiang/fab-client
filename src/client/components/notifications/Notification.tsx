@@ -3,7 +3,7 @@ import Card from "client/components/base/Card";
 import styles from "client/styles/Notification.module.css";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import {getArtistName} from "client/utils/getArtistName";
-import {paths} from "constants/pages";
+import {PATHS} from "constants/pages";
 
 type Props = {
   notification: Notification;
@@ -16,7 +16,7 @@ export default ({notification}: Props) => {
 
   return (
     <Card
-      linkHref={`${paths.message}/${messageId}/comments`}
+      linkHref={`${PATHS.message}/${messageId}/comments`}
       imageSrc={messageThumbnailImage}
     >
       <h4 className={styles.title}>{getArtistName(artist)}</h4>

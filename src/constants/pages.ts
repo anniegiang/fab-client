@@ -1,4 +1,4 @@
-export const paths = {
+export const PATHS = {
   root: "/",
   login: "/login",
   home: "/home",
@@ -9,5 +9,5 @@ export const paths = {
   fanLetters: "/letters"
 };
 
-export const publicPaths = [paths.login];
-export const hideBackButtonPaths = [paths.login, paths.home, paths.root];
+export const PUBLIC_PATHS = [PATHS.login];
+export const HIDE_BACK_BUTTON_PATHS = [PATHS.login, PATHS.home, PATHS.root];
