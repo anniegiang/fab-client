@@ -1,4 +1,4 @@
-import {yesNo, zeroOrOne} from "constants/common";
+import {YES_NO, ZERO_ONE} from "constants/common";
 import {Comment, CommentsResponse} from "types/comment";
 import {mockArtistMessage} from "mocks/messageFactory";
 
@@ -15,15 +15,15 @@ export const mockComment = (customValues?: Partial<Comment>): Comment => ({
   groupId: message.groupId,
   isGroup: message.isGroup,
   comment: "message comment",
-  status: zeroOrOne.one,
+  status: ZERO_ONE.one,
   createdAt: todayValueOf,
   updatedAt: todayUTC,
-  isArtist: yesNo.yes,
+  isArtist: YES_NO.yes,
   name: author.artist.name,
   enName: author.artist.enName,
   profileImage: author.profileImage,
   userNickname: author.nickName,
-  isLike: yesNo.no,
+  isLike: YES_NO.no,
   subComments: [],
   ...customValues
 });

@@ -11,7 +11,7 @@ import MessageCommentForm from "client/components/forms/MessageCommentForm";
 import {CommentsResponse, Comment} from "types/comment";
 import CommentBubble from "client/components/messages/CommentBubble";
 import {POINTS} from "constants/points";
-import {yesNo} from "constants/common";
+import {YES_NO} from "constants/common";
 
 type Props = {
   comments: Comment[];
@@ -43,7 +43,7 @@ export default ({comments}: Props) => {
     const allComments = _comments.map(
       ({isArtist, comment, createdAt, enName}) => {
         const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
-        const name = isArtist === yesNo.yes ? enName : "Me";
+        const name = isArtist === YES_NO.yes ? enName : "Me";
         return `[${name} ${timestamp}]\n${comment}\n\n`;
       }
     );
@@ -62,7 +62,7 @@ export default ({comments}: Props) => {
     const commentRows = _comments.map(
       ({isArtist, comment, createdAt, enName}) => {
         const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
-        const name = isArtist === yesNo.yes ? enName : "Me";
+        const name = isArtist === YES_NO.yes ? enName : "Me";
         return [timestamp, name, comment];
       }
     );

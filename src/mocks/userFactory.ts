@@ -1,4 +1,4 @@
-import {yesNo, zeroOrOne} from "constants/common";
+import {YES_NO, ZERO_ONE} from "constants/common";
 import {mockAuthHeaders} from "./authHeadersFactory";
 import {
   User,
@@ -17,10 +17,10 @@ export const mockUser = (customValues?: Partial<User>): User => ({
   nickName: "user nickname",
   profileImage: "https://user-profile-image.com",
   birthday: "20000101",
-  type: zeroOrOne.zero,
-  isAllowMessagePush: yesNo.yes,
-  isAllowCommentPush: yesNo.no,
-  status: zeroOrOne.one,
+  type: ZERO_ONE.zero,
+  isAllowMessagePush: YES_NO.yes,
+  isAllowCommentPush: YES_NO.no,
+  status: ZERO_ONE.one,
   birthdayUpdatedAt: todayValueOf,
   createdAt: todayValueOf,
   updatedAt: todayValueOf,

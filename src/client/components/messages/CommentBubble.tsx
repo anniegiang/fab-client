@@ -1,6 +1,6 @@
 import moment from "moment-timezone";
 import {Comment} from "types/comment";
-import {yesNo} from "constants/common";
+import {YES_NO} from "constants/common";
 import styles from "client/styles/CommentBubble.module.css";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export default ({comment}: Props) => {
   const {comment: commentText, createdAt, isArtist} = comment;
-  const writtenByArtist = isArtist === yesNo.yes;
+  const writtenByArtist = isArtist === YES_NO.yes;
 
   const commentStyles = writtenByArtist
     ? styles.artistComment

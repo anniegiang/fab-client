@@ -1,7 +1,7 @@
 import {Notification, NotificationsReponse} from "types/notification";
 import {mockArtistUser} from "./artistFactory";
 import {mockUser} from "./userFactory";
-import {yesNo, zeroOrOne} from "constants/common";
+import {YES_NO, ZERO_ONE} from "constants/common";
 
 const todayValueOf = new Date().valueOf();
 const artist = mockArtistUser();
@@ -18,12 +18,12 @@ export const mockNotification = (
   artistUser: artist,
   batchServerId: 2,
   notificationGroupId: 3,
-  isGroup: yesNo.yes,
-  type: zeroOrOne.zero,
+  isGroup: YES_NO.yes,
+  type: ZERO_ONE.zero,
   userId: user.id,
-  isRead: zeroOrOne.one,
+  isRead: ZERO_ONE.one,
   createdAt: todayValueOf,
-  parentId: zeroOrOne.zero,
+  parentId: ZERO_ONE.zero,
   ...customValues
 });
 

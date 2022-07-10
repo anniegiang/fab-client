@@ -1,5 +1,5 @@
 import {Group, GroupResponse, SubscribedGroupsResponse} from "types/group";
-import {yesNo} from "constants/common";
+import {YES_NO} from "constants/common";
 
 const todayValueOf = new Date().valueOf();
 
@@ -19,11 +19,11 @@ export const mockGroup = (customValues?: Partial<Group>): Group => ({
   instagram: "https://instagram.com",
   vlive: "https://vlive.com",
   cafe: "https://daumcafe.com",
-  isSolo: yesNo.no,
+  isSolo: YES_NO.no,
   artistUsers: [],
   agencyName: "group agency name",
   agencyEnName: "group agency english name",
-  isFollow: yesNo.yes,
+  isFollow: YES_NO.yes,
   ...customValues
 });
 

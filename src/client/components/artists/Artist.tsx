@@ -1,7 +1,7 @@
 import Card from "client/components/base/Card";
 import {ArtistUser} from "types/artist";
 import styles from "client/styles/Artists.module.css";
-import {yesNo} from "constants/common";
+import {YES_NO} from "constants/common";
 import {getArtistName} from "client/utils/getArtistName";
 import ArtistSubscriptionButton from "client/components/artists/ArtistSubscriptionButton";
 import {paths} from "constants/pages";
@@ -20,7 +20,7 @@ export default ({artistUser}: Props) => {
         <h4 className={styles.artistName}>{getArtistName(artist)}</h4>
         <p className={styles.artistStatus}>{statusMessage}</p>
         <ArtistSubscriptionButton
-          isFollowing={isFollow === yesNo.yes}
+          isFollowing={isFollow === YES_NO.yes}
           artistUserId={id}
         />
       </div>

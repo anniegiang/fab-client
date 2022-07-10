@@ -1,6 +1,6 @@
 import {mockGroup} from "./groupFactory";
 import {mockArtistUser} from "./artistFactory";
-import {yesNo, zeroOrOne} from "constants/common";
+import {YES_NO, ZERO_ONE} from "constants/common";
 import {
   LetterImage,
   Letter,
@@ -35,8 +35,8 @@ export const mockLetter = (customValues?: Partial<Letter>): Letter => ({
   userId: artistUser.id,
   text: "letter text",
   thumbnail: "https//thumbnail.com",
-  isEncrypted: yesNo.no,
-  status: zeroOrOne.one,
+  isEncrypted: YES_NO.no,
+  status: ZERO_ONE.one,
   createdAt: todayValueOf,
   updatedAt: todayValueOf,
   images: [mockLetterImage()],
@@ -50,9 +50,9 @@ export const mockPostCard = (customValues?: Partial<PostCard>): PostCard => ({
   postcardImage: "https//post-card-image.com",
   postcardVideo: "https//post-card-video.com",
   thumbnail: "https//thumbnail.com",
-  isEncrypted: yesNo.no,
-  type: zeroOrOne.zero,
-  status: zeroOrOne.one,
+  isEncrypted: YES_NO.no,
+  type: ZERO_ONE.zero,
+  status: ZERO_ONE.one,
   createdAt: todayValueOf,
   updatedAt: todayValueOf,
   ...customValues
@@ -62,18 +62,18 @@ export const mockMessage = (customValues?: Partial<Message>): Message => ({
   id: MESSAGE_ID,
   userId: artistUser.id,
   groupId: group.id,
-  type: zeroOrOne.one,
-  isGroup: yesNo.no,
-  status: zeroOrOne.one,
+  type: ZERO_ONE.one,
+  isGroup: YES_NO.no,
+  status: ZERO_ONE.one,
   publishedAt: todayValueOf,
   createdAt: todayValueOf,
   updatedAt: todayValueOf,
-  isLike: yesNo.no,
-  isSave: yesNo.no,
-  isRead: yesNo.yes,
+  isLike: YES_NO.no,
+  isSave: YES_NO.no,
+  isRead: YES_NO.yes,
   likeCount: 0,
   commentCount: 10,
-  isNewArtistUserComment: yesNo.no,
+  isNewArtistUserComment: YES_NO.no,
   ...customValues
 });
 

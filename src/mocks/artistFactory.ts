@@ -1,5 +1,5 @@
 import {Artist, ArtistResponse, ArtistUser} from "types/artist";
-import {yesNo} from "constants/common";
+import {YES_NO} from "constants/common";
 import {mockUser} from "./userFactory";
 import {mockGroup} from "./groupFactory";
 
@@ -19,7 +19,7 @@ export const mockArtist = (customValues?: Partial<Artist>): Artist => ({
   launchImage: "https://artist-launch-image.com",
   statusMessage: "artist status message",
   messageUpdatedAt: todayValueOf,
-  isPublishable: yesNo.yes,
+  isPublishable: YES_NO.yes,
   affectionateName: "artist affectionate name",
   groupName: group.name,
   agencyName: group.agencyName,
@@ -32,7 +32,7 @@ export const mockArtistUser = (
 ): ArtistUser => ({
   ...user,
   artist: mockArtist(),
-  isFollow: yesNo.yes,
+  isFollow: YES_NO.yes,
   followedUpdatedAt: todayValueOf,
   ...customValues
 });
