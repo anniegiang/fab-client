@@ -46,7 +46,9 @@ export default ({comments}: Props) => {
   const handleAddComment = (comment: string) => {
     return axios
       .post("/api/addMessageComment", {messageId, comment})
-      .then((response) => setAllComments([...comments, response.data.comment]));
+      .then((response) =>
+        setAllComments([...allComments, response.data.comment])
+      );
   };
 
   const handleDeleteComment = (
