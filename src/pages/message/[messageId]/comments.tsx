@@ -85,31 +85,35 @@ export default ({comments}: Props) => {
 
   return (
     <div className={styles.container} ref={ref}>
-      {allComments.length ? (
-        allComments.map((comment, index) => (
-          <CommentBubble
-            key={comment.id}
-            comment={comment}
-            onDelete={(e) => handleDeleteComment(e, index)}
-          />
-        ))
-      ) : (
-        <h4 className={styles.noComments}>No comments</h4>
-      )}
+      <section>
+        {allComments.length ? (
+          allComments.map((comment, index) => (
+            <CommentBubble
+              key={comment.id}
+              comment={comment}
+              onDelete={(e) => handleDeleteComment(e, index)}
+            />
+          ))
+        ) : (
+          <h4 className={styles.noComments}>No comments</h4>
+        )}
+      </section>
       <MessageCommentForm handleAddComment={handleAddComment} />
       <section className={styles.exports}>
         <a onClick={handleExportCommentsCSV}>Export comments (.csv)</a>
         <a onClick={handleExportCommentsTxt}>Export comments (.txt)</a>
       </section>
-      {[
-        `* Sending comments costs ${POINTS.sendComment} point`,
-        "* Your comments are sent in real time",
-        "* Responses are not recieved in real time"
-      ].map((text) => (
-        <p key={text} className={formStyles.disclaimer}>
-          {text}
-        </p>
-      ))}
+      <section>
+        {[
+          `* Sending comments costs ${POINTS.sendComment} point`,
+          "* Your comments are sent in real time",
+          "* Responses are not recieved in real time"
+        ].map((text) => (
+          <p key={text} className={formStyles.disclaimer}>
+            {text}
+          </p>
+        ))}
+      </section>
     </div>
   );
 };
