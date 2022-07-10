@@ -4,7 +4,7 @@
   justify-content: space-evenly;
   margin: 0;
   padding: 15px;
-  border-bottom: 1px dotted grey;
+  border-bottom: 1px dotted var(--primary-color);
   background-color: white;
   position: fixed;
   top: 0;
