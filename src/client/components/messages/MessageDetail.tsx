@@ -5,6 +5,7 @@ import {ImageUrl} from "types/common";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import PrimaryButton from "client/components/base/PrimaryButton";
 import {paths} from "constants/pages";
+import formStyles from "client/styles/Form.module.css";
 
 type Props = {
   message: Message;
@@ -27,17 +28,6 @@ export default ({message, thumbnail}: Props) => {
       </h4>
     </>
   );
-
-  if (postcard) {
-    return (
-      <div className={styles.messageContainer}>
-        {topContent}
-        <p className={styles.videoDisclaimer}>
-          Videos are blocked by FAB. View in the FAB app instead.
-        </p>
-      </div>
-    );
-  }
 
   if (!letter) return null;
 
@@ -70,6 +60,9 @@ export default ({message, thumbnail}: Props) => {
           )
         )}
       </section>
+      <p className={`${formStyles.disclaimer} ${styles.pictureDisclaimer}`}>
+        * Pictures in messages are blocked by FAB. View in the FAB app instead.
+      </p>
     </div>
   );
 };
