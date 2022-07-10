@@ -27,10 +27,23 @@ export default ({message}: Props) => {
 
   const handleClick: MouseEventHandler = (e) => {
     e.preventDefault();
-    if (!isFollow) {
-      alert("Please subscribe to artist to see the message");
-    } else {
+    if (isFollow && isOpened) {
       router.push(linkHref);
+    }
+
+    if (!isFollow) {
+      return alert("Please subscribe to artist to see the message.");
+    }
+
+    if (!isOpened) {
+      if (
+        window.confirm(
+          `Opening a message for the first time will cost ${POINTS.openMessage} points.`
+        )
+      ) {
+        router.push(linkHref);
+      }
+      return;
     }
   };
 
@@ -42,11 +55,7 @@ export default ({message}: Props) => {
       imageSrc={imageSrc}
     >
       <h5 className={styles.timestamp}>{getMessageTimestamp(createdAt)}</h5>
-      <p className={styles.readStatus}>
-        {isOpened
-          ? "Opened"
-          : `Not opened (costs ${POINTS.openMessage} points)`}
-      </p>
+      <p className={styles.readStatus}>{isOpened ? "Opened" : "Not opened"}</p>
     </Card>
   );
 };
