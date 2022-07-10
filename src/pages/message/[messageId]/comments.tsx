@@ -85,10 +85,12 @@ export default ({comments}: Props) => {
     exportCommentsCsv(_allComments, messageId as string);
   };
 
+  const hasComments = allComments.length > 0;
+
   return (
     <div className={styles.container} ref={ref}>
       <section>
-        {allComments.length ? (
+        {hasComments ? (
           allComments.map((comment, index) => (
             <CommentBubble
               key={comment.id}
@@ -101,10 +103,12 @@ export default ({comments}: Props) => {
         )}
       </section>
       <MessageCommentForm handleAddComment={handleAddComment} />
-      <section className={styles.exports}>
-        <a onClick={handleExportCommentsCSV}>Export comments (.csv)</a>
-        <a onClick={handleExportCommentsTxt}>Export comments (.txt)</a>
-      </section>
+      {hasComments && (
+        <section className={styles.exports}>
+          <a onClick={handleExportCommentsCSV}>Export comments (.csv)</a>
+          <a onClick={handleExportCommentsTxt}>Export comments (.txt)</a>
+        </section>
+      )}
       <section>
         {[
           `* Sending comments costs ${POINTS.sendComment} point`,
