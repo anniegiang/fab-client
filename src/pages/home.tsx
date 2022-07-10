@@ -17,14 +17,14 @@ export default ({newestMessages, notifications}: Props) => {
   const hasNotifications = notifications.length > 0;
 
   return (
-    <div>
-      <section>
+    <div className={styles.rootContainer}>
+      <section className={styles.sectionContainer}>
         <h1 className={styles.sectionTitle}>
           {hasNotifications ? "Notifications" : "No notifications"}
         </h1>
         {hasNotifications && <Notifications notifications={notifications} />}
       </section>
-      <section>
+      <section className={styles.sectionContainer}>
         <h1 className={styles.sectionTitle}>
           {hasNewestMessages ? "Newest messages" : "No newest messages"}
         </h1>

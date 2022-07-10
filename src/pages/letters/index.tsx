@@ -3,6 +3,7 @@ import FanLetterController from "server/controllers/FanLetterController";
 import {FanLetter, FanLettersReponse} from "types/fanLetter";
 import FanLetterItem from "client/components/fanLetters/FanLetterItem";
 import styles from "client/styles/FanLetters.module.css";
+import indexStyles from "client/styles/Index.module.css";
 
 type Props = {
   fanLetters: FanLetter[];
@@ -12,9 +13,11 @@ type Props = {
 export default ({fanLetters, numFanLetters}: Props) => {
   const hasFanLetters = numFanLetters > 0;
   return (
-    <div>
-      <section>
-        <h1>{hasFanLetters ? "Sent" : "No sent letters"}</h1>
+    <div className={indexStyles.rootContainer}>
+      <section className={indexStyles.sectionContainer}>
+        <h1 className={indexStyles.sectionTitle}>
+          {hasFanLetters ? "Sent" : "No sent letters"}
+        </h1>
         {hasFanLetters && (
           <div className={styles.fanLetters}>
             {fanLetters.map((fanLetter) => (

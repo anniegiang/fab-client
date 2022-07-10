@@ -16,8 +16,8 @@ export default ({subscribedArtists, subscribedGroups}: Props) => {
   const hasSubscribedgroups = subscribedGroups.length > 0;
 
   return (
-    <div>
-      <section>
+    <div className={styles.rootContainer}>
+      <section className={styles.sectionContainer}>
         <h1 className={styles.sectionTitle}>
           {hasSubscribedArtists
             ? "Subscribed artists"
@@ -25,7 +25,7 @@ export default ({subscribedArtists, subscribedGroups}: Props) => {
         </h1>
         {hasSubscribedArtists && <Artists artistUsers={subscribedArtists} />}
       </section>
-      <section>
+      <section className={styles.sectionContainer}>
         <h1 className={styles.sectionTitle}>
           {hasSubscribedgroups ? "Subscribed groups" : "No subscribed groups"}
         </h1>
