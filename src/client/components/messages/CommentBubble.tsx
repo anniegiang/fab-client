@@ -12,8 +12,9 @@ type Props = {
 };
 
 export default ({comment, onDelete}: Props) => {
-  const {comment: commentText, createdAt, isArtist} = comment;
+  const {comment: commentText, createdAt, isArtist, isLike} = comment;
   const writtenByArtist = isArtist === YES_NO.yes;
+  const isLiked = isLike === YES_NO.yes;
 
   const commentStyles = writtenByArtist
     ? styles.artistComment
@@ -26,6 +27,9 @@ export default ({comment, onDelete}: Props) => {
         <p className={`${styles.commentTimestamp} ${commentStyles}`}>
           {moment(createdAt).format("h:mm a")}
         </p>
+        {isLiked && !writtenByArtist && (
+          <span className={styles.likedComment}>❤️</span>
+        )}
       </div>
       {!writtenByArtist && (
         <a className={styles.deleteComment} onClick={onDelete}>

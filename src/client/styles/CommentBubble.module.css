@@ -13,6 +13,7 @@
   padding: 10px 15px;
   flex-wrap: wrap;
   overflow-wrap: anywhere;
+  position: relative;
 }
 
 .commentTimestamp {
@@ -42,4 +43,10 @@
   align-self: flex-end;
   margin-top: 3px;
   text-decoration: none;
+}
+
+.likedComment {
+  position: absolute;
+  bottom: -9px;
+  left: -7px;
 }
