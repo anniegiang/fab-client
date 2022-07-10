@@ -22,12 +22,25 @@ export default ({message, thumbnail}: Props) => {
           linkHref={`${paths.message}/${id}/comments`}
         />
       </span>
-      {thumbnail && <Image src={thumbnail} className={styles.image} />}
+      {thumbnail && (
+        <Image src={thumbnail} className={styles.image} objectFit="contain" />
+      )}
       <h4 className={styles.messageTimestamp}>
         {getMessageTimestamp(createdAt)}
       </h4>
     </>
   );
+
+  if (postcard) {
+    return (
+      <div className={styles.messageContainer}>
+        {topContent}
+        <p className={styles.videoDisclaimer}>
+          Videos are blocked by FAB. View in the FAB app instead.
+        </p>
+      </div>
+    );
+  }
 
   if (!letter) return null;
 
@@ -41,22 +54,16 @@ export default ({message, thumbnail}: Props) => {
     <div className={styles.messageContainer}>
       {topContent}
       <section className={styles.messageContent} style={{alignItems: align}}>
-        {postcard ? (
-          <p className={styles.videoDisclaimer}>
-            Videos are blocked by FAB. View in the FAB app instead.
-          </p>
-        ) : (
-          filteredContent.map(({type, size, text, color}) =>
-            type === MessageContentType.Text ? (
-              <p
-                className={styles.text}
-                style={{fontSize: size + 3, color: color}}
-              >
-                {text}
-              </p>
-            ) : (
-              <span className={styles.lineBreak}></span>
-            )
+        {filteredContent.map(({type, size, text, color}) =>
+          type === MessageContentType.Text ? (
+            <p
+              className={styles.text}
+              style={{fontSize: size + 3, color: color}}
+            >
+              {text}
+            </p>
+          ) : (
+            <span className={styles.lineBreak}></span>
           )
         )}
       </section>
