@@ -15,6 +15,24 @@ const exportAuthorname = (isArtist: YesNo, artistName: string): string =>
 const exportFilename = (messageId: string): string =>
   `message-${messageId}-comments`;
 
+export const recursiveComments = (comments: Comment[]): Comment[] => {
+  const hasReplies = comments.some((comment) => comment.subComments.length > 0);
+
+  if (!hasReplies) return comments;
+
+  const allComments: Comment[] = [];
+
+  comments.forEach((comment) => {
+    allComments.push(comment);
+
+    if (comment.subComments.length) {
+      allComments.push(...recursiveComments(comment.subComments));
+    }
+  });
+
+  return allComments;
+};
+
 export const exportCommentsTxt = (comments: Comment[], messageId: string) => {
   const _allComments = comments.map(
     ({isArtist, comment, createdAt, enName}) =>

@@ -18,7 +18,8 @@ import CommentBubble from "client/components/messages/CommentBubble";
 import {POINTS} from "constants/points";
 import {
   exportCommentsTxt,
-  exportCommentsCsv
+  exportCommentsCsv,
+  recursiveComments
 } from "client/utils/commentsExport";
 
 type Props = {
@@ -73,14 +74,15 @@ export default ({comments}: Props) => {
     }
   };
 
+  const _allComments = recursiveComments(allComments);
   const handleExportCommentsTxt: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    exportCommentsTxt(allComments, messageId as string);
+    exportCommentsTxt(_allComments, messageId as string);
   };
 
   const handleExportCommentsCSV: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    exportCommentsCsv(allComments, messageId as string);
+    exportCommentsCsv(_allComments, messageId as string);
   };
 
   return (
