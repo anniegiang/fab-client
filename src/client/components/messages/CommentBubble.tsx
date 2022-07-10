@@ -22,7 +22,7 @@ export default ({comment, onDelete}: Props) => {
   } = comment;
   const writtenByArtist = isArtist === YES_NO.yes;
   const isLiked = isLike === YES_NO.yes;
-  const hasReplies = !!(subComments.length && !writtenByArtist);
+  const hasArtistReplies = !!(!writtenByArtist && subComments.length);
 
   const commentStyles = writtenByArtist
     ? styles.artistComment
@@ -46,7 +46,7 @@ export default ({comment, onDelete}: Props) => {
           </a>
         )}
       </div>
-      {hasReplies &&
+      {hasArtistReplies &&
         subComments.map((subComment) => (
           <div className={styles.container}>
             <div
