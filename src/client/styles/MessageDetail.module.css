@@ -1,12 +1,30 @@
-.container {
-  padding: 20px;
+.messageContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 25%;
   margin: 0 auto;
-  width: 35%;
-  background-color: rgba(200, 200, 200, 0.3);
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  border-radius: var(--border-radius);
 }
 
 .messageTimestamp {
+  margin: 10px 0;
   text-align: center;
+}
+
+.lineBreak {
+  margin-bottom: 5;
+}
+
+.commentButton {
+  align-self: flex-end;
+  margin-bottom: 10px;
 }

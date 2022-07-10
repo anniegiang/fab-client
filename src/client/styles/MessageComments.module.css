@@ -1,0 +1,8 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 35%;
+  background-color: rgba(200, 200, 200, 0.3);
+}

@@ -10,16 +10,17 @@ type Props = {
 };
 
 export default ({notification}: Props) => {
-  const {artist} = notification.artistUser;
+  const {artistUser, messageId, messageThumbnailImage, createdAt} =
+    notification;
+  const {artist} = artistUser;
+
   return (
     <Card
-      linkHref={`${paths.message}/${notification.messageId}`}
-      imageSrc={notification.messageThumbnailImage}
+      linkHref={`${paths.message}/${messageId}?thumbnail=${messageThumbnailImage}`}
+      imageSrc={messageThumbnailImage}
     >
       <h4 className={styles.title}>{getArtistName(artist)}</h4>
-      <p className={styles.title}>
-        {getMessageTimestamp(notification.createdAt)}
-      </p>
+      <p className={styles.title}>{getMessageTimestamp(createdAt)}</p>
     </Card>
   );
 };

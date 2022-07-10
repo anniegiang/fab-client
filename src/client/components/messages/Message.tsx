@@ -19,7 +19,8 @@ export default ({message}: Props) => {
 
   const {id, letter, postcard, createdAt, isRead} = message;
 
-  const linkHref = `${paths.message}/${id}`;
+  const imageSrc = postcard?.thumbnail ?? letter?.thumbnail;
+  const linkHref = `${paths.message}/${id}?thumbnail=${imageSrc}`;
   const isFollow = author.isFollow === yesNo.yes;
   const isOpened = isRead === yesNo.yes;
 
@@ -31,8 +32,6 @@ export default ({message}: Props) => {
       router.push(linkHref);
     }
   };
-
-  const imageSrc = postcard?.thumbnail ?? letter?.thumbnail;
 
   return (
     <Card

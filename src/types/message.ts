@@ -21,6 +21,26 @@ export type Letter = {
   images: LetterImage[];
 };
 
+export enum MessageContentType {
+  Image = "image",
+  Text = "text",
+  LineBreak = "br"
+}
+
+export type MessageContent = {
+  color: string;
+  size: number;
+  type: MessageContentType;
+  urls: string[];
+  text: string;
+};
+
+export type ParsedMessageContent = {
+  align: string;
+  version: string;
+  contents: MessageContent[];
+};
+
 export type PostCard = {
   id: Id;
   messageId: Id;
