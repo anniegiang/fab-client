@@ -6,7 +6,6 @@ import {
   useState
 } from "react";
 import axios from "axios";
-import moment from "moment-timezone";
 import {useRouter} from "next/router";
 import {Id} from "types/common";
 import {withSessionSsr} from "config/withSession";
@@ -17,7 +16,10 @@ import MessageCommentForm from "client/components/forms/MessageCommentForm";
 import {CommentsResponse, Comment} from "types/comment";
 import CommentBubble from "client/components/messages/CommentBubble";
 import {POINTS} from "constants/points";
-import {YES_NO} from "constants/common";
+import {
+  exportCommentsTxt,
+  exportCommentsCsv
+} from "client/utils/commentsExport";
 
 type Props = {
   comments: Comment[];
@@ -40,6 +42,12 @@ export default ({comments}: Props) => {
       window.scrollTo({top: offsetBottom});
     }
   }, []);
+
+  const handleAddComment = (comment: string) => {
+    return axios
+      .post("/api/addMessageComment", {messageId, comment})
+      .then((response) => setAllComments([...comments, response.data.comment]));
+  };
 
   const handleDeleteComment = (
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
@@ -65,60 +73,12 @@ export default ({comments}: Props) => {
 
   const handleExportCommentsTxt: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-
-    const _allComments = allComments.map(
-      ({isArtist, comment, createdAt, enName}) => {
-        const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
-        const name = isArtist === YES_NO.yes ? enName : "Me";
-        return `[${name} ${timestamp}]\n${comment}\n\n`;
-      }
-    );
-
-    const element = document.createElement("a");
-    const file = new Blob(_allComments, {type: "text/plain"});
-
-    element.href = URL.createObjectURL(file);
-    element.download = `message-${messageId}-comments`;
-    document.body.appendChild(element);
-    element.click();
+    exportCommentsTxt(allComments, messageId as string);
   };
 
   const handleExportCommentsCSV: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    const commentRows = allComments.map(
-      ({isArtist, comment, createdAt, enName}) => {
-        const timestamp = moment(createdAt).format("hh:mm:ssA YYYY-MM-DD");
-        const name = isArtist === YES_NO.yes ? enName : "Me";
-        return [timestamp, name, comment];
-      }
-    );
-
-    const toCSVString = commentRows
-      .map(
-        (row) =>
-          row
-            .map(String) // convert every value to String
-
-            // eslint-disable-next-line quotes
-            .map((v) => v.replaceAll('"', '""')) // escape double colons
-            .map((v) => `"${v}"`) // quote it
-            .join(",") // comma-separated
-      )
-      .join("\r\n"); // rows starting on new lines
-
-    const blob = new Blob([toCSVString], {type: "text/csv;charset=utf-8;"});
-    const url = URL.createObjectURL(blob);
-
-    const anchorTag = document.createElement("a");
-    anchorTag.href = url;
-    anchorTag.setAttribute("download", `message-${messageId}-comments.csv`);
-    anchorTag.click();
-  };
-
-  const handleAddComment = (comment: string) => {
-    return axios
-      .post("/api/addMessageComment", {messageId, comment})
-      .then((response) => setAllComments([...comments, response.data.comment]));
+    exportCommentsCsv(allComments, messageId as string);
   };
 
   return (
