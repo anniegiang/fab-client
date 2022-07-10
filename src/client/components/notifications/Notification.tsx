@@ -16,7 +16,7 @@ export default ({notification}: Props) => {
 
   return (
     <Card
-      linkHref={`${paths.message}/${messageId}?thumbnail=${messageThumbnailImage}`}
+      linkHref={`${paths.message}/${messageId}/comments`}
       imageSrc={messageThumbnailImage}
     >
       <h4 className={styles.title}>{getArtistName(artist)}</h4>
