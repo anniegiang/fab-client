@@ -7,7 +7,9 @@ import {NotificationsReponse} from "types/notification";
 import {
   UserInfoResponse,
   FollowArtistResponse,
-  UnfollowArtistResponse
+  UnfollowArtistResponse,
+  FollowGroupResponse,
+  UnfollowGroupResponse
 } from "types/user";
 
 export class UserController extends BaseController {
@@ -74,6 +76,28 @@ export class UserController extends BaseController {
   ): Promise<UnfollowArtistResponse> {
     const response = await this.defaultPost(
       `/unfollow/artist/${artistUserId}`,
+      authHeaders
+    );
+    return this.respond(response);
+  }
+
+  async followGroup(
+    groupId: Id,
+    authHeaders: AuthHeaders
+  ): Promise<FollowGroupResponse> {
+    const response = await this.defaultPost(
+      `/follow/group/${groupId}`,
+      authHeaders
+    );
+    return this.respond(response);
+  }
+
+  async unfollowGroup(
+    groupId: Id,
+    authHeaders: AuthHeaders
+  ): Promise<UnfollowGroupResponse> {
+    const response = await this.defaultPost(
+      `/unfollow/group/${groupId}`,
       authHeaders
     );
     return this.respond(response);

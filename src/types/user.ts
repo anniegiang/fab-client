@@ -35,3 +35,11 @@ export type FollowArtistResponse = {
 export type UnfollowArtistResponse = {
   result: string;
 };
+
+export type FollowGroupResponse = {
+  result: string;
+};
+
+export type UnfollowGroupResponse = {
+  result: string;
+};
