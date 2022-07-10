@@ -15,8 +15,12 @@
   border-radius: var(--border-radius);
 }
 
+.text {
+  margin-bottom: 10px;
+}
+
 .messageTimestamp {
-  margin: 10px 0;
+  margin: 15px 0;
   text-align: center;
 }
 
@@ -27,4 +31,8 @@
 .commentButton {
   align-self: flex-end;
   margin-bottom: 10px;
+}
+
+.videoDisclaimer {
+  font-style: italic;
 }

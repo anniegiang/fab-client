@@ -12,7 +12,25 @@ type Props = {
 };
 
 export default ({message, thumbnail}: Props) => {
-  const {letter, id, createdAt} = message;
+  const {letter, id, postcard, createdAt} = message;
+
+  const timestamp = (
+    <h4 className={styles.messageTimestamp}>
+      {getMessageTimestamp(createdAt)}
+    </h4>
+  );
+
+  if (postcard) {
+    return (
+      <div className={styles.messageContainer}>
+        {thumbnail && <Image src={thumbnail} className={styles.image} />}
+        {timestamp}
+        <p className={styles.videoDisclaimer}>
+          Videos are blocked by FAB. View in the FAB app instead.
+        </p>
+      </div>
+    );
+  }
 
   if (!letter) return null;
 
@@ -33,13 +51,16 @@ export default ({message, thumbnail}: Props) => {
         />
       </span>
       {thumbnail && <Image src={thumbnail} className={styles.image} />}
-      <h4 className={styles.messageTimestamp}>
-        {getMessageTimestamp(createdAt)}
-      </h4>
+      {timestamp}
       <section className={styles.messageContent} style={{alignItems: align}}>
         {filteredContent.map(({type, size, text, color}) =>
           type === MessageContentType.Text ? (
-            <p style={{fontSize: size + 3, color: color}}>{text}</p>
+            <p
+              className={styles.text}
+              style={{fontSize: size + 3, color: color}}
+            >
+              {text}
+            </p>
           ) : (
             <span className={styles.lineBreak}></span>
           )
