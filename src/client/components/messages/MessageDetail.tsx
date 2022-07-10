@@ -13,18 +13,25 @@ type Props = {
 
 export default ({message, thumbnail}: Props) => {
   const {letter, id, postcard, createdAt} = message;
-
-  const timestamp = (
-    <h4 className={styles.messageTimestamp}>
-      {getMessageTimestamp(createdAt)}
-    </h4>
+  const topContent = (
+    <>
+      <span className={styles.commentButton}>
+        <PrimaryButton
+          text="Comments"
+          linkHref={`${paths.message}/${id}/comments`}
+        />
+      </span>
+      {thumbnail && <Image src={thumbnail} className={styles.image} />}
+      <h4 className={styles.messageTimestamp}>
+        {getMessageTimestamp(createdAt)}
+      </h4>
+    </>
   );
 
   if (postcard) {
     return (
       <div className={styles.messageContainer}>
-        {thumbnail && <Image src={thumbnail} className={styles.image} />}
-        {timestamp}
+        {topContent}
         <p className={styles.videoDisclaimer}>
           Videos are blocked by FAB. View in the FAB app instead.
         </p>
@@ -35,34 +42,31 @@ export default ({message, thumbnail}: Props) => {
   if (!letter) return null;
 
   const {text} = letter;
-
   const {contents, align}: ParsedMessageContent = JSON.parse(text);
-
   const filteredContent = contents.filter(
     (content) => content.type !== MessageContentType.Image
   );
 
   return (
     <div className={styles.messageContainer}>
-      <span className={styles.commentButton}>
-        <PrimaryButton
-          text="Comments"
-          linkHref={`${paths.message}/${id}/comments`}
-        />
-      </span>
-      {thumbnail && <Image src={thumbnail} className={styles.image} />}
-      {timestamp}
+      {topContent}
       <section className={styles.messageContent} style={{alignItems: align}}>
-        {filteredContent.map(({type, size, text, color}) =>
-          type === MessageContentType.Text ? (
-            <p
-              className={styles.text}
-              style={{fontSize: size + 3, color: color}}
-            >
-              {text}
-            </p>
-          ) : (
-            <span className={styles.lineBreak}></span>
+        {postcard ? (
+          <p className={styles.videoDisclaimer}>
+            Videos are blocked by FAB. View in the FAB app instead.
+          </p>
+        ) : (
+          filteredContent.map(({type, size, text, color}) =>
+            type === MessageContentType.Text ? (
+              <p
+                className={styles.text}
+                style={{fontSize: size + 3, color: color}}
+              >
+                {text}
+              </p>
+            ) : (
+              <span className={styles.lineBreak}></span>
+            )
           )
         )}
       </section>
