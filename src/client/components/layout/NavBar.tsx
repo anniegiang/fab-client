@@ -14,8 +14,10 @@ export default ({user}: Props) => {
   const router = useRouter();
 
   const handleLogout = () => {
-    LocalSession.logout();
-    router.reload();
+    if (window.confirm("Log out?")) {
+      LocalSession.logout();
+      router.reload();
+    }
   };
 
   const handleBackButton: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -53,7 +55,7 @@ export default ({user}: Props) => {
             <p>{user.nickName}</p>
           </li>
           <li className={styles.item}>
-            <p>Points: {user?.points}</p>
+            <p>Points: {user.points}</p>
           </li>
           <li className={styles.item}>
             <button className={styles.button} onClick={handleLogout}>
