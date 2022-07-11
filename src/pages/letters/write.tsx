@@ -20,7 +20,7 @@ export default () => {
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const hasEnoughPoints = user!.points >= POINTS.sendLetter;
+  const hasEnoughPoints = user && user.points >= POINTS.sendLetter;
 
   const handleTitleOnChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setTitle(e.target.value);

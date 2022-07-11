@@ -26,7 +26,7 @@ export default ({message}: Props) => {
   const linkHref = `${PATHS.message}/${id}?thumbnail=${imageSrc}`;
   const isFollow = author.isFollow === YES_NO.yes;
   const isOpened = isRead === YES_NO.yes;
-  const hasEnoughPoints = user!.points >= POINTS.openMessage;
+  const hasEnoughPoints = user && user.points >= POINTS.openMessage;
 
   const handleClick: MouseEventHandler = (e) => {
     e.preventDefault();

@@ -21,7 +21,7 @@ export default ({handleAddComment}: Props) => {
   const [comment, setComment] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const hasEnoughPoints = user!.points >= POINTS.sendComment;
+  const hasEnoughPoints = user && user.points >= POINTS.sendComment;
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
