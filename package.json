@@ -4,7 +4,9 @@
   "description": "A client to access your Fab account.",
   "main": "index.ts",
   "scripts": {
-    "start": "next dev",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
     "test": "NEXT_PUBLIC_ENVIRONMENT=test jest --watch",
     "test-coverage": "NEXT_PUBLIC_ENVIRONMENT=test jest --coverage --collectCoverageFrom='./src/**'",
     "prepare": "husky install",
