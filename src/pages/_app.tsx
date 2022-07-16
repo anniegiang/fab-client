@@ -8,6 +8,8 @@ import LoadingBar from "client/components/layout/LoadingBar";
 import RouteGuard from "client/components/layout/RouteGuard";
 import AuthenticatedLayout from "client/components/layout/AuthenticatedLayout";
 import {useAccessToken, useUserId} from "client/hooks/useLocalSession";
+import environment from "config/environment";
+import Environment from "constants/environment";
 
 export default ({Component, pageProps}: AppProps) => {
   const {userId, setUserId} = useUserId();
@@ -19,6 +21,10 @@ export default ({Component, pageProps}: AppProps) => {
       axios.post("/api/user").then((response) => setUser(response.data));
     }
   }, [userId, accessToken]);
+
+  if (environment === Environment.production) {
+    return <h1>Coming soon</h1>;
+  }
 
   return (
     <AuthContext.Provider
