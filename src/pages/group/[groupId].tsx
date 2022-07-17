@@ -6,6 +6,7 @@ import Messages from "client/components/messages/Messages";
 import {Id} from "types/common";
 import {withSessionSsr} from "config/withSession";
 import indexStyles from "client/styles/Index.module.css";
+import {getGroupName} from "client/utils/getGroupName";
 
 type Props = {
   group: Group;
@@ -17,12 +18,12 @@ type ServerSideParams = {
 };
 
 export default ({group, groupMessages}: Props) => {
-  const {artistUsers, name, enName} = group;
+  const {artistUsers} = group;
 
   return (
     <div className={indexStyles.rootContainer}>
       <section className={indexStyles.sectionContainer}>
-        <h1 className={indexStyles.sectionTitle}>{`${name} * ${enName}`}</h1>
+        <h1 className={indexStyles.sectionTitle}>{getGroupName(group)}</h1>
         <Artists artistUsers={artistUsers} />
       </section>
       <section className={indexStyles.sectionContainer}>

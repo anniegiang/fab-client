@@ -22,9 +22,7 @@ export default ({message, thumbnail}: Props) => {
           linkHref={`${PATHS.message}/${id}/comments`}
         />
       </span>
-      {thumbnail && (
-        <Image src={thumbnail} className={styles.image} objectFit="contain" />
-      )}
+      {thumbnail && <Image src={thumbnail} objectFit="contain" />}
       <h4 className={styles.messageTimestamp}>
         {getMessageTimestamp(createdAt)}
       </h4>

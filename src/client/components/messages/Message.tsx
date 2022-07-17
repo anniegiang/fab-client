@@ -37,7 +37,8 @@ export default ({message}: Props) => {
   const isOpened = isRead === YES_NO.yes;
   const hasEnoughPoints =
     currentUser && currentUser.points >= POINTS.openMessage;
-  const name = userArtist && getArtistName(userArtist.artist);
+
+  const readStyle = !isOpened && styles.unreadText;
 
   const handleClick: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -74,12 +75,14 @@ export default ({message}: Props) => {
       onClick={handleClick}
       imageSrc={imageSrc}
     >
-      <h5 className={styles.timestamp}>{getMessageTimestamp(createdAt)}</h5>
-      {userArtist ? (
-        <p className={styles.text}>{name}</p>
-      ) : (
-        <p className={styles.text}>{isOpened ? "Opened" : "Not opened"}</p>
-      )}
+      <p className={`${styles.text} ${readStyle}`}>
+        {userArtist
+          ? getArtistName(userArtist.artist)
+          : group && `${group.name} * ${group.enName}`}
+      </p>
+      <p className={`${styles.timestamp} ${readStyle}`}>
+        {getMessageTimestamp(createdAt)}
+      </p>
     </Card>
   );
 };

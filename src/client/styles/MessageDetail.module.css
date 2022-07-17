@@ -11,10 +11,6 @@
   flex-direction: column;
 }
 
-.image {
-  border-radius: var(--border-radius);
-}
-
 .text {
   margin-bottom: 10px;
 }

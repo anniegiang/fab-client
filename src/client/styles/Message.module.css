@@ -1,9 +1,15 @@
-.timestamp {
+.text {
+  font-size: 16px;
   text-align: center;
 }
 
-.text {
+.timestamp {
+  font-size: 12px;
   text-align: center;
   font-style: italic;
-  margin-top: 5px;
+  margin-top: 3px;
+}
+
+.unreadText {
+  font-weight: 600;
 }
