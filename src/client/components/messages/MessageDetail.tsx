@@ -14,6 +14,7 @@ type Props = {
 
 export default ({message, thumbnail}: Props) => {
   const {letter, id, postcard, createdAt} = message;
+
   const topContent = (
     <>
       <span className={styles.commentButton}>
@@ -29,46 +30,46 @@ export default ({message, thumbnail}: Props) => {
     </>
   );
 
+  const disclaimer = (
+    <p className={`${formStyles.disclaimer} ${styles.disclaimer}`}>
+      {`* ${postcard ? "Videos" : "Pictures"} are blocked by FAB.`}
+    </p>
+  );
+
   if (postcard) {
     return (
       <div className={styles.messageContainer}>
         {topContent}
-        <p className={styles.videoDisclaimer}>
-          Videos are blocked by FAB. View in the FAB app instead.
-        </p>
+        {disclaimer}
       </div>
     );
   }
 
   if (!letter) return null;
 
-  const {text} = letter;
-  const {contents, align}: ParsedMessageContent = JSON.parse(text);
-  const filteredContent = contents.filter(
-    (content) => content.type !== MessageContentType.Image
-  );
+  const {contents, align}: ParsedMessageContent = JSON.parse(letter.text);
 
   return (
     <div className={styles.messageContainer}>
       {topContent}
       <section className={styles.messageContent} style={{alignItems: align}}>
-        {filteredContent.map(({type, size, text, color}, idx) =>
-          type === MessageContentType.Text ? (
-            <p
-              key={idx}
-              className={styles.text}
-              style={{fontSize: size, color: color}}
-            >
-              {text}
-            </p>
-          ) : (
-            <span key={idx} className={styles.lineBreak}></span>
-          )
-        )}
+        {contents
+          .filter((content) => content.type !== MessageContentType.Image)
+          .map(({type, size, text, color}, idx) =>
+            type === MessageContentType.Text ? (
+              <p
+                key={idx}
+                className={styles.text}
+                style={{fontSize: size, color: color}}
+              >
+                {text}
+              </p>
+            ) : (
+              <span key={idx} className={styles.lineBreak}></span>
+            )
+          )}
       </section>
-      <p className={`${formStyles.disclaimer} ${styles.pictureDisclaimer}`}>
-        * Pictures in messages are blocked by FAB. View in the FAB app instead.
-      </p>
+      {disclaimer}
     </div>
   );
 };

@@ -40,7 +40,15 @@ export default ({fanLetter}: Props) => {
         <PrimaryButton text="Delete letter" onClick={handleDeleteLetter} />
       </div>
       <h3 className={styles.letterTitle}>{title}</h3>
-      <p className={styles.letterText}>{text}</p>
+      {text.split("\n").map((text, idx) =>
+        !text ? (
+          <br key={idx} />
+        ) : (
+          <p key={idx} className={styles.letterText}>
+            {text}
+          </p>
+        )
+      )}
     </div>
   );
 };
