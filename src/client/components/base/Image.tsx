@@ -7,7 +7,7 @@ export default (props: Props) => {
   const {src} = props;
   return (
     <div className={styles.container}>
-      <Image layout="fill" objectFit="cover" {...props} src={src} />
+      <Image layout="fill" objectFit="cover" priority {...props} src={src} />
     </div>
   );
 };

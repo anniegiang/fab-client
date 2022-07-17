@@ -1,4 +1,10 @@
-import {useState, useEffect, useContext, ReactElement} from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+  ReactElement
+} from "react";
 import {useRouter} from "next/router";
 import AuthContext from "client/context/AuthContext";
 import {PATHS, PUBLIC_PATHS} from "constants/pages";
@@ -11,12 +17,15 @@ export default ({children}: Props) => {
   const router = useRouter();
   const {userid, accesstoken} = useContext(AuthContext);
   const [authorized, setAuthorized] = useState(false);
-  const isLoggedIn = !!(userid && accesstoken);
+
+  const hideContent = useCallback(
+    () => setAuthorized(false),
+    [userid, accesstoken]
+  );
 
   useEffect(() => {
     authCheck(router.asPath);
 
-    const hideContent = () => setAuthorized(false);
     router.events.on("routeChangeStart", hideContent);
     router.events.on("routeChangeComplete", authCheck);
 
@@ -26,21 +35,25 @@ export default ({children}: Props) => {
     };
   }, [userid, accesstoken]);
 
-  const authCheck = (url: string) => {
-    const path = url.split("?")[0];
+  const authCheck = useCallback(
+    (url: string) => {
+      const isLoggedIn = !!(userid && accesstoken);
+      const path = url.split("?")[0];
 
-    if (isLoggedIn && path === PATHS.login) {
-      router.back();
-      return;
-    }
+      if (isLoggedIn && path === PATHS.login) {
+        router.back();
+        return;
+      }
 
-    if (!isLoggedIn && !PUBLIC_PATHS.includes(path)) {
-      setAuthorized(false);
-      router.push({pathname: PATHS.login});
-    } else {
-      setAuthorized(true);
-    }
-  };
+      if (!isLoggedIn && !PUBLIC_PATHS.includes(path)) {
+        setAuthorized(false);
+        router.push({pathname: PATHS.login});
+      } else {
+        setAuthorized(true);
+      }
+    },
+    [userid, accesstoken]
+  );
 
   return (authorized && children) || null;
 };

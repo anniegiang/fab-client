@@ -1,5 +1,5 @@
 import {useContext, ReactNode} from "react";
-import AuthContext from "client/context/AuthContext";
+import CurrentUserContext from "client/context/CurrentUserContext";
 import NavBar from "client/components/layout/NavBar";
 import styles from "client/styles/Layout.module.css";
 
@@ -8,11 +8,12 @@ type Props = {
 };
 
 export default ({children}: Props) => {
-  const {user} = useContext(AuthContext);
+  const {currentUser} = useContext(CurrentUserContext);
+
   return (
     <>
-      {user && <NavBar user={user} />}
-      <main className={user && styles.container}>{children}</main>
+      {currentUser && <NavBar user={currentUser} />}
+      <main className={currentUser && styles.container}>{children}</main>
     </>
   );
 };

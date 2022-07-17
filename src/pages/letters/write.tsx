@@ -2,25 +2,33 @@ import {
   useState,
   useContext,
   ChangeEventHandler,
-  FormEventHandler
+  FormEventHandler,
+  useEffect
 } from "react";
 import {useRouter} from "next/router";
 import axios from "axios";
 import styles from "client/styles/Form.module.css";
 import {POINTS} from "constants/points";
-import AuthContext from "client/context/AuthContext";
+import CurrentUserContext from "client/context/CurrentUserContext";
 
 const MINIMUM_COMMENT_LENGTH = 1;
 
 export default () => {
   const router = useRouter();
   const {artistUserId} = router.query;
-  const {user} = useContext(AuthContext);
+  const {currentUser, updatePoints} = useContext(CurrentUserContext);
 
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const hasEnoughPoints = user && user.points >= POINTS.sendLetter;
+  const hasEnoughPoints =
+    currentUser && currentUser.points >= POINTS.sendLetter;
+
+  useEffect(() => {
+    if (!hasEnoughPoints) {
+      window.alert("You do not have enough points to write a letter.");
+    }
+  }, []);
 
   const handleTitleOnChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setTitle(e.target.value);
@@ -44,6 +52,7 @@ export default () => {
       .then(() => {
         setTitle("");
         setText("");
+        updatePoints && updatePoints(currentUser.points - POINTS.sendLetter);
       })
       .catch(() => alert("Error sending letter"))
       .finally(() => setSubmitting(false));

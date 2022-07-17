@@ -6,7 +6,7 @@ import React, {
   ChangeEvent
 } from "react";
 import styles from "client/styles/Form.module.css";
-import AuthContext from "client/context/AuthContext";
+import CurrentUserContext from "client/context/CurrentUserContext";
 import {POINTS} from "constants/points";
 
 type Props = {
@@ -16,12 +16,13 @@ type Props = {
 const MINIMUM_COMMENT_LENGTH = 1;
 
 export default ({handleAddComment}: Props) => {
-  const {user} = useContext(AuthContext);
+  const {currentUser, updatePoints} = useContext(CurrentUserContext);
 
   const [comment, setComment] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const hasEnoughPoints = user && user.points >= POINTS.sendComment;
+  const hasEnoughPoints =
+    currentUser && currentUser.points >= POINTS.sendComment;
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -32,7 +33,10 @@ export default ({handleAddComment}: Props) => {
 
     setSubmitting(true);
     handleAddComment(comment)
-      .then(() => setComment(""))
+      .then(() => {
+        setComment("");
+        updatePoints && updatePoints(currentUser.points - POINTS.sendComment);
+      })
       .finally(() => setSubmitting(false));
   };
 

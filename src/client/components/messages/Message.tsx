@@ -8,14 +8,15 @@ import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
 import {getArtistName} from "client/utils/getArtistName";
 import {PATHS} from "constants/pages";
 import {POINTS} from "constants/points";
-import AuthContext from "client/context/AuthContext";
+import CurrentUserContext from "client/context/CurrentUserContext";
 
 type Props = {
   message: Message;
 };
 
 export default ({message}: Props) => {
-  const {user} = useContext(AuthContext);
+  const {currentUser, updatePoints} = useContext(CurrentUserContext);
+
   const router = useRouter();
   const {
     id,
@@ -34,7 +35,8 @@ export default ({message}: Props) => {
   const linkHref = `${PATHS.message}/${id}?thumbnail=${imageSrc}`;
   const isFollow = author.isFollow === YES_NO.yes;
   const isOpened = isRead === YES_NO.yes;
-  const hasEnoughPoints = user && user.points >= POINTS.openMessage;
+  const hasEnoughPoints =
+    currentUser && currentUser.points >= POINTS.openMessage;
   const name = userArtist && getArtistName(userArtist.artist);
 
   const handleClick: MouseEventHandler = (e) => {
@@ -58,6 +60,7 @@ export default ({message}: Props) => {
           `Opening a message for the first time will cost ${POINTS.openMessage} points.`
         )
       ) {
+        updatePoints && updatePoints(currentUser.points - POINTS.openMessage);
         router.push(linkHref);
       }
       return;

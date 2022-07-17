@@ -54,13 +54,17 @@ export default ({message, thumbnail}: Props) => {
     <div className={styles.messageContainer}>
       {topContent}
       <section className={styles.messageContent} style={{alignItems: align}}>
-        {filteredContent.map(({type, size, text, color}) =>
+        {filteredContent.map(({type, size, text, color}, idx) =>
           type === MessageContentType.Text ? (
-            <p className={styles.text} style={{fontSize: size, color: color}}>
+            <p
+              key={idx}
+              className={styles.text}
+              style={{fontSize: size, color: color}}
+            >
               {text}
             </p>
           ) : (
-            <span className={styles.lineBreak}></span>
+            <span key={idx} className={styles.lineBreak}></span>
           )
         )}
       </section>
