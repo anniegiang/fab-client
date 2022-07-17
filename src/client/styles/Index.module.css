@@ -3,7 +3,9 @@
 }
 
 .sectionTitle {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  border-bottom: 1px dotted var(--primary-color);
+  padding-bottom: 10px;
 }
 
 .sectionContainer {
