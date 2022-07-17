@@ -52,13 +52,15 @@ export default ({message}: Props) => {
 
     if (!isOpened) {
       if (!hasEnoughPoints) {
-        return alert("You do not have enough points to open this message.");
+        return alert(
+          `You do not have enough points to open this message (${POINTS.openMessage} points).`
+        );
       }
 
       if (
         hasEnoughPoints &&
         window.confirm(
-          `Opening a message for the first time will cost ${POINTS.openMessage} points.`
+          `Opening a message for the first time will cost ${POINTS.openMessage} points. Open?`
         )
       ) {
         updatePoints && updatePoints(currentUser.points - POINTS.openMessage);

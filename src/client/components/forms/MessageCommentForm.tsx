@@ -27,15 +27,13 @@ export default ({handleAddComment}: Props) => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!hasEnoughPoints) {
-      return alert("You do not have enough points to send a comment.");
-    }
-
     setSubmitting(true);
     handleAddComment(comment)
       .then(() => {
         setComment("");
-        updatePoints && updatePoints(currentUser.points - POINTS.sendComment);
+        updatePoints &&
+          currentUser &&
+          updatePoints(currentUser.points - POINTS.sendComment);
       })
       .finally(() => setSubmitting(false));
   };
@@ -43,6 +41,14 @@ export default ({handleAddComment}: Props) => {
   const handleCommentChange: ChangeEventHandler<HTMLTextAreaElement> = (
     e: ChangeEvent<HTMLTextAreaElement>
   ) => setComment(e.target.value);
+
+  if (!hasEnoughPoints) {
+    return (
+      <p className={styles.notEnoughPoints}>
+        {`You do not have enough points to send a comment. (${POINTS.sendComment} point).`}
+      </p>
+    );
+  }
 
   const isSubmitButtonDisabled =
     !comment || comment.length < MINIMUM_COMMENT_LENGTH || submitting;

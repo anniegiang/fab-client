@@ -2,8 +2,7 @@ import {
   useState,
   useContext,
   ChangeEventHandler,
-  FormEventHandler,
-  useEffect
+  FormEventHandler
 } from "react";
 import {useRouter} from "next/router";
 import axios from "axios";
@@ -24,12 +23,6 @@ export default () => {
   const hasEnoughPoints =
     currentUser && currentUser.points >= POINTS.sendLetter;
 
-  useEffect(() => {
-    if (!hasEnoughPoints) {
-      window.alert("You do not have enough points to write a letter.");
-    }
-  }, []);
-
   const handleTitleOnChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setTitle(e.target.value);
 
@@ -38,10 +31,6 @@ export default () => {
 
   const handleSend: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-
-    if (!hasEnoughPoints) {
-      return alert("You do not have enough points to send a letter.");
-    }
     setSubmitting(true);
     axios
       .post("/api/sendFanLetter", {
@@ -52,7 +41,9 @@ export default () => {
       .then(() => {
         setTitle("");
         setText("");
-        updatePoints && updatePoints(currentUser.points - POINTS.sendLetter);
+        updatePoints &&
+          currentUser &&
+          updatePoints(currentUser.points - POINTS.sendLetter);
       })
       .catch(() => alert("Error sending letter"))
       .finally(() => setSubmitting(false));
@@ -62,6 +53,14 @@ export default () => {
     title.length < MINIMUM_COMMENT_LENGTH ||
     text.length < MINIMUM_COMMENT_LENGTH ||
     submitting;
+
+  if (!hasEnoughPoints) {
+    return (
+      <p className={styles.notEnoughPoints}>
+        {`You do not have enough points to send a letter (${POINTS.sendLetter} points).`}
+      </p>
+    );
+  }
 
   return (
     <div className={styles.container}>
