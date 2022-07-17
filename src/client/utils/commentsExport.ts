@@ -16,17 +16,21 @@ const exportFilename = (messageId: string): string =>
   `message-${messageId}-comments`;
 
 export const recursiveComments = (comments: Comment[]): Comment[] => {
-  const hasReplies = comments.some((comment) => comment.subComments.length > 0);
+  const hasReplies = comments.some(
+    ({subComments}) => subComments && subComments.length > 0
+  );
 
   if (!hasReplies) return comments;
 
   const allComments: Comment[] = [];
 
   comments.forEach((comment) => {
+    const {subComments} = comment;
+
     allComments.push(comment);
 
-    if (comment.subComments.length) {
-      allComments.push(...recursiveComments(comment.subComments));
+    if (subComments && subComments.length) {
+      allComments.push(...recursiveComments(subComments));
     }
   });
 

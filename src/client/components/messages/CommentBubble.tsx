@@ -35,7 +35,11 @@ export default ({comment, onDelete}: Props) => {
   } = comment;
   const writtenByArtist = isArtist === YES_NO.yes;
   const isLiked = isLike === YES_NO.yes;
-  const hasArtistReplies = !!(!writtenByArtist && subComments.length);
+  const hasArtistReplies = !!(
+    !writtenByArtist &&
+    subComments &&
+    subComments.length
+  );
 
   const commentStyles = writtenByArtist
     ? styles.artistComment

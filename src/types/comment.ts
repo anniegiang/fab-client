@@ -24,7 +24,7 @@ export type Comment = {
   profileImage: ImageUrl;
   userNickname: string;
   isLike: YesNo;
-  subComments: Comment[];
+  subComments?: Comment[];
 };
 
 export type CommentsResponse = {

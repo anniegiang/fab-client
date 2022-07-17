@@ -5,6 +5,7 @@ import {YES_NO} from "constants/common";
 import styles from "client/styles/Message.module.css";
 import Card from "client/components/base/Card";
 import {getMessageTimestamp} from "client/utils/getMessageTimestamp";
+import {getArtistName} from "client/utils/getArtistName";
 import {PATHS} from "constants/pages";
 import {POINTS} from "constants/points";
 import AuthContext from "client/context/AuthContext";
@@ -16,17 +17,25 @@ type Props = {
 export default ({message}: Props) => {
   const {user} = useContext(AuthContext);
   const router = useRouter();
-  const author = (
-    message.isGroup === YES_NO.yes ? message.group : message.user
-  )!;
+  const {
+    id,
+    letter,
+    postcard,
+    createdAt,
+    isRead,
+    user: userArtist,
+    group
+  } = message;
 
-  const {id, letter, postcard, createdAt, isRead} = message;
+  const isGroup = message.isGroup === YES_NO.yes;
+  const author = (isGroup ? group : userArtist)!;
 
   const imageSrc = postcard?.thumbnail ?? letter?.thumbnail;
   const linkHref = `${PATHS.message}/${id}?thumbnail=${imageSrc}`;
   const isFollow = author.isFollow === YES_NO.yes;
   const isOpened = isRead === YES_NO.yes;
   const hasEnoughPoints = user && user.points >= POINTS.openMessage;
+  const name = userArtist && getArtistName(userArtist.artist);
 
   const handleClick: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -63,7 +72,11 @@ export default ({message}: Props) => {
       imageSrc={imageSrc}
     >
       <h5 className={styles.timestamp}>{getMessageTimestamp(createdAt)}</h5>
-      <p className={styles.readStatus}>{isOpened ? "Opened" : "Not opened"}</p>
+      {userArtist ? (
+        <p className={styles.text}>{name}</p>
+      ) : (
+        <p className={styles.text}>{isOpened ? "Opened" : "Not opened"}</p>
+      )}
     </Card>
   );
 };
