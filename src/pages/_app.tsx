@@ -31,9 +31,9 @@ export default ({Component, pageProps}: AppProps) => {
     [currentUser]
   );
 
-  // if (environment === Environment.production) {
-  //   return <h1>Coming soon</h1>;
-  // }
+  if (environment === Environment.production) {
+    return <h1>Coming soon</h1>;
+  }
 
   return (
     <AuthContext.Provider
